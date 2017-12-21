@@ -2,6 +2,8 @@ imports:
     - { resource: parameters.yml }
     - { resource: security.yml }
     - { resource: services.yml }
+    - { resource: "@FrontendBundle/Resources/config/services.yml" }
+    - { resource: "@BackendBundle/Resources/config/services.yml" }
 
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
@@ -65,3 +67,48 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+imports:
+    ...
+    - { resource: "@MWSimpleAdminCrudBundle/Resources/config/config.yml" }
+framework:
+    ...
+    translator:      { fallback: %locale% } # uncomment line
+
+knp_paginator:
+    page_range: 10                     # default page range used in pagination control
+    default_options:
+        page_name: page                # page query parameter name
+        sort_field_name: sort          # sort field query parameter name
+        sort_direction_name: direction # sort direction query parameter name
+        distinct: true                 # ensure distinct results, useful when ORM queries are using GROUP BY statements
+    template:
+        # pagination: KnpPaginatorBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig # bootstrap 3 sliding pagination controls template
+        pagination: MWSimpleAdminCrudBundle:Pagination:twitter_bootstrap_v3_pagination.html.twig # bootstrap 3 sliding pagination controls template
+        sortable: KnpPaginatorBundle:Pagination:sortable_link.html.twig # sort link template
+
+knp_menu:
+    twig:  # use "twig: false" to disable the Twig extension and the TwigRenderer
+        template: MWSimpleAdminCrudBundle:Menu:knp_menu.html.twig
+    templating: false # if true, enables the helper for PHP templates
+    default_renderer: twig # The renderer to use, list is also available by default
+mw_simple_admin_crud:
+    setting: { site_name: Administración, fos_user: false } # Default:: site_theme: bootstrap, site_name: AdminCrud, site_view_layout: 'MWSimpleAdminCrudBundle::layout.html.twig', site_view_footer: '::footer.html.twig', fos_user: false, menu_horizontal: false
+    menu_setting: { id: side-menu, class: nav } # use id: side-menu and class: nav. If is horizontal use class: nav navbar-nav
+    menu:
+        child: { name: inicio, url: mws_admin_crud_menu, id: inicio, icon: glyphicon glyphicon-home }
+        #child2:  
+        #    name: help
+        #    url: null
+        #    id: help
+        #    subMenu:
+        #        indice:
+        #            name: indice
+        #            url: admin_indice
+        #            icon: glyphicon glyphicon-home
+        #            roles: ['ROLE_ADMIN']
+        #    roles: ['ROLE_USER']
+        #child3: { name: Usuarios, url: admin_usuario, id: usuario, roles: ['ROLE_SUPERADMIN'], icon: glyphicon glyphicon-user }
+
+vich_uploader:
+    db_driver: orm

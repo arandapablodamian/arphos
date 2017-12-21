@@ -1,3 +1,29 @@
+backend:
+    resource: "@BackendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
+frontend:
+    resource: "@FrontendBundle/Controller/"
+    type:     annotation
+    prefix:   /
+
 app:
     resource: '@AppBundle/Controller/'
     type: annotation
+    
+mw_simple_admin_crud:
+    resource: "@MWSimpleAdminCrudBundle/Controller/"
+    type:     annotation
+    prefix:   /admin
+
+_liip_imagine:
+    resource: "@LiipImagineBundle/Resources/config/routing.xml"
+
+# DEBE IR AL FINAL
+remove_trailing_slash:
+    path: /{url}
+    defaults: { _controller: MWSimpleAdminCrudBundle:Redirecting:removeTrailingSlash }
+    requirements:
+        url: .*\/$
+        _method: GET
