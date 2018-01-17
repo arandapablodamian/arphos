@@ -1,0 +1,89 @@
+entityName: 'Turno'
+entity: 'BackendBundle\Entity\Turno'
+repository: 'BackendBundle:Turno'
+paginate: true
+index: 'turno'
+view_index: 'BackendBundle:turno:index.html.twig'
+new: 'turno_new'
+create: 'turno_create'
+view_new: 'BackendBundle:turno:new.html.twig'
+edit: 'turno_edit'
+update: 'turno_update'
+view_edit: 'BackendBundle:turno:edit.html.twig'
+show: 'turno_show'
+view_show: 'BackendBundle:turno:show.html.twig'
+delete: 'turno_delete'
+export: 'turno_export'
+sessionFilter: 'TurnoControllerFilter'
+saveAndAdd: true
+validator: true
+fieldsindex:
+    a.id:
+        label: 'Id'
+        name: 'id'
+        type: 'integer'
+        export: true
+    a.nombre:
+        label: 'Nombre'
+        name: 'nombre'
+        type: 'string'
+        export: true
+    a.apellido:
+        label: 'Apellido'
+        name: 'apellido'
+        type: 'string'
+        export: true
+    a.direccion:
+        label: 'Direccion'
+        name: 'direccion'
+        type: 'string'
+        export: true
+    a.telefono:
+        label: 'Telefono'
+        name: 'telefono'
+        type: 'integer'
+        export: true
+    a.diayhora:
+        label: 'Diayhora'
+        name: 'diayhora'
+        type: 'datetimetz'
+        date: 'Y-m-d H:i:s'
+        export: true
+fieldsshow:
+    a.id:
+        label: 'Id'
+        name: 'id'
+        type: 'integer'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.nombre:
+        label: 'Nombre'
+        name: 'nombre'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.apellido:
+        label: 'Apellido'
+        name: 'apellido'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.direccion:
+        label: 'Direccion'
+        name: 'direccion'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.telefono:
+        label: 'Telefono'
+        name: 'telefono'
+        type: 'integer'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.diayhora:
+        label: 'Diayhora'
+        name: 'diayhora'
+        type: 'datetimetz'
+        date: 'Y-m-d H:i:s'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true

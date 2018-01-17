@@ -1,0 +1,87 @@
+entityName: 'Mensaje'
+entity: 'BackendBundle\Entity\Mensaje'
+repository: 'BackendBundle:Mensaje'
+paginate: true
+index: 'mensaje'
+view_index: 'BackendBundle:mensaje:index.html.twig'
+new: 'mensaje_new'
+create: 'mensaje_create'
+view_new: 'BackendBundle:mensaje:new.html.twig'
+edit: 'mensaje_edit'
+update: 'mensaje_update'
+view_edit: 'BackendBundle:mensaje:edit.html.twig'
+show: 'mensaje_show'
+view_show: 'BackendBundle:mensaje:show.html.twig'
+delete: 'mensaje_delete'
+export: 'mensaje_export'
+sessionFilter: 'MensajeControllerFilter'
+saveAndAdd: true
+validator: true
+fieldsindex:
+    a.id:
+        label: 'Id'
+        name: 'id'
+        type: 'integer'
+        export: true
+    a.nombre:
+        label: 'Nombre'
+        name: 'nombre'
+        type: 'string'
+        export: true
+    a.apellido:
+        label: 'Apellido'
+        name: 'apellido'
+        type: 'string'
+        export: true
+    a.direccion:
+        label: 'Direccion'
+        name: 'direccion'
+        type: 'string'
+        export: true
+    a.telefono:
+        label: 'Telefono'
+        name: 'telefono'
+        type: 'integer'
+        export: true
+    a.email:
+        label: 'Email'
+        name: 'email'
+        type: 'string'
+        export: true
+fieldsshow:
+    a.id:
+        label: 'Id'
+        name: 'id'
+        type: 'integer'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.nombre:
+        label: 'Nombre'
+        name: 'nombre'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.apellido:
+        label: 'Apellido'
+        name: 'apellido'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.direccion:
+        label: 'Direccion'
+        name: 'direccion'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.telefono:
+        label: 'Telefono'
+        name: 'telefono'
+        type: 'integer'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.email:
+        label: 'Email'
+        name: 'email'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true

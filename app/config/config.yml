@@ -8,7 +8,7 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: es
 
 framework:
     #esi: ~
@@ -99,6 +99,12 @@ mw_simple_admin_crud:
     menu_setting: { id: side-menu, class: nav } # use id: side-menu and class: nav. If is horizontal use class: nav navbar-nav
     menu:
         child: { name: inicio, url: mws_admin_crud_menu, id: inicio, icon: glyphicon glyphicon-home }
+        producto: { name: producto, url: producto, id: producto, icon: glyphicon glyphicon-home }
+        turno: { name: turno, url: turno, id: turno, icon: glyphicon glyphicon-home }
+        mensaje: { name: mensaje, url: mensaje, id: mensaje, icon: glyphicon glyphicon-home }
+        estacion: { name: estacion, url: estacion, id: estacion, icon: glyphicon glyphicon-home }
+        categoria: { name: categoria, url: categoria, id: categoria, icon: glyphicon glyphicon-home }
+        actividad: { name: actividad, url: actividad, id: actividad, icon: glyphicon glyphicon-home }
         #child2:  
         #    name: help
         #    url: null

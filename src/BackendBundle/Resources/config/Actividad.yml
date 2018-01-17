@@ -1,0 +1,54 @@
+entityName: 'Actividad'
+entity: 'BackendBundle\Entity\Actividad'
+repository: 'BackendBundle:Actividad'
+paginate: true
+index: 'actividad'
+view_index: 'BackendBundle:actividad:index.html.twig'
+new: 'actividad_new'
+create: 'actividad_create'
+view_new: 'BackendBundle:actividad:new.html.twig'
+edit: 'actividad_edit'
+update: 'actividad_update'
+view_edit: 'BackendBundle:actividad:edit.html.twig'
+show: 'actividad_show'
+view_show: 'BackendBundle:actividad:show.html.twig'
+delete: 'actividad_delete'
+export: 'actividad_export'
+sessionFilter: 'ActividadControllerFilter'
+saveAndAdd: true
+validator: true
+fieldsindex:
+    a.id:
+        label: 'Id'
+        name: 'id'
+        type: 'integer'
+        export: true
+    a.titulo:
+        label: 'Titulo'
+        name: 'titulo'
+        type: 'string'
+        export: true
+    a.descripcion:
+        label: 'Descripcion'
+        name: 'descripcion'
+        type: 'string'
+        export: true
+fieldsshow:
+    a.id:
+        label: 'Id'
+        name: 'id'
+        type: 'integer'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.titulo:
+        label: 'Titulo'
+        name: 'titulo'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.descripcion:
+        label: 'Descripcion'
+        name: 'descripcion'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
