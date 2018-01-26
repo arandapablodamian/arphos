@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Arphos</title>
+	{% block stylesheets %}
+	    <link rel="stylesheet" href="{{ asset('bundles/Frontend/css/template.css') }}" />
+	    <link rel="stylesheet" href="{{ asset('bundles/Frontend/bootstrap/css/bootstrap.css') }}" />
+
+	{% endblock %}
+</head>
+<body>
+	<div id="page">
+		<div id="header"></div>
+
+		<div id="wrapper">
+			{% block content %}
+			    
+			{% endblock %}
+		</div>
+		<div id="footer">
+		</div>
+	</div>
+</body>
+</html>
+{% block javascripts %}
+   <script src="{{ asset('bundles/Frontend/bootstrap/js/bootstrap.js') }}"></script>
+{% endblock %}
