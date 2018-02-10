@@ -16,21 +16,21 @@ class DefaultController extends Controller
     }
 
    	 /**
-     * @Route("/contacto")
+     * @Route("/contacto" , name="contacto")
      */
     public function contactoAction()
     {
         return $this->render('FrontendBundle::contacto.html.twig');
     }
      /**
-     * @Route("/nosotros")
+     * @Route("/nosotros" , name="nosotros")
      */
     public function nostrosAction()
     {
         return $this->render('FrontendBundle::nosotros.html.twig');
     }
      /**
-     * @Route("/galeria")
+     * @Route("/galeria", name="galeria")
      */
     public function galeriaAction()
     {
@@ -38,7 +38,7 @@ class DefaultController extends Controller
     }
 
      /**
-     * @Route("/tienda")
+     * @Route("/tienda", name="tienda")
      */
     public function tiendaAction()
     {
