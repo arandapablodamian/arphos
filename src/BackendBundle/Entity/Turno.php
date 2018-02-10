@@ -43,6 +43,13 @@ class Turno
     private $direccion;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="correo", type="string", length=255)
+     */
+    private $correo;
+
+    /**
      * @var int
      *
      * @ORM\Column(name="telefono", type="integer")
@@ -125,6 +132,30 @@ class Turno
     public function setDireccion($direccion)
     {
         $this->direccion = $direccion;
+
+        return $this;
+    }
+
+    /**
+     * Get correo
+     *
+     * @return string
+     */
+    public function getCorreo()
+    {
+        return $this->correo;
+    }
+
+     /**
+     * Set correo
+     *
+     * @param string $correo
+     *
+     * @return Turno
+     */
+    public function setCorreo($correo)
+    {
+        $this->correo = $correo;
 
         return $this;
     }

@@ -10,9 +10,9 @@
 		</style>
 		   			<br><br><br><br>
       				<div style="text-align:center;height:500px">
-      					<img style="max-width:700px;max-height:800px;" src="{{asset('bundles/Frontend/images/index/logo_index.png') }}">
+      					<img style="max-width:700px;max-height:900px;" src="{{asset('bundles/Frontend/images/index/logo_index.png') }}">
       				</div>
-      				<div style="background-color:white;height:500px;">
+      				<div style="background-color:white;height:800px;">
       					<br>
       					<div style="height:50px;text-align:center;color:#d5bbaa;text-decoration:none;">
       						<div class="row" >
@@ -37,15 +37,93 @@
       								<span><h4>¡SOLICITA TU TURNO AQUI!</h4></span>
       								<br>
       								<p>Completa la solicitud con tus datos,  y el dia y horario que quisieras tener el turno, a la brevedad te enviaremos un mensaje de texto con la confirmacion del turno.</p>
+      							{{ form_start(formularioTurno) }}
+      								<div class="row">
+								 	{{ form_label(formularioTurno.nombre) }}
+								    {{ form_errors(formularioTurno.nombre) }}
+								    {{ form_widget(formularioTurno.nombre) }}
+								   <div class="col-md-1"></div>
+								    {{ form_label(formularioTurno.apellido) }}
+								    {{ form_errors(formularioTurno.apellido) }}
+								    {{ form_widget(formularioTurno.apellido) }}
+								    <br>
+								   
+								   	<br>
+								    {{ form_label(formularioTurno.direccion) }}
+								    {{ form_errors(formularioTurno.direccion) }}
+								    {{ form_widget(formularioTurno.direccion) }}
+								     <div class="col-md-1"></div>
+								    {{ form_label(formularioTurno.telefono) }}
+								    {{ form_errors(formularioTurno.telefono) }}
+								    {{ form_widget(formularioTurno.telefono) }}
+								    <br>
+								    <br>
+								    {{ form_label(formularioTurno.correo) }}
+								    {{ form_errors(formularioTurno.correo) }}
+								    {{ form_widget(formularioTurno.correo) }}
+								     <div class="col-md-6"></div>
+								  	
+								    {{ form_widget(formularioTurno.enviar) }}
+								     </div>
+
+								{{ form_end(formularioTurno) }}
       							</div>
       						</div>
       					</div>
-      					
-      					
+      					<div style="height:300px;">
+	      					<div style="height:250px; background-color:#d5bbaa;margin-left:3%;margin-right:3%;">
+		      					<div style="margin-left:5%;margin-right:10%;padding-top:5%;" class="row">
+		      						<div class="col-md-3" style="color:#4c2606">
+		      							<h3>
+			      							<p>NUESTROS</p>
+			      							<P>MEJORES</P>
+			      							<P>AMIGOS</P>
+		      							</h3>
+
+		      						</div>
+		      						<div class="col-md-3">
+		      							<img src="{{asset('bundles/Frontend/images/index/ceclia-logo.png') }}">
+		      							
+		      								<div  style="color:#4c2606">
+		      									<h4 >
+		      										<p>CECILIA ALEGRE</p>
+		      									</h4>
+		      									<p>
+		      										Super fan de los perros
+		      									</p>
+		      								</div>
+		      								
+		      							<p></p>
+		      						</div>
+		      						
+		      						<div class="col-md-3">
+		      							<img src="{{asset('bundles/Frontend/images/index/dogchow-logo.png') }}">
+		      							<div  style="color:#4c2606">
+		      									<h4 >
+		      										<p>DOG CHOW</p>
+		      									</h4>
+		      									<p>
+		      										El alimento mas completo
+		      									</p>
+		      								</div>
+		      						</div>
+		      						<div class="col-md-3">
+		      							<img src="{{asset('bundles/Frontend/images/index/dogchow-logo.png') }}">
+		      							<div  style="color:#4c2606">
+		      									<h4 >
+		      										<p>ROSA RAMIREZ</p>
+		      									</h4>
+		      									<p>
+		      										Amo los animales
+		      									</p>
+		      								</div>
+		      						</div>
+		      					</div>
+	      					</div>
+	      						
+      					</div>
       				</div>
-      				<div style="height:200px">
-      					
-      				</div>
+      				
 		    		
 		      		<!-- <div id="quienes-somos" style="margin-left:display:inline-block;background-image: url('{{asset('bundles/Frontend/images/template/banner-botoom.png') }}');background-repeat: no-repeat; background-position: center;width:100%; height:500px"></div> -->
 {% endblock %}
