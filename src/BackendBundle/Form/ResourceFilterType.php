@@ -12,10 +12,10 @@ use Symfony\Component\Form\FormEvents;
 use Symfony\Component\Form\FormError;
 
 /**
- * ProductoFilterType filtro.
+ * ResourceFilterType filtro.
  * @author Nombre Apellido <name@gmail.com>
  */
-class ProductoFilterType extends AbstractType
+class ResourceFilterType extends AbstractType
 {
         /**
      * {@inheritdoc}
@@ -23,19 +23,13 @@ class ProductoFilterType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('precio', Filters\TextFilterType::class, [
+            ->add('path', Filters\TextFilterType::class, [
                 'condition_pattern' => FilterOperands::OPERAND_SELECTOR,
             ])
-            ->add('color', Filters\TextFilterType::class, [
+            ->add('epigrafe', Filters\TextFilterType::class, [
                 'condition_pattern' => FilterOperands::OPERAND_SELECTOR,
             ])
-            ->add('fechaCreacion', Filters\DateTimeRangeFilterType::class)
-            ->add('fechaModificacion', Filters\DateTimeRangeFilterType::class)
-            ->add('stock', Filters\NumberRangeFilterType::class)
-            ->add('esNovedad', Filters\BooleanFilterType::class)
-            ->add('imagen', Filters\TextFilterType::class, [
-                'condition_pattern' => FilterOperands::OPERAND_SELECTOR,
-            ])
+            ->add('updatedAt', Filters\DateTimeRangeFilterType::class)
         ;
     }
     
@@ -45,7 +39,7 @@ class ProductoFilterType extends AbstractType
     public function configureOptions(OptionsResolver $resolver)
     {
         $resolver->setDefaults([
-            'data_class' => 'BackendBundle\Entity\Producto',
+            'data_class' => 'BackendBundle\Entity\Resource',
             'csrf_protection'   => false,
             'validation_groups' => ['filtering'] // avoid NotBlank() constraint-related message
         ]);
@@ -56,7 +50,7 @@ class ProductoFilterType extends AbstractType
      */
     public function getBlockPrefix()
     {
-        return 'backendbundle_productofiltertype';
+        return 'backendbundle_resourcefiltertype';
     }
 
 

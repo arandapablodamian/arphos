@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "content-hash": "d01b6bbe3d342387b12938b2d5f1e7ed",
+    "content-hash": "fd3ad5ff5605a764b408c590a7dee8bd",
     "packages": [
         {
             "name": "composer/ca-bundle",
@@ -2153,16 +2153,16 @@
         },
         {
             "name": "sensio/framework-extra-bundle",
-            "version": "v5.1.3",
+            "version": "v5.1.5",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sensiolabs/SensioFrameworkExtraBundle.git",
-                "reference": "0696496cb3e2d23add645d424699e5c723238aad"
+                "reference": "93ae48d5f4b567105bcc058c3a8ba506176eca8a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/0696496cb3e2d23add645d424699e5c723238aad",
-                "reference": "0696496cb3e2d23add645d424699e5c723238aad",
+                "url": "https://api.github.com/repos/sensiolabs/SensioFrameworkExtraBundle/zipball/93ae48d5f4b567105bcc058c3a8ba506176eca8a",
+                "reference": "93ae48d5f4b567105bcc058c3a8ba506176eca8a",
                 "shasum": ""
             },
             "require": {
@@ -2218,7 +2218,7 @@
                 "annotations",
                 "controllers"
             ],
-            "time": "2017-12-04T18:33:55+00:00"
+            "time": "2018-02-06T19:53:10+00:00"
         },
         {
             "name": "sensio/generator-bundle",

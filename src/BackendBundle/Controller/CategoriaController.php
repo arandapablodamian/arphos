@@ -133,4 +133,52 @@ class CategoriaController extends Controller
 
         return $response;
     }
+
+    /**
+     * Autocomplete a Categoria entity.
+     *
+     * @Route("/autocomplete-forms/get-subcategorias", name="categoria_autocomplete_subcategorias")
+     */
+    public function getAutocompleteSubcategorias(Request $request)
+    {
+        $options = [
+            'repository' => "BackendBundle:Categoria",
+            'field'      => "id",
+        ];
+        $response = parent::getAutocompleteFormsMwsAction($request, $options);
+
+        return $response;
+    }
+
+    /**
+     * Autocomplete a Categoria entity.
+     *
+     * @Route("/autocomplete-forms/get-categoriapadre", name="categoria_autocomplete_categoriapadre")
+     */
+    public function getAutocompleteCategoriapadre(Request $request)
+    {
+        $options = [
+            'repository' => "BackendBundle:Categoria",
+            'field'      => "id",
+        ];
+        $response = parent::getAutocompleteFormsMwsAction($request, $options);
+
+        return $response;
+    }
+
+    /**
+     * Autocomplete a Categoria entity.
+     *
+     * @Route("/autocomplete-forms/get-productos", name="categoria_autocomplete_productos")
+     */
+    public function getAutocompleteProductos(Request $request)
+    {
+        $options = [
+            'repository' => "BackendBundle:Producto",
+            'field'      => "id",
+        ];
+        $response = parent::getAutocompleteFormsMwsAction($request, $options);
+
+        return $response;
+    }
 }

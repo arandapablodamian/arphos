@@ -1,1 +1,21 @@
 {% extends 'MWSimpleAdminCrudBundle:Default:new.html.twig' %}
+{% block javascript %}
+    {{ parent() }}
+
+    {# ATENCIÓN #}
+
+    {# Si NO utiliza validación JS agregar: #}
+    <script src="{{ asset('bundles/mwsimpleadmincrud/js/addForm_not_validator.js') }}"></script>
+    <script src="{{ asset('bundles/mwsimpleadmincrud/js/embed_not_validator.js') }}"></script>
+
+    {# Si utiliza la validación JS agregar: #}
+    <script src="{{ asset('bundles/mwsimpleadmincrud/js/addForm.js') }}"></script>
+    <script src="{{ asset('bundles/mwsimpleadmincrud/js/embed.js') }}"></script>
+
+    <script type="text/javascript">
+        $('.resource_embed').embed();
+      
+
+        
+    </script>
+{% endblock %}

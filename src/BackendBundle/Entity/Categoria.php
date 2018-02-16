@@ -3,7 +3,8 @@
 namespace BackendBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-
+use Doctrine\Common\Collections\ArrayCollection;
+use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Categoria
  *
@@ -35,6 +36,36 @@ class Categoria
      */
     private $descripcion;
 
+    // ...
+    /**
+     * One Category has Many Categories.
+     * @ORM\OneToMany(targetEntity="\BackendBundle\Entity\Categoria", mappedBy="categoriaPadre", cascade={"persist", "remove"})
+     */
+    private $subCategorias;
+
+     /**
+     *Many Categories have One Category.
+     *@ORM\ManyToOne(targetEntity="\BackendBundle\Entity\Categoria", inversedBy="subCategorias", cascade={"persist", "remove"})
+     *@ORM\JoinColumn(name="categoria_padre", referencedColumnName="id")
+     */
+    private $categoriaPadre;
+    
+     
+
+   
+
+
+
+    public function __construct() {
+        $this->subCategorias = new \Doctrine\Common\Collections\ArrayCollection();
+    
+    }
+
+      public function __toString() {
+        return $this->getTitulo();
+    }
+
+   
 
     /**
      * Get id
@@ -93,5 +124,65 @@ class Categoria
     {
         return $this->descripcion;
     }
+
+     /**
+     * Set categoriaPadre
+     *
+     * @param string $categoriaPadre
+     *
+     * @return Categoria
+     */
+    public function setCategoriaPadre(\BackendBundle\Entity\Categoria $categoriaPadre)
+    {
+        $this->categoriaPadre = $categoriaPadre;
+
+        return $this;
+    }
+
+    /**
+     * Get categoriaPadre
+     *
+     * @return string
+     */
+    public function getCategoriaPadre()
+    {
+        return $this->categoriaPadre;
+    }
+
+    /**
+     * Add subCategoria
+     *
+     * @param \BackendBundle\Entity\Categoria $subCategoria
+     *
+     * @return Categoria
+     */
+    public function addSubCategoria(\BackendBundle\Entity\Categoria $subCategoria)
+    {
+        $subCategoria->setCategoriaPadre($this);
+        $this->subCategorias[] = $subCategoria;
+
+        return $this;
+    }
+
+    /**
+     * Remove subCategoria
+     *
+     * @param \BackendBundle\Entity\Categoria $subCategoria
+     */
+    public function removeDocumento(\BackendBundle\Entity\Categoria $subCategoria)
+    {
+        $this->subCategorias->removeElement($subCategoria);
+    }
+
+    /**
+     * Get subCategorias
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getSubCategorias()
+    {
+        return $this->subCategorias;
+    }
+
 }
 

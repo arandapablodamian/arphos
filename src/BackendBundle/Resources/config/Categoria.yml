@@ -33,6 +33,10 @@ fieldsindex:
         name: 'descripcion'
         type: 'string'
         export: true
+    a.categoriaPadre:
+        label: 'Categoriapadre'
+        name: 'categoriaPadre'
+        type: 'MANY_TO_ONE'
 fieldsshow:
     a.id:
         label: 'Id'
@@ -51,4 +55,16 @@ fieldsshow:
         name: 'descripcion'
         type: 'string'
         #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.subCategorias:
+        label: 'Subcategorias'
+        name: 'subCategorias'
+        type: 'ONE_TO_MANY'
+        #class: 'col-lg-12'
+        #closerow: true
+    a.categoriaPadre:
+        label: 'Categoriapadre'
+        name: 'categoriaPadre'
+        type: 'MANY_TO_ONE'
+        #class: 'col-lg-12'
         #closerow: true

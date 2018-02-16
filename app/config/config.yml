@@ -28,10 +28,16 @@ knp_menu:
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by defaul
 mw_simple_admin_crud:
-    setting: { site_name: Administración, fos_user: false } # Default:: site_theme: bootstrap, site_name: AdminCrud, site_view_layout: 'MWSimpleAdminCrudBundle::layout.html.twig', site_view_footer: '::footer.html.twig', fos_user: false, menu_horizontal: false
+    setting: { site_name: Administración de Arphos, fos_user: false } # Default:: site_theme: bootstrap, site_name: AdminCrud, site_view_layout: 'MWSimpleAdminCrudBundle::layout.html.twig', site_view_footer: '::footer.html.twig', fos_user: false, menu_horizontal: false
     menu_setting: { id: side-menu, class: nav } # use id: side-menu and class: nav. If is horizontal use class: nav navbar-nav
     menu:
         child: { name: inicio, url: mws_admin_crud_menu, id: inicio, icon: glyphicon glyphicon-home }
+        categoria: { name: Categoria, url: categoria, id: inicio, icon: glyphicon glyphicon-home }
+        producto: { name: Producto, url: producto, id: inicio, icon: glyphicon glyphicon-home }
+        estacion: { name: Estacion, url: estacion, id: inicio, icon: glyphicon glyphicon-home }
+        mensaje: { name: Mensaje, url: mensaje, id: inicio, icon: glyphicon glyphicon-home }
+        turno: { name: Turno, url: turno, id: inicio, icon: glyphicon glyphicon-home }
+        actividad: { name: Actividad, url: actividad, id: inicio, icon: glyphicon glyphicon-home }
         #child2:  
         #    name: help
         #    url: null
@@ -45,8 +51,6 @@ mw_simple_admin_crud:
         #    roles: ['ROLE_USER']
         #child3: { name: Usuarios, url: admin_usuario, id: usuario, roles: ['ROLE_SUPERADMIN'], icon: glyphicon glyphicon-user }
 
-vich_uploader:
-    db_driver: orm
 framework:
     #esi: ~
     translator: { fallbacks: ['%locale%'] }
@@ -106,3 +110,56 @@ swiftmailer:
     username: '%mailer_user%'
     password: '%mailer_password%'
     spool: { type: memory }
+
+vich_uploader:
+    db_driver: orm
+    mappings:
+        banner_image:
+            uri_prefix:         /images/banner
+            upload_destination: %kernel.root_dir%/../web/images/banner
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        slide_image:
+            uri_prefix:         /images/slide
+            upload_destination: %kernel.root_dir%/../web/images/slide
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        producto_image:
+            uri_prefix:         /images/producto
+            upload_destination: %kernel.root_dir%/../web/images/pagina
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        noticia_image:
+            uri_prefix:         /images/noticia
+            upload_destination: %kernel.root_dir%/../web/images/noticia
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        resource_image:
+            uri_prefix:         /images/resource
+            upload_destination: %kernel.root_dir%/../web/images/resource
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        documento_image:
+            uri_prefix:         /images/documento
+            upload_destination: %kernel.root_dir%/../web/images/documento
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true
+        menu_item_image:
+            uri_prefix:         /images/item
+            upload_destination: %kernel.root_dir%/../web/images/item
+            namer:              vich_uploader.namer_origname
+            inject_on_load:     false
+            delete_on_update:   true
+            delete_on_remove:   true

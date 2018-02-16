@@ -55,6 +55,11 @@ fieldsindex:
         name: 'esNovedad'
         type: 'boolean'
         export: true
+    a.imagen:
+        label: 'Imagen'
+        name: 'imagen'
+        type: 'string'
+        export: true
 fieldsshow:
     a.id:
         label: 'Id'
@@ -100,3 +105,24 @@ fieldsshow:
         type: 'boolean'
         #class: 'col-lg-12 col-md-12'
         #closerow: true
+    a.imagen:
+        label: 'Imagen'
+        name: 'imagen'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.categorias:
+        label: 'Categorias'
+        name: 'categorias'
+        type: 'MANY_TO_MANY'
+        #class: 'col-lg-12'
+        #closerow: true
+    a.resources:
+        label: 'Imágenes'
+        name: 'Resources'
+        type: 'vich_file_many'
+        file: 'imageFile'
+        file_name: 'path'
+        file_class: 'col-md-1'
+        imagine_filter:  'my_thumb_list'
+        class: 'col-lg-12'

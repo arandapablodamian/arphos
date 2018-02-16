@@ -133,4 +133,36 @@ class ProductoController extends Controller
 
         return $response;
     }
+
+    /**
+     * Autocomplete a Producto entity.
+     *
+     * @Route("/autocomplete-forms/get-categorias", name="producto_autocomplete_categorias")
+     */
+    public function getAutocompleteCategorias(Request $request)
+    {
+        $options = [
+            'repository' => "BackendBundle:Categoria",
+            'field'      => "id",
+        ];
+        $response = parent::getAutocompleteFormsMwsAction($request, $options);
+
+        return $response;
+    }
+
+    /**
+     * Autocomplete a Producto entity.
+     *
+     * @Route("/autocomplete-forms/get-resources", name="producto_autocomplete_resources")
+     */
+    public function getAutocompleteResources(Request $request)
+    {
+        $options = [
+            'repository' => "BackendBundle:Resource",
+            'field'      => "id",
+        ];
+        $response = parent::getAutocompleteFormsMwsAction($request, $options);
+
+        return $response;
+    }
 }
