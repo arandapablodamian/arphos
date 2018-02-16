@@ -1,4 +1,53 @@
 {% extends 'FrontendBundle::template.html.twig' %}
 {% block content %}
-    
+    <div style="background-color:#faf4ee;   ">
+                        <div id="wrapper" style="background-image: url('{{asset('bundles/Frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
+                background-position: center;
+                background-size: cover;width:100%;heigh:100%;" >
+                
+                                  <div style="background-color: rgba(255,255,255,0.7);">
+
+                                    <div class="row">
+                                      <div class="col-md-3" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
+                                        <h2>Categorias</h2>
+                                        <ul>
+                                          <h4>categoria:</h4>
+                                           {% for Categoria in Categorias %}
+                                          <a href="#"><li>{{Categoria.titulo}}</li></a>
+                                           {% endfor %}
+                                        </ul>
+                                        <ul>
+                                          <h2>Color:</h2>
+                                          <a href="#"><li>Rojo</li></a>
+                                        </ul>
+                                        <h2>Coleccion</h2>
+                                        <ul>
+                                           {% for Estacion in Estaciones %}
+                                          <a href="#"><li>{{Estacion.titulo}}</li></a>
+                                           {% endfor %}
+                                        </ul>
+                                      </div>
+                                      <div class="col-md-7" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
+                                              <h1 class="text-lg-right">Categoria > Item</h1>
+
+                                <div class="row text-center text-lg-left">
+                                  {% for Producto in Productos %}
+                                  <div class="col-lg-3 col-md-4 col-xs-6">
+                                    <a href="#" class="d-block mb-4 h-100">
+                                      <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+                                      Producto {{Producto.id}}
+                                      <br>
+                                      ${{Producto.precio}}
+                                    </a>
+                                  </div>
+                                  {% endfor %}
+                                </div>
+                        </div>
+                                      </div>
+                                    </div> 
+
+                                  </div>
+                        
+                        </div>
+                </div>
 {% endblock %}

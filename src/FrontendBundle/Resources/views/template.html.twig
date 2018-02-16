@@ -23,9 +23,21 @@
 			    <div style="background-color:#faf4ee;   ">
 					<div id="wrapper" style="background-image: url('{{asset('bundles/Frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
 		    background-position: center;
-		    background-size: cover;width:100%; height:1400px " >
+		    background-size: cover;width:100%; height:100% " >
 		    
-					    <div style="background-color: rgba(255,255,255,0.7);height:1000px;">
+					    <div style="background-color: rgba(255,255,255,0.7);height:100%;">
+				<div class="row" >
+                                              
+                <div class="col-md-2" style=";text-align:center;color:#d5bbaa;text-decoration:none;"></div>
+                      <div class="col-md-2"><a href="{{path('nosotros')}}">Nosotros</a></div>
+                      <div class="col-md-2" ><a href="{{path('galeria')}}">Galerìa</a></div>
+                      <div class="col-md-2"><a href="{{path('tienda')}}">Tienda</a></div>
+                      <div class="col-md-2"><a href="{{path('contacto')}}">Contacto</a></div>
+                                                    
+         		 </div>
+                <div style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
+                <hr />
+                </div>
 					    		{% block content %}
 					    		    
 					    		{% endblock %}
