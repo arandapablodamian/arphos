@@ -1,10 +1,54 @@
 #container{
-	background-color: #4c2606;
+  background-color: #4c2606;
 }
 #page{
-	width: 80%;
-	height: 100%;
-	margin-left:auto;
-	margin-right:auto;
+  width: 80%;
+  height: 100%;
+  margin-left:auto;
+  margin-right:auto;
 
+}
+
+.cuadro {
+  float: left;
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+  border: 1px solid rgba(1, 1, 1, .2);
+}
+
+.blue {
+  background: blue;
+}
+
+.violet {
+  background: violet;
+}
+
+.red {
+  background: red;
+}
+
+.white {
+  background: white;
+}
+
+.black {
+  background: black;
+}
+
+.pink {
+  background: pink;
+}
+
+.yellow {
+  background: yellow;
+}
+
+.orange {
+  background: orange;
+}
+
+.green {
+  background: green;
 }
