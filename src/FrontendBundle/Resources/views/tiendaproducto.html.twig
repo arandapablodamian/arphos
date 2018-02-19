@@ -1,0 +1,21 @@
+{% extends 'FrontendBundle::tienda.html.twig' %}
+
+{% block producto %}
+              <h1 class="text-lg-right">Nombre Producto</h1>
+              <div class="row">
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                  <img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt="">
+                  <br>
+                </div>
+                <div class="col-lg-6 col-md-6 col-xs-6">
+                  <h2>${{Producto.precio}}</h2>
+                  <h4>Talles Disponibles</h4>
+                  s m l
+                  <br>
+                  <br>
+                  <a class="btn btn-primary">Añadir al carrito</a>
+                </div>
+              </div>
+<h3>Descripcion del producto:</h3>
+Producto.descripcion
+{% endblock %}
