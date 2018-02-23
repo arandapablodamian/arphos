@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="{{ app.request.locale|split('_')|first|default('en') }}">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+        <meta name="description" content="">
+        <meta name="author" content="">
+
+        {% block stylesheets %}
+            <link href="{{ asset('bundles/mwsimpleadmincrud/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+        {% endblock %}
+
+        {% block head_javascript %}
+            <script src="{{ asset('bundles/mwsimpleadmincrud/js/jquery.min.js') }}"></script>
+            <script src="{{ asset('bundles/mwsimpleadmincrud/bootstrap/js/bootstrap.min.js') }}"></script>
+            <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
+            <!--[if lt IE 9]>
+            <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+            <![endif]-->
+        {% endblock %}
+    </head>
+    <body <div id="wrapper" style="background-image: url('{{asset('bundles/Frontend/images/template/background-wrapper.png') }}');width:100%; height:100% " >
+       <!--  <div>
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div> -->
+
+        {% if app.request.hasPreviousSession %}
+            {% for type, messages in app.session.flashbag.all() %}
+                {% for message in messages %}
+                    <div class="alert alert-{{ type }}">
+                        {{ message|trans({}, 'MWSimpleAdminCrudBundle') }}
+                    </div>
+                {% endfor %}
+            {% endfor %}
+        {% endif %}
+
+        <div>
+            {% block fos_user_content %}
+            {% endblock fos_user_content %}
+        </div>
+    </body>
+</html>

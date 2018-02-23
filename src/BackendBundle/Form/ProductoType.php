@@ -22,13 +22,13 @@ class ProductoType extends AbstractType
             ->add('nombre', null, array(
                 'label'=>'Nombre',
                 'attr'=>[
-                    'col'=>'col-md-5'
+                    'col'=>'col-md-12'
                 ]))
 
             ->add('esNovedad',null,array(
                 'label'=>'Novedad',
                 'attr'=>[
-                    'col'=>'col-md-3'
+                    'col'=>'col-md-12'
                 ]))
 
             ->add('descripcion', CKEditorType::class, array(
@@ -42,12 +42,12 @@ class ProductoType extends AbstractType
             ->add('precio',null,array(
                 'label'=>'Precio',
                 'attr'=>[
-                    'col'=>'col-md-3'
+                    'col'=>'col-md-12'
                 ]))
             ->add('stock',null,array(
                 'label'=>'Stock',
                 'attr'=>[
-                    'col'=>'col-md-3'
+                    'col'=>'col-md-12'
                 ]))
             
             ->add('imageFile', VichImageType::class, array(
@@ -56,7 +56,7 @@ class ProductoType extends AbstractType
                 'allow_delete'  => true, // not mandatory, default is true
                 'download_link' => true, // not mandatory, default is true
                 'attr' => [
-                    'col' => 'col-md-4',
+                    'col' => 'col-md-12',
                 ],
             ))
             ->add('categorias', \Tetranz\Select2EntityBundle\Form\Type\Select2EntityType::class, [
@@ -74,7 +74,7 @@ class ProductoType extends AbstractType
             ->add('color',ColorType::class, array(
                 'label'=>'Eliga un color',
                 'attr'=>[
-                    'col'=>'col-md-3'
+                    'col'=>'col-md-12'
                 ]))
 
             ->add('fechaCreacion', \SC\DatetimepickerBundle\Form\Type\DatetimeType::class, [
@@ -84,7 +84,11 @@ class ProductoType extends AbstractType
                     'minView'   => 'month',
                     'maxView'   => 'decade',
                     'todayBtn'  => true,
-                    'language' => 'es',
+                    'language' => 'es',   
+                ],
+                'label'=>'Fecha Creación',
+                'attr'=>[
+                    'col'=>'col-md-12'
                 ]
             ])
             ->add('fechaModificacion', \SC\DatetimepickerBundle\Form\Type\DatetimeType::class, [
@@ -95,6 +99,10 @@ class ProductoType extends AbstractType
                     'maxView'   => 'decade',
                     'todayBtn'  => true,
                     'language' => 'es',
+                ],
+                'label'=>'Fecha de Modificación',
+                'attr'=>[
+                    'col'=>'col-md-12'
                 ]
             ])
             
@@ -111,6 +119,8 @@ class ProductoType extends AbstractType
                     'embed_row_col' => 'col-md-12',
                     'embed_row_style' => 'border-bottom: thin solid; margin: 10px 0px;',
                 ],
+                'label'=>'Galeria de Imágenes',
+                
             ])
            
         ;

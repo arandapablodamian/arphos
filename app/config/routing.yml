@@ -23,3 +23,5 @@ remove_trailing_slash:
     requirements:
         url: .*\/$
         _method: GET
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
