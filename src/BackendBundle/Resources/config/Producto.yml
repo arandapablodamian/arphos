@@ -28,6 +28,24 @@ fieldsindex:
         name: 'precio'
         type: 'string'
         export: true
+    a.categorias:
+        label: 'Categorias'
+        name: 'categorias'
+        type: 'MANY_TO_MANY'
+        #class: 'col-lg-12'
+        #closerow: true
+    a.talles:
+        label: 'Talles'
+        name: 'talles'
+        type: 'MANY_TO_MANY'
+        #class: 'col-lg-12'
+        #closerow: true
+    a.talles:
+        label: 'Colección'
+        name: 'coleccion'
+        type: 'string'
+        #class: 'col-lg-12'
+        #closerow: true
     a.color:
         label: 'Color'
         name: 'color'
@@ -127,3 +145,21 @@ fieldsshow:
         file_class: 'col-md-1'
         imagine_filter:  'my_thumb_list'
         class: 'col-lg-12'
+    a.categorias:
+        label: 'Categorias'
+        name: 'categorias'
+        type: 'MANY_TO_MANY'
+        #class: 'col-lg-12'
+        #closerow: true
+    a.talles:
+        label: 'Talles'
+        name: 'talles'
+        type: 'MANY_TO_MANY'
+        #class: 'col-lg-12'
+        #closerow: true
+    a.coleccion:
+        label: 'Colección'
+        name: 'coleccion'
+        type: 'string'
+        #class: 'col-lg-12'
+        #closerow: true

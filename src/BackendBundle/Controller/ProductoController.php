@@ -143,7 +143,7 @@ class ProductoController extends Controller
     {
         $options = [
             'repository' => "BackendBundle:Categoria",
-            'field'      => "id",
+            'field'      => "titulo",
         ];
         $response = parent::getAutocompleteFormsMwsAction($request, $options);
 
@@ -165,4 +165,21 @@ class ProductoController extends Controller
 
         return $response;
     }
+
+     /**
+     * Autocomplete a Producto entity.
+     *
+     * @Route("/autocomplete-forms/get-talles", name="producto_autocomplete_talles")
+     */
+    public function getAutocompleteTalles(Request $request)
+    {
+        $options = [
+            'repository' => "BackendBundle:Talle",
+            'field'      => "nombre",
+        ];
+        $response = parent::getAutocompleteFormsMwsAction($request, $options);
+
+        return $response;
+    }
+
 }

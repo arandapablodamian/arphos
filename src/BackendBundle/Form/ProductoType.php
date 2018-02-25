@@ -11,6 +11,7 @@ use MWSimple\Bundle\AdminCrudBundle\Form\Type\ButtonDeleteType;
 use Symfony\Component\Form\Extension\Core\Type\ColorType;
 use Ivory\CKEditorBundle\Form\Type\CKEditorType;
 use Symfony\Component\Form\Extension\Core\Type\HiddenType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 class ProductoType extends AbstractType
 {
     /**
@@ -69,6 +70,28 @@ class ProductoType extends AbstractType
                     'col'   => "col-lg-12 col-md-12",
                 ]
             ])
+
+             ->add('talles', \Tetranz\Select2EntityBundle\Form\Type\Select2EntityType::class, [
+                'multiple' => true,
+                'remote_route' => 'producto_autocomplete_talles',
+                'class' => 'BackendBundle\Entity\Talle',
+                'minimum_input_length' => 0,
+                'attr' => [
+                    'class' => "col-lg-12 col-md-12 col-sm-12",
+                    'col'   => "col-lg-12 col-md-12",
+                ]
+            ])
+
+             ->add('coleccion', ChoiceType::class, array(
+                'choices'  => array(
+                    'Todas las estaciones' => 'Todas las estaciones',
+                    'Verano' => 'Verano',
+                    'Otoño' => 'Otoño',
+                    'Invierno' => 'Invierno',
+                    'Primavera' => 'Primavera',
+
+                ),
+            ))
 
 
             ->add('color',ColorType::class, array(

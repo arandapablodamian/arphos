@@ -95,8 +95,19 @@ class Producto
      */
     private $categorias;
 
+    /**
+     * Many Users have Many Groups.
+     * @ORM\ManyToMany(targetEntity="\BackendBundle\Entity\Talle")
+     * @ORM\JoinTable(name="talle_producto",
+     *      joinColumns={@ORM\JoinColumn(name="talle_id", referencedColumnName="id")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="producto_id", referencedColumnName="id")}
+     *      )
+     */
+    private $talles;
+
     public function __construct() {
         $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->talles = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
@@ -121,6 +132,14 @@ class Producto
      * @Assert\Valid
      */
     private $resources;
+
+       /**
+     * @var string
+     *
+     * @ORM\Column(name="coleccion", type="string", length=255)
+     */
+    private $coleccion;
+
 
 
     /**
@@ -443,5 +462,56 @@ class Producto
         return $this->categorias;
     }
 
+
+
+      public function addTalle(\BackendBundle\Entity\Talle $talle)
+    {
+        // $categoria->addProducto($this);
+        $this->talles[] = $talle;
+    }
+
+    /**
+     * Remove talle
+     *
+     * @param \BackendBundle\Entity\Talle $talle
+     */
+    public function removeTalle(\BackendBundle\Entity\Talle $talle)
+    {
+        $this->talles->removeElement($talle);
+    }
+
+    /**
+     * Get talles
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getTalles()
+    {
+        return $this->talles;
+    }
+
+    /**
+     * Set coleccion
+     *
+     * @param string $coleccion
+     *
+     * @return Producto
+     */
+    public function setColeccion($coleccion)
+    {
+        $this->coleccion = $coleccion;
+
+        return $this;
+    }
+
+    /**
+     * Get coleccion
+     *
+     * @return string
+     */
+    public function getColeccion()
+    {
+        return $this->coleccion;
+    }
 }
 

@@ -28,16 +28,17 @@ knp_menu:
     templating: false # if true, enables the helper for PHP templates
     default_renderer: twig # The renderer to use, list is also available by defaul
 mw_simple_admin_crud:
-    setting: { site_name: Administración de Arphos, fos_user: false } # Default:: site_theme: bootstrap, site_name: AdminCrud, site_view_layout: 'MWSimpleAdminCrudBundle::layout.html.twig', site_view_footer: '::footer.html.twig', fos_user: false, menu_horizontal: false
+    setting: { site_name: Administración de Arphos, fos_user: false , site_theme: spacelab} # Default:: site_theme: bootstrap, site_name: AdminCrud, site_view_layout: 'MWSimpleAdminCrudBundle::layout.html.twig', site_view_footer: '::footer.html.twig', fos_user: false, menu_horizontal: false
     menu_setting: { id: side-menu, class: nav } # use id: side-menu and class: nav. If is horizontal use class: nav navbar-nav
     menu:
         child: { name: inicio, url: mws_admin_crud_menu, id: inicio, icon: glyphicon glyphicon-home }
         categoria: { name: Categoria, url: categoria, id: inicio, icon: glyphicon glyphicon-home }
+        Talles: { name: Talles, url: talle, id: talle, icon: glyphicon glyphicon-home }
         producto: { name: Producto, url: producto, id: inicio, icon: glyphicon glyphicon-home }
-        estacion: { name: Estacion, url: estacion, id: inicio, icon: glyphicon glyphicon-home }
+        # estacion: { name: Estacion, url: estacion, id: inicio, icon: glyphicon glyphicon-home }
         mensaje: { name: Mensaje, url: mensaje, id: inicio, icon: glyphicon glyphicon-home }
         turno: { name: Turno, url: turno, id: inicio, icon: glyphicon glyphicon-home }
-        actividad: { name: Actividad, url: actividad, id: inicio, icon: glyphicon glyphicon-home }
+        actividad: { name: Actividad, url: actividad, id: inicio, icon: glyphicon glyphicon-home, roles: ['ROLE_SUPERADMIN'] }
         #child2:  
         #    name: help
         #    url: null
@@ -49,7 +50,7 @@ mw_simple_admin_crud:
         #            icon: glyphicon glyphicon-home
         #            roles: ['ROLE_ADMIN']
         #    roles: ['ROLE_USER']
-        #child3: { name: Usuarios, url: admin_usuario, id: usuario, roles: ['ROLE_SUPERADMIN'], icon: glyphicon glyphicon-user }
+        #child3: { name: Usuarios, url: admin_usuario, id: usuario, , icon: glyphicon glyphicon-user }
 
 framework:
     #esi: ~

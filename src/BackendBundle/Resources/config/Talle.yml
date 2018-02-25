@@ -1,0 +1,51 @@
+entityName: 'Talle'
+entity: 'BackendBundle\Entity\Talle'
+repository: 'BackendBundle:Talle'
+paginate: true
+index: 'talle'
+view_index: 'BackendBundle:talle:index.html.twig'
+new: 'talle_new'
+create: 'talle_create'
+view_new: 'BackendBundle:talle:new.html.twig'
+edit: 'talle_edit'
+update: 'talle_update'
+view_edit: 'BackendBundle:talle:edit.html.twig'
+show: 'talle_show'
+view_show: 'BackendBundle:talle:show.html.twig'
+delete: 'talle_delete'
+export: 'talle_export'
+sessionFilter: 'TalleControllerFilter'
+saveAndAdd: true
+validator: true
+fieldsindex:
+    a.categoria:
+        label: 'Categoria'
+        name: 'categoria'
+        type: 'MANY_TO_ONE'
+    a.nombre:
+        label: 'Nombre'
+        name: 'nombre'
+        type: 'string'
+        export: true
+    a.cantidad:
+        label: 'Cantidad'
+        name: 'cantidad'
+        type: 'integer'
+        export: true
+fieldsshow:
+    a.categoria:
+        label: 'Categoria'
+        name: 'categoria'
+        type: 'MANY_TO_ONE'
+    a.nombre:
+        label: 'Nombre'
+        name: 'nombre'
+        type: 'string'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
+    a.cantidad:
+        label: 'Cantidad'
+        name: 'cantidad'
+        type: 'integer'
+        #class: 'col-lg-12 col-md-12'
+        #closerow: true
