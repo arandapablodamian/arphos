@@ -8,8 +8,8 @@ frontend:
     type:     annotation
     prefix:   /
 
-mw_simple_admin_crud:
-    resource: "@MWSimpleAdminCrudBundle/Controller/"
+easy_admin_bundle:
+    resource: "@EasyAdminBundle/Controller/AdminController.php"
     type:     annotation
     prefix:   /admin
 

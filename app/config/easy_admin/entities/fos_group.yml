@@ -1,0 +1,62 @@
+# easy_admin:
+#     entities:
+#         Group:
+#             class: BackendBundle\Entity\Group
+#             role: ROLE_GRUPOS
+#             label: 'Grupos'
+#             list:
+#                 title: "Grupos"
+#                 fields:
+#                     - { property: 'name', label: "Nombre",css_class: 'col-md-3' }
+#                     - { property: 'descripcion' , label: "Descripción",css_class: 'col-md-5' }
+#                 actions:
+#                     - { name: 'new', label: 'Crear Grupo'}
+#             form:  # <-- 'form' is applied to both 'new' and 'edit' views
+#                 title: 'Crear un Grupo'
+#                 fields: 
+#                     - { type: 'group', css_class: 'col-sm-12', label: 'Detalles' }
+#                     - { property: 'name', label: "Nombre",css_class: 'col-md-3' }
+#                     - { property: 'descripcion' , label: "Descripción",css_class: 'col-md-5' }
+#                     - { type: 'group', css_class: 'col-md-8', label: 'Secciones' }
+#                     - { property: 'roles' , label: 'Roles',css_class: 'col-md-5' ,type: 'choice', type_options: { multiple: true, choices: 
+#                         {   'Panel central': ROLE_DASHBOARD,
+#                             'Pagina' : ROLE_PAGINA,
+#                             'Noticia' :ROLE_NOTICIA,
+#                             'Tag Noticia' :ROLE_TAG_NOTICIA,
+#                             'Banners' : ROLE_BANNER,
+#                             'Tipo Juego' :ROLE_TIPO_JUEGO,
+#                             'Juego' : ROLE_JUEGO,
+#                             'Sorteo' : ROLE_SORTEO,
+#                             'Juego Estímulo' : ROLE_JUEGO_ESTIMULO,
+#                             'Extracto Lotimax' :ROLE_EXTRACTO_LOTIMAX,
+#                             'Extracto Oficial' : ROLE_EXTRACTO_OFICIAL,
+#                             'Extracto Telebingo' :ROLE_EXTRACTO_TELEBINGO,
+#                             'Extracto Sorteo Telebingo' : ROLE_SORTEO_TELEBINGO,
+#                             'Juego Especial' : ROLE_JUEGO_ESPECIAL,
+#                             'Modalidad Juego Especial' : ROLE_MODALIDAD_JUEGO_ESPECIAL,
+#                             'Estado Juego Especial' : ROLE_ESTADO_JUEGO_ESPECIAL,
+#                             'Tipo Juego Especial' :ROLE_TIPO_JUEGO_ESPECIAL,
+#                             'Localidad' :ROLE_LOCALIDAD,
+#                             'Sorteo Benefico' : ROLE_SORTEO_BENEFICO,
+#                             'Escuela Benefico' : ROLE_ESCUELA_BENEFICO,
+#                             'Sorteo Vivo' : ROLE_SORTEO_VIVO,
+#                             'Clasificación Sueños' : ROLE_CLASIFICACION_SUENIOS,
+#                             'Números de Sueños' : ROLE_NUMERO_SUENIOS,
+#                             'Galerías' : ROLE_GALERIA,
+#                             'Menus' : ROLE_MENU,
+#                             'Submenus' :ROLE_SUBMENU,
+#                             'Sub-Submenus' :ROLE_SUB_SUBMENU,
+#                             'Usuarios' :ROLE_USUARIOS,
+#                             'Grupos' : ROLE_GRUPOS
+#                         } }}
+#             edit:
+#                 title: 'Editar Grupo'
+#             show:
+#                 title: "Mostrar Grupo"
+#                 fields:
+#                     - { property: 'name', label: "Nombre",css_class: 'col-md-3' }
+#                     - { property: 'descripcion' , label: "Descripción",css_class: 'col-md-5' }
+#                     - { property: 'roles' ,label: '', css_class: 'col-md-5',template: 'rolesList_field.html.twig',css_class: 'col-md-12' }
+#         Group:
+#             class: BackendBundle\Entity\Group
+

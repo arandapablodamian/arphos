@@ -1,0 +1,51 @@
+# easy_admin:
+#     entities:
+#         User:
+#             class: BackendBundle\Entity\User
+#             role: ROLE_USUARIOS
+#             label: 'Usuarios'
+#             export_path: '%kernel.root_dir/../var/export/user'
+#             password_encoding: { algorithm: 'bcrypt', cost: 12 }
+#             list:
+#                 title: "Usuarios"
+#                 actions:
+#                     - { name: 'new', label: 'Crear Usuario'}
+#                 fields:
+#                     - { property: 'username', label: 'Usuario' ,css_class: 'col-md-2'}
+#                     - { property: 'groups', label: 'Grupos', type: 'simple_array'}
+#                     - { property: 'nombreCompleto', label: 'Apellido y Nombre' ,css_class: 'col-md-2'}
+#                     - { property: 'username', label: 'Usuario' ,css_class: 'col-md-2'}
+#                     - { property: 'email', label: 'Email' ,css_class: 'col-md-2'}
+#                     - { property: 'enabled', label: 'Activo' ,css_class: 'col-md-2'}
+#             form:
+#                 title: 'Crear Usuario'
+#                 fields:
+#                     - { type: 'group', css_class: 'col-md-8', label: 'General' }
+#                     - { property: 'enabled', label: 'Activo' ,css_class: 'col-md-12'}
+#                     - { property: 'nombre', label: 'Nombre' ,css_class: 'col-md-12'}
+#                     - { property: 'apellido', label: 'Apellido' ,css_class: 'col-md-12'}
+#                     - { property: 'direccion', label: 'Dirección' ,css_class: 'col-md-12'}
+#                     - { property: 'telefonoContacto1', label: 'Tel. de Contacto' ,css_class: 'col-md-12'}
+#                     - { property: 'telefonoContacto2', label: 'Segundo Tel. de Contacto' ,css_class: 'col-md-12'}
+#                     - { property: 'username', label: 'Usuario' ,css_class: 'col-md-12'}
+#                     - { property: 'email', label: 'Email' ,css_class: 'col-md-12'}
+#                     - { property: 'plainPassword', label: 'Contraseña', type: 'password', type_options: { required: false } }
+#                     - { property: 'groups', label: 'Grupos',  type_options: { multiple: true}}
+#             edit:
+#                 title: 'Editar Usuario'
+#             show:
+#                 title: "Mostrar Usuario"
+#                 fields:
+#                     - { property: 'enabled', label: 'Activo' ,css_class: 'col-md-6'}
+#                     - { property: 'nombre', label: 'Nombre' ,css_class: 'col-md-6'}
+#                     - { property: 'apellido', label: 'Apellido' ,css_class: 'col-md-6'}
+#                     - { property: 'direccion', label: 'Dirección' ,css_class: 'col-md-6'}
+#                     - { property: 'telefonoContacto1', label: 'Tel. de Contacto' ,css_class: 'col-md-6'}
+#                     - { property: 'telefonoContacto2', label: 'Segundo Tel. de Contacto' ,css_class: 'col-md-6'}
+#                     - { property: 'username', label: 'Usuario' ,css_class: 'col-md-6'}
+#                     - { property: 'email', label: 'Email' ,css_class: 'col-md-6'}
+#                     - { property: 'groups', type: "password",label: 'Grupos',css_class: 'col-md-12'}
+            
+#         Group:
+#             class: BackendBundle\Entity\User
+

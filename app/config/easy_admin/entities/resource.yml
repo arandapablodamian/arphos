@@ -1,0 +1,69 @@
+easy_admin:
+    entities:
+        Resource:
+            class: BackendBundle\Entity\Resource
+            # label: 'Banner'
+            # role: ROLE_BANNER
+            # # role_prefix: ROLE_PAGINA
+            # # help: 'Global message displayed in all views'
+            # list:
+            #     title: "Banner"
+            #     fields:
+            #         - id
+            #         - { property: 'nombre' , label: 'Nombre'}
+            #         - { property: 'publicado' , label: 'Publicado', type: 'toggle'}
+            #         - { property: 'fileType' , label: 'Tipo de Archivo'}
+            #         - { property: 'archivo',label: 'Archivo' , type: 'file', base_path: '%path.archivosBanners%', css_class: 'col-md-12' }
+            #         - { property: 'url' , label: 'URL', type: 'url' }
+            #         - { property: 'posicion' , label: 'Posición'}
+            #         - { property: 'ancho' , label: 'Ancho'}
+            #         - { property: 'alto' , label: 'Alto'}
+            #         - { property: 'orden' , label: 'Orden'}
+            # form:  # <-- 'form' is applied to both 'new' and 'edit' views
+            #     title: 'Crear un Banner'
+            #     fields: 
+            #         - { type: 'group', css_class: 'col-sm-12', label: 'General' }
+            #         - { property: 'nombre',label: 'Título', css_class: 'col-md-12'}
+            #         - { property: publicado, css_class: 'col-md-12'}
+            #         - { type: 'divider' }
+            #         - { property: 'url' , label: 'URL', css_class: 'col-md-12'}
+            #         - { type: 'group', css_class: 'col-sm-12', label: 'Detalle' }
+            #         - { property: 'posicion' , label: 'Posición' ,type: 'choice', type_options: { multiple: false, choices: { 'header':'header','footer':'footer','center-panel':'center-panel','center-panel-bottom':'center-panel-bottom','right-panel-top':'right-panel-top','right-panel-bootom':'right-panel-bootom','right-panel-out':'right-panel-out', 'left-panel-top':'left-panel-top','left-panel-bottom':'left-panel-bottom'} }}
+            #         - { property: 'orden' , label: 'Orden'}
+            #         - { type: 'divider' }
+            #         - { property: 'ancho' , label: 'Ancho'}
+            #         - { property: 'alto' , label: 'Alto'}
+            #         - { type: 'group', css_class: 'col-sm-12', label: 'Archivo (Imagen,Flash,Video)' }
+            #         - { property: 'fileType' , label: 'Tipo de Archivo', type: 'choice', type_options: { multiple: false, choices: { "Imagen": "Imagen", "Flash": "Flash", "Video": "Video"} }}
+            #         - { property: 'file' , label: "Archivo" ,type: 'vich_file'}
+            # show:
+            #     fields:
+            #         - id
+            #         - { property: 'nombre',label: 'Título', css_class: 'col-md-12'}
+            #         - { property: publicado, css_class: 'col-md-12'}
+            #         - { property: 'url' , label: 'URL', css_class: 'col-md-12', type: 'url'}
+            #         - { property: 'posicion' , label: 'Posición', css_class: 'col-md-12' }
+            #         - { property: 'orden' , label: 'Orden', css_class: 'col-md-12'}
+            #         - { property: 'ancho' , label: 'Ancho', css_class: 'col-md-12'}
+            #         - { property: 'alto' , label: 'Alto', css_class: 'col-md-12'}
+            #         - { property: 'fileType' , label: 'Tipo de Archivo', css_class: 'col-md-12'}
+            #         - { property: 'archivo',label: 'Archivo', type: 'file', base_path: '%path.archivosBanners%', css_class: 'col-md-12' }
+            #     edit:
+            #     title: 'Editar Banner'  
+            # # class: BackendBundle\Entity\Resource
+            # # label: 'Imagenes'
+            # # help: 'Global message displayed in all views'
+            # # list:
+            # #     title: "Imagenes"
+            # #     fields:
+            # #         - { property: 'epigrafe' , label: 'Epigrafo'}
+            # #         - { property: 'path', type: 'image', label: 'Imagen', base_path: '/resources/images' }        
+            # # form:  # <-- 'form' is applied to both 'new' and 'edit' views
+            # #     title: 'Crear una nueva Pagina'
+            # #     fields: 
+            # #         - epigrafe
+            # #         - { property: 'imageFile', type: 'vich_image' , label: 'Imagen'}
+            # # show:
+            # #     fields:
+            # #         - epigrafe
+            # #         - { property: 'path', type: 'image', base_path: '/paginas/images' }

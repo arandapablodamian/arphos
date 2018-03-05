@@ -1,0 +1,90 @@
+# easy_admin:
+#     design:
+#         brand_color: '#FBCE1E'
+#         assets:
+#             favicon: '/assets/backend/favicon.png'
+
+#         # assets:
+#         #     css:
+#         #         # HTTP protocol-relative URL
+#         #         - "assets/css/backend.css"
+#         #         # estilos para las tablas
+#         #         - "assets/table/css/animate.css"
+#         #         - "assets/table/css/select2.min.css"
+#         #         - "assets/table/css/perfect-scrollbar.css"
+#         #         - "assets/table/css/main.css"
+#         #         - "assets/table/css/util.css"
+#         #     js:
+#         #         # javascript para las tablas
+#         #         - "assets/table/js/main.js"
+#         #         - "assets/table/js/select2.min.js"
+#         #         - "assets/table/js/popper.js"
+
+#         menu:
+#             - { label: 'Panel Principal', route: 'dashboard', icon: 'caret-down', default: true }
+#             - label: 'Prensa'
+#               # icon: 'newspaper'
+#               children:
+#                 - { label: 'Noticias', entity: 'Noticia' }
+#                 - { label: 'Tags', entity: 'TagNoticia' }
+#             - label: 'Pagina'
+#               icon: 'bars'
+#               children:
+#                 - { label: 'Paginas', entity: 'Pagina' }
+#                 - { label: 'Banner', entity: 'Banner' }
+
+#             - label: 'Lotería'
+#               icon: 'book'
+#               children:
+#                 - { label: 'Tipo de Juegos', entity: 'TipoJuego' }
+#                 - { label: 'Juegos', entity: 'Juego' }
+#                 - { label: 'Sorteo', entity: 'Sorteo' }
+
+#             - {label: 'Juegos Estímulos' , entity: 'Estimulo', icon: 'indent'}
+
+#             - {label: 'Lotimax', entity: 'ExtractoLotimax' , icon: 'align-right' }   
+
+#             - {label: 'Extracto Oficial' , entity: 'ExtractoOficial' , icon: 'list-ul'}
+
+#             - label: 'Telebingo'
+#               icon: 'list-alt'
+#               children:
+#                 - { label: 'Telebingo', entity: 'ExtractoTelebingo'}
+#                 - { label: 'Sorteos en Vivo' , entity: 'SorteoTelebingo'}
+
+#             - label: 'Juegos Especiales'
+#               icon: 'th-list'
+#               children:
+#                 - { label: 'Juegos Especiales' , entity: 'JuegoEspecial'}
+#                 - { label: 'Modalidades' , entity: 'ModalidadJuegoEspecial'}
+#                 - { label: 'Estados' , entity: 'EstadoJuegoEspecial'}
+#                 - { label: 'Tipo' , entity: 'TipoJuegoEspecial'}
+#                 - { label: 'Localidad' , entity: 'Localidad'}
+
+#             - label: 'Sorteo Benefico'
+#               icon: 'arrow-circle-right'
+#               children:  
+#                   - { label: 'Sorteo Benefico' , entity: 'SorteoBenefico'}
+#                   - { label: 'Escuelas' , entity: 'EscuelaBenefico'}          
+
+#             - { label: 'Sorteo Vivo' , entity: 'SorteoVivo', icon: 'caret-right'}
+
+#             - label: 'Sueños'
+#               icon: 'modx'
+#               children: 
+#                   - { label: 'Clasificaciones' , entity: 'ClasificacionSuenios'}
+#                   - { label: 'Números', entity: 'NumeroSuenios'}
+#             - { label: 'Galería', route: 'file_manager', params: { conf: 'default' }, icon: 'folder-open', default: true,role: ROLE_GALERIA }
+            
+#             - label: 'Elementos'
+#               children:
+#                   - { label: 'Menu', entity: 'Menu'}
+#                   - { label: 'Sub-Menu' , entity: 'SubMenu'}
+#                   - { label: 'Sub-Sub-Menu' , entity: 'SubSubMenu'}
+#                   - { label: 'Banner', entity: 'Banner' }
+#             - label: 'Usuarios'
+#               icon: 'users'
+#               children:
+#                   - { label: 'Usuarios', entity: 'User'}
+#                   - { label: 'Grupos' , entity: 'Group'}
+#                   - { label: 'Auditoría',  icon: 'users',route: 'auditoria', icon: 'caret-down', default: true, params: { conf: 'default' } }

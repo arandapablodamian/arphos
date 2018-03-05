@@ -25,6 +25,9 @@ class AppKernel extends Kernel
             new Tetranz\Select2EntityBundle\TetranzSelect2EntityBundle(),
             new Vich\UploaderBundle\VichUploaderBundle(),
             new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+
+            new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
+
             new AppBundle\AppBundle(),
             new FrontendBundle\FrontendBundle(),
             new BackendBundle\BackendBundle(),
