@@ -10,6 +10,7 @@ use BackendBundle\Entity\Turno;
 use BackendBundle\Entity\Category;
 use FrontendBundle\Form\FormularioTurnoType;
 
+
 class DefaultController extends Controller
 {
     /**
@@ -66,56 +67,5 @@ class DefaultController extends Controller
     {
         return $this->render('FrontendBundle::galeria.html.twig');
     }
-
-     /**
-     * @Route("/tienda", name="tienda")
-     */
-    public function tiendaAction()
-    {
-        $Categorias = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Categoria")
-        -> findall();
-        $Productos = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Producto")
-        -> findall();
-        $Estaciones = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Estacion")
-        -> findall();
-
-        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
-            "Estaciones" => $Estaciones));
-    }
-     /**
-     * @Route("/tiendaproducto/{id}", name="tiendaproducto")
-     */
-    public function tiendaproductoAction($id)
-    {
-        $Categorias = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Categoria")
-        -> findall();
-        $Estaciones = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Estacion")
-        -> findall();
-        $Producto = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Producto")
-        ->find($id);
-        return $this->render('FrontendBundle::tiendaproducto.html.twig', array("Categorias" => $Categorias,
-            "Estaciones" => $Estaciones, "Producto" => $Producto));
-    }
-     /**
-     * @Route("/carrito", name="carrito")
-     */
-    public function carritoAction($id)
-    {
-        $Categorias = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Categoria")
-        -> findall();
-        $Estaciones = $this -> getDoctrine()
-        ->getRepository("BackendBundle:Estacion")
-        -> findall();
-        return $this->render('FrontendBundle::tiendaproducto.html.twig', array("Categorias" => $Categorias,
-            "Estaciones" => $Estaciones));
-    }
-    
 
 }

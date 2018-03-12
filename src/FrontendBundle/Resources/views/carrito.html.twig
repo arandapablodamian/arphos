@@ -1,0 +1,31 @@
+{% extends 'FrontendBundle::tienda.html.twig' %}
+
+{% block producto %}
+              <h1 class="text-lg-right">Carrito</h1>
+                {% set total = 0 %}
+                {% for Comprado in Comprados %}
+                <div class="card">
+                  <div class="card-header"> <h5>{{Comprado.nombre}} {{Comprado.Talle}}</h5></div>
+                  <div class="card-body"> 
+                    precio unitario:${{Comprado.precio}} 
+                    <br>
+                    cantidad:{{Comprado.cantidad}} 
+                  <a class="float-right btn btn-primary" href="borrarproducto-{{Comprado.Id}}">Quitar Del Carrito</a>
+                  </div>
+                  <div class="card-footer">
+                  {% set parcial = Comprado.cantidad * Comprado.Precio %}
+                    {% set total = total + parcial %}
+                    <h5 class="float-right">Precio Parcial: ${{ parcial }}</h5> 
+                  </div>
+                </div>
+                 {% endfor %}
+                <div class="card">
+                  <div class="card-footer"> 
+                    <h5 class="float-right">Precio Total: ${{ total }}</h5> 
+                  </div>
+                </div>
+                <br>
+                  {{ form_start(form) }}
+                  {{ form_widget(form) }}
+                  {{ form_end(form) }}
+{% endblock %}
