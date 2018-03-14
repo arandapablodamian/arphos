@@ -59,7 +59,7 @@ class Turno
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="diayhora", type="datetimetz")
+     * @ORM\Column(name="diayhora", type="datetime")
      */
     private $diayhora;
 

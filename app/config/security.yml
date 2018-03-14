@@ -18,7 +18,7 @@ security:
                 users:
                     adminarphos:
                         password: arphos1234
-                        roles: 'ROLE_SUPER_ADMIN'
+                        roles: 'ROLE_ADMIN'
 
 
     firewalls:
@@ -36,7 +36,7 @@ security:
     access_control:
         - { path: ^/login$, role: IS_AUTHENTICATED_ANONYMOUSLY }
         - { path: ^/register, role: IS_AUTHENTICATED_ANONYMOUSLY }
-        - { path: ^/admin, role: ROLE_SUPER_ADMIN }
+        - { path: ^/admin, role: ROLE_ADMIN }
 #         - { path: ^/backend/superadmin/menu/, role: ROLE_SUPER_ADMIN }
 #         - { path: ^/backend/superadmin/user/, role: ROLE_ADMIN }
 #         - { path: ^/backend, role: ROLE_ABM }

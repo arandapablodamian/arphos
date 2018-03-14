@@ -26,6 +26,9 @@ class User extends BaseUser
      */
     protected $userRoles;
 
+     public function __toString() {
+        return $this->getUserName();
+    }
 
     public function __construct()
     {

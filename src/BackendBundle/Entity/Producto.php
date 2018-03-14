@@ -105,10 +105,6 @@ class Producto
      */
     private $talles;
 
-    public function __construct() {
-        $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->talles = new \Doctrine\Common\Collections\ArrayCollection();
-    }
 
     /**
      * @var string
@@ -141,6 +137,14 @@ class Producto
     private $coleccion;
 
 
+     public function __toString() {
+        return $this->getNombre();
+    }
+
+      public function __construct() {
+        $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->talles = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -513,5 +517,9 @@ class Producto
     {
         return $this->coleccion;
     }
+
+
+   
+
 }
 

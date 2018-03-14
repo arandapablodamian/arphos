@@ -30,21 +30,6 @@ class Talle
      */
     private $nombre;
 
-    /**
-     * @var int
-     *
-     * @ORM\Column(name="cantidad", type="integer")
-     */
-    private $cantidad;
-
-
-    /**
-     * @ORM\ManyToOne(targetEntity="\BackendBundle\Entity\Categoria")
-     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
-     */
-    private $categoria;
-
-
     public function __construct() {
        
     }
@@ -87,54 +72,6 @@ class Talle
         return $this->nombre;
     }
 
-    /**
-     * Set cantidad
-     *
-     * @param integer $cantidad
-     *
-     * @return Taller
-     */
-    public function setCantidad($cantidad)
-    {
-        $this->cantidad = $cantidad;
-
-        return $this;
-    }
-
-    /**
-     * Get Cantidad
-     *
-     * @return integer
-     */
-    public function getCantidad()
-    {
-        return $this->cantidad;
-    }
-
-   
-    /**
-     * Set categoria
-     *
-     * @param string $categoria
-     *
-     * @return Categoria
-     */
-    public function setCategoria(\BackendBundle\Entity\Categoria $categoria)
-    {
-        $this->categoria = $categoria;
-
-        return $this;
-    }
-
-    /**
-     * Get categoria
-     *
-     * @return string
-     */
-    public function getCategoria()
-    {
-        return $this->categoria;
-    }
 
 }
 

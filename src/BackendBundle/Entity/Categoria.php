@@ -169,7 +169,7 @@ class Categoria
      *
      * @param \BackendBundle\Entity\Categoria $subCategoria
      */
-    public function removeDocumento(\BackendBundle\Entity\Categoria $subCategoria)
+    public function removeSubCategoria(\BackendBundle\Entity\Categoria $subCategoria)
     {
         $this->subCategorias->removeElement($subCategoria);
     }

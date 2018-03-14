@@ -1,0 +1,38 @@
+easy_admin:
+    entities:
+        Compra:
+            class: BackendBundle\Entity\Compra
+            label: 'Compra'
+            role: ROLE_ADMIN
+            # role_prefix: ROLE_PAGINA
+            # help: 'Global message displayed in all views'
+            list:
+                title: "Compra"
+                fields:
+                    - { property: id, label: 'Nro de Compra',css_class: 'col-md-1'}
+                    - { property: 'usuario' , label: 'Usuario',css_class: 'col-md-2'}
+                    - { property: 'fechaCompra' , label: 'Fecha de Compra',css_class: 'col-md-2'}
+                    - { property: 'montoTotal',label: 'Monto Total' ,css_class: 'col-md-2' }
+               
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                title: 'Crear un Compra'
+                fields: 
+                    - { type: 'group', css_class: 'col-sm-12', label: 'Información de la Compra' }
+                    - { property: 'usuario' , label: 'Usuario',css_class: 'col-md-6'}
+                    - { type: 'divider' }
+                    - { property: 'fechaCompra' , label: 'Fecha de Compra',type: 'date',type_options: { widget: 'single_text' },css_class: 'col-md-6'}
+                    - { type: 'divider' }
+                    - { property: 'montoTotal',label: 'Monto Total' ,css_class: 'col-md-6' }
+                    - { type: 'group', css_class: 'col-sm-12', label: 'Lista de Productos' }
+                    - { property: 'productos',label: 'Productos' ,css_class: 'col-md-12' }                  
+            show:
+                fields:
+                    - {property: id, label: 'Nro de Compra',css_class: 'col-md-1'}
+                    - { property: 'usuario' , label: 'Usuario',css_class: 'col-md-6'}
+                    - { property: 'fechaCompra' , label: 'Fecha de Compra',css_class: 'col-md-6'}
+                    - { property: 'montoTotal',label: 'Monto Total' ,css_class: 'col-md-6' }
+                    - { property: 'productos',label: 'Productos' ,css_class: 'col-md-12' }                  
+
+
+                edit:
+                title: 'Editar Compra'
