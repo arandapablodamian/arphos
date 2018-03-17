@@ -24,14 +24,18 @@ easy_admin:
         menu:
             # - { label: 'Panel Principal', route: 'dashboard', icon: 'caret-down', default: true }
             - label: 'Gestión de Productos'
-              # icon: 'newspaper'
+              icon: 'paw'
               children:
-                - { label: 'Productos', entity: 'Producto' }
-                - { label: 'Categorias', entity: 'Categoria' }
-                - { label: 'Talles', entity: 'Talle' }
-            - { label: 'Gestión de Compras', entity: 'Compra' }
-            - { label: 'Gestión de Turnos', entity: 'Turno' }
-            - { label: 'Gestión de Consultas', entity: 'Mensaje' }
-
+                - { label: 'Productos', entity: 'Producto',icon: 'paw' }
+                - { label: 'Categorias', entity: 'Categoria',icon: 'paw' }
+                - { label: 'Talles', entity: 'Talle', icon: 'paw' }
+            - { label: 'Gestión de Compras', entity: 'Compra',icon: 'paw' }
+            - { label: 'Gestión de Turnos', entity: 'Turno',icon: 'paw' }
+            - { label: 'Gestión de Consultas', entity: 'Mensaje',icon: 'paw' }
+            - label: 'Gestión de Paginas'
+              icon: 'paw'
+              children:
+                - { label: 'Paginas', entity: 'Pagina' ,icon: 'paw'}
+                - { label: 'Categorias de Pagina', entity: 'CategoriaPagina',icon: 'paw' }
 
             

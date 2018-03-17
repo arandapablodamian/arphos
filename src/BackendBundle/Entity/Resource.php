@@ -47,6 +47,14 @@ class Resource
      */
     private $producto;
 
+    /**
+     * @var \BackendBundle\Entity\Pagina
+     *
+     * @ORM\ManyToOne(targetEntity="\BackendBundle\Entity\Pagina", inversedBy="resources")
+     * @ORM\JoinColumn(name="pagina", referencedColumnName="id")
+     */
+    private $pagina;
+
    
 
     /**
@@ -161,6 +169,32 @@ class Resource
     {
         return $this->producto;
     }
+
+      /**
+     * Set pagina
+     *
+     * @param \BackendBundle\Entity\Pagina $pagina
+     *
+     * @return Resource
+     */
+    public function setPagina(\BackendBundle\Entity\Pagina $pagina = null)
+    {
+        $this->pagina = $pagina;
+
+        return $this;
+    }
+
+    /**
+     * Get pagina
+     *
+     * @return \BackendBundle\Entity\Pagina
+     */
+    public function getPagina()
+    {
+        return $this->pagina;
+    }
+
+    
 
     
 

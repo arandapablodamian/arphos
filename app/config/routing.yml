@@ -9,7 +9,8 @@ frontend:
     prefix:   /
 
 easy_admin_bundle:
-    resource: "@EasyAdminBundle/Controller/AdminController.php"
+    # resource: "@EasyAdminExtensionBundle/Controller/AdminController.php"
+    resource: '@BackendBundle/Controller/AdminController.php'
     type:     annotation
     prefix:   /admin
 

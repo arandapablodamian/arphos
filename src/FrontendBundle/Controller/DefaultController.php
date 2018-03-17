@@ -10,11 +10,13 @@ use BackendBundle\Entity\Turno;
 use BackendBundle\Entity\Category;
 use FrontendBundle\Form\FormularioTurnoType;
 
-
+/**
+     * @Route("/frontend")
+     */
 class DefaultController extends Controller
 {
     /**
-     * @Route("/frontend" , name="index")
+     * @Route("/index" , name="index")
      */
     public function indexAction(Request $request)
     {	$turno = new Turno();
@@ -67,5 +69,25 @@ class DefaultController extends Controller
     {
         return $this->render('FrontendBundle::galeria.html.twig');
     }
+
+    /**
+     * @Route("/blog{categoria}", name="blog")
+     */
+    public function blogAction($categoria = 0)
+    {          
+        $em = $this->getDoctrine()->getManager(); 
+        if (!$categoria || $categoria==0) {
+            $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.publicado=1 ORDER BY p.fechaCreacion DESC') ->setMaxResults(10);
+            $entradas = $query->getResult();
+        }else{
+            $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.publicado=1 AND p.categoria.id =:categoria ORDER BY p.fechaCreacion DESC');
+            $query->setParameter('categoria', $categoria);
+            $entradas = $query->getResult();
+        }
+        return $this->render('FrontendBundle::blog.html.twig', array(
+            'entradas'=>$entradas,
+            'categoria'=>$categoria));
+    }
+
 
 }
