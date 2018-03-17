@@ -11,18 +11,18 @@ easy_admin:
                 fields:
                     - { property: 'id', label: 'Nro. de Turno'}
                     - { property: 'nombre' , label: 'Nombre'}
-                    - { property: 'turno' , label: 'Día y Hora'}
+                    - { property: 'diayhora' , label: 'Día y Hora'}
                     - { property: 'apellido' , label: 'Apellido'}
-                    - { property: 'direccion' , label: 'Direccón'}
+                    - { property: 'direccion' , label: 'Dirección'}
                     - { property: 'correo' , label: 'Correo'}
-                    - { property: 'telefono' , label: 'telefono'}
+                    - { property: 'telefono' , label: 'Teléfono'}
             form:  # <-- 'form' is applied to both 'new' and 'edit' views
                 title: 'Crear un Turno'
                 fields: 
                     - { type: 'group', css_class: 'col-md-12', label: 'Descripción del Turno' }
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
                     - { type: 'divider' }
-                    - { property: 'turno' , label: 'Día y Hora',type: 'datetime', type_options: { widget: 'single_text' },css_class: 'col-md-6'}
+                    - { property: 'diayhora' , label: 'Día y Hora',type: 'date', type_options: { widget: 'single_text' },css_class: 'col-md-6'}
                     - { type: 'divider' }
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
                     - { type: 'divider' }
@@ -30,14 +30,14 @@ easy_admin:
                     - { type: 'divider' }
                     - { property: 'correo' , label: 'Correo',css_class: 'col-md-6'}
                     - { type: 'divider' }
-                    - { property: 'telefono' , label: 'telefono',css_class: 'col-md-6'}
+                    - { property: 'telefono' , label: 'Teléfono',css_class: 'col-md-6', type: 'Symfony\Component\Form\Extension\Core\Type\TelType'}
             show:
                 fields:
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
-                    - { property: 'turno' , label: 'Día y Hora',css_class: 'col-md-6'}
+                    - { property: 'diayhora' , label: 'Día y Hora',css_class: 'col-md-6'}
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
                     - { property: 'direccion' , label: 'Dirección',css_class: 'col-md-6'}
                     - { property: 'correo' , label: 'Correo',css_class: 'col-md-6'}
-                    - { property: 'telefono' , label: 'telefono',css_class: 'col-md-6'}
+                    - { property: 'telefono' , label: 'Teléfono',css_class: 'col-md-6'}
             edit:
                 title: 'Editar Turno'  

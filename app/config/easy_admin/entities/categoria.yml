@@ -15,7 +15,7 @@ easy_admin:
                     - { property: 'subCategorias' , label: 'SubCategorias',css_class: 'col-md-2', type: simple_array}
                     - { property: 'descripcion' , label: 'Descripción',css_class: 'col-md-4'}
             form:  # <-- 'form' is applied to both 'new' and 'edit' views
-                title: 'Crear un Banner'
+                title: 'Crear un Categoria'
                 fields: 
                     - { type: 'group', css_class: 'col-sm-12', label: 'Categoría' }
                     - {property: id, label: 'Nro. de Categoría',css_class: 'col-md-6'}
