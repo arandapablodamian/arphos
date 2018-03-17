@@ -52,7 +52,7 @@ class Turno
     /**
      * @var int
      *
-     * @ORM\Column(name="telefono", type="integer")
+     * @ORM\Column(name="telefono", type="bigint")
      */
     private $telefono;
 
