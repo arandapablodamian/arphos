@@ -23,8 +23,6 @@ easy_admin:
                     - { property: 'titulo' , label: 'Título',css_class: 'col-md-6'}
                     - { type: 'divider' }
                     - { property: 'categoriaPadre' , label: 'Categoría Padre',css_class: 'col-md-6'}
-                    - { type: 'divider' }
-                    - { property: 'subCategorias' , label: 'Sub Categorias',css_class: 'col-md-6'}
                     
             show:
                 fields:

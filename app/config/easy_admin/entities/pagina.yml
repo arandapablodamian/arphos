@@ -23,6 +23,7 @@ easy_admin:
                     - { property: publicado,css_class: 'col-md-12'}
                     - { property: 'categoria', label: 'Categoria',css_class: 'col-md-12'}
                     - { property: 'titulo',label: 'Título',css_class: 'col-md-12'}
+                    - { property: 'introduccion', label: 'Introducción',type: "ckeditor",css_class: 'col-md-12'}
                     - { property: 'desarrollo', type: "ckeditor",css_class: 'col-md-12'}
                     - { property: 'imageFile', type: 'vich_image' , label: 'Imagen Principal',css_class: 'col-md-6'}
                     - { type: 'group', css_class: 'col-md-12', label: "Galeria" }
@@ -33,6 +34,7 @@ easy_admin:
                     - { property: 'publicado' , label: 'Publicado', type: 'toggle'}
                     - { property: 'categoria', label: 'categoria'}
                     - { property: 'titulo' , label: 'Título', type: 'text'}
+                    - { property: 'introduccion', label: 'Introducción',type: "ckeditor",css_class: 'col-md-12'}
                     - { property: 'desarrollo', type: "text"}
                     - { property: 'imagen', type: 'image', base_path: '%path.imagenesPaginas%' }
                     - { property: 'fechaCreacion', label: 'Creación', type: 'date' }

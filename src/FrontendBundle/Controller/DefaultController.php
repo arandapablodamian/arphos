@@ -80,14 +80,38 @@ class DefaultController extends Controller
             $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.publicado=1 ORDER BY p.fechaCreacion DESC') ->setMaxResults(10);
             $entradas = $query->getResult();
         }else{
-            $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.publicado=1 AND p.categoria.id =:categoria ORDER BY p.fechaCreacion DESC');
+            $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.publicado=1 AND p.categoria =:categoria ORDER BY p.fechaCreacion DESC');
             $query->setParameter('categoria', $categoria);
             $entradas = $query->getResult();
         }
+
+         $query = $em->createQuery('SELECT c FROM BackendBundle:CategoriaPagina c ORDER BY c.titulo DESC');
+            $categorias = $query->getResult();
+
         return $this->render('FrontendBundle::blog.html.twig', array(
             'entradas'=>$entradas,
-            'categoria'=>$categoria));
+            'categoria'=>$categoria,
+            'categorias'=>$categorias));
     }
 
+
+    /**
+     * @Route("/detalleEntrada{idPagina}", name="detalleEntrada")
+     */
+    public function detalleEntrada($idPagina)
+    {          
+        $em = $this->getDoctrine()->getManager(); 
+
+            $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.id=:idPagina');
+            $query->setParameter('idPagina', $idPagina);
+            $entrada = $query->getSingleResult();
+        
+         $query = $em->createQuery('SELECT c FROM BackendBundle:CategoriaPagina c ORDER BY c.titulo DESC');
+            $categorias = $query->getResult();
+
+        return $this->render('FrontendBundle::detalleEntrada.html.twig', array(
+            'entrada'=>$entrada,
+            'categorias'=>$categorias));
+    }
 
 }

@@ -75,26 +75,25 @@
             </div>
            
           <div class="col-md-8" class="entrada">
-              {% for entrada in entradas %}
                   <div>
                     <h3>{{entrada.titulo | raw}}</h3>
                   </div>
                   <div>
-                    {{entrada.desarrollo | raw}}
+                    <img style="max-width:500px;max-height:500px;"src="{{asset('bundles/imagenes/paginas'~entrada.imagen)}}" alt="">
+                  <div>
+                    <br>
+                  <div>
+                    {{entrada.introduccion | raw}}
+                  </div>
+                  <div>
+                    {{entrada.introduccion | raw}}
                   </div>
                   <br>
-                  <div style="display: block;margin-left: auto;margin-right: auto;width: 50%;">
-                    <div style="margin-left:auto;margin-right:auto;">
-                      <a href="{{path('detalleEntrada', {'idPagina':entrada.id})}}"><img src="{{asset('bundles/frontend/images/blog/BotonVerMas.png')}}" alt=""></a>
-                    </div>
-                  </div>
-          <hr />
-              {% endfor %}
           </div>
         </div>
       </div>
     </div> 
-      
+   </div>
   </div>
     
 {% endblock %}

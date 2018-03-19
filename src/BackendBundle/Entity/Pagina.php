@@ -44,6 +44,15 @@ class Pagina
     /**
      * @var string
      *
+     * @ORM\Column(name="introduccion", type="text", nullable=false)
+     * @Assert\NotBlank()
+     */
+    private $introduccion;
+
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="desarrollo", type="text", nullable=false)
      * @Assert\NotBlank()
      */
@@ -162,6 +171,30 @@ class Pagina
     public function getTitulo()
     {
         return $this->titulo;
+    }
+
+    /**
+     * Set introduccion
+     *
+     * @param string $introduccion
+     *
+     * @return Pagina
+     */
+    public function setIntroduccion($introduccion)
+    {
+        $this->introduccion = $introduccion;
+
+        return $this;
+    }
+
+    /**
+     * Get introduccion
+     *
+     * @return string
+     */
+    public function getIntroduccion()
+    {
+        return $this->introduccion;
     }
 
     /**

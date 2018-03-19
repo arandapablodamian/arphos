@@ -18,7 +18,6 @@ easy_admin:
                 title: 'Crear un Categoria'
                 fields: 
                     - { type: 'group', css_class: 'col-sm-12', label: 'Categoría' }
-                    - {property: id, label: 'Nro. de Categoría',css_class: 'col-md-6'}
                     - { type: 'divider' }
                     - { property: 'titulo' , label: 'Título',css_class: 'col-md-6'}
                     - { type: 'divider' }

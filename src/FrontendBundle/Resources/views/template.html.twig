@@ -4,7 +4,7 @@
 	<title>Arphos</title>
 	{% block stylesheets %}
 	    <link rel="stylesheet" href="{{ asset('bundles/Frontend/css/template.css') }}" />
-	    <link rel="stylesheet" href="{{ asset('bundles/Frontend/bootstrap/css/bootstrap.css') }}" />
+	    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" />
 
 	{% endblock %}
 </head>
@@ -25,18 +25,17 @@
 		    background-position: center;
 		    background-size: cover;width:100%; height:100% " >
 		    
-					    <div style="background-color: rgba(255,255,255,0.7);height:100%;">
+			 <div style="background-color: rgba(255,255,255,0.7);height:100%;">
 				<div class="row" >
-                                              
-                <div class="col-md-2" style=";text-align:center;color:#d5bbaa;text-decoration:none;"></div>
+                      <div class="col-md-2" style=";text-align:center;color:#4c2606;text-decoration:none;"></div>
                       <div class="col-md-2"><a href="{{path('nosotros')}}">Nosotros</a></div>
                       <div class="col-md-2" ><a href="{{path('galeria')}}">Galerìa</a></div>
+                      <div class="col-md-2"><a href="{{path('blog')}}">Blog</a></div>
                       <div class="col-md-2"><a href="{{path('tienda')}}">Tienda</a></div>
                       <div class="col-md-2"><a href="{{path('contacto')}}">Contacto</a></div>
-                                                    
-         		 </div>
+         		</div>
                 <div style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
-                <hr />
+                	<hr />
                 </div>
 					    		{% block content %}
 					    		    
@@ -82,5 +81,7 @@
 </body>
 </html>
 {% block javascripts %}
-   <script src="{{ asset('bundles/Frontend/bootstrap/js/bootstrap.js') }}"></script>
+   <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+   <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+
 {% endblock %}

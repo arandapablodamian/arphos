@@ -41,13 +41,21 @@ class CategoriaPagina
      *@ORM\JoinColumn(name="categoria_padre", referencedColumnName="id")
      */
     private $categoriaPadre;
-    
-     
+
+    // ...
+    /**
+     * One Product has Many Features.
+     * @ORM\OneToMany(targetEntity="\BackendBundle\Entity\Pagina", mappedBy="categoria", cascade={"persist", "remove"})
+     */
+    private $paginas;
+    // ...
+   
 
 
     public function __construct() {
         $this->subCategorias = new \Doctrine\Common\Collections\ArrayCollection();
-    
+        $this->paginas = new ArrayCollection();
+
     }
 
       public function __toString() {
@@ -150,5 +158,40 @@ class CategoriaPagina
         return $this->subCategorias;
     }
 
+
+    /**
+     * Add pagina
+     *
+     * @param \BackendBundle\Entity\Pagina $pagina
+     *
+     * @return Pagina
+     */
+    public function addPagina(\BackendBundle\Entity\Pagina $pagina)
+    {
+        $pagina->setCategoria($this);
+        $this->paginas[] = $pagina;
+
+        return $this;
+    }
+
+    /**
+     * Remove pagina
+     *
+     * @param \BackendBundle\Entity\Pagina $pagina
+     */
+    public function removePagina(\BackendBundle\Entity\Pagina $pagina)
+    {
+        $this->paginas->removeElement($pagina);
+    }
+
+    /**
+     * Get paginas
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getPaginas()
+    {
+        return $this->paginas;
+    }
 }
 
