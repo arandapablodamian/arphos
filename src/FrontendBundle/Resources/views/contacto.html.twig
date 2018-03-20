@@ -1,4 +1,74 @@
 {% extends 'FrontendBundle::template.html.twig' %}
 {% block content %}
+	<div style="height:500px;">
+		<div class="row">
+			<div class="col-md-1"></div>
+	    	<div class="col-md-3">
+	    		<div> <img src="{{asset('bundles/frontend/images/contacto/BurbujaContaco.png')}}" alt=""></div><br>
+	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/FacebookContacto.png')}}" alt=""></a></div><br>
+	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/InstagramArphos.png')}}" alt=""></a></div><br>
+	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/TwitterArphos.png')}}" alt=""></a></div><br>
+	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/YoutubeContacto.png')}}" alt=""></a></div><br>
+	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/WhatsappContacto.png')}}" alt=""></a></div><br>
+	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/EmailContacto.png')}}" alt=""></a></div><br>
+
+	    	</div>
+	    	<div class="col-md-5">
+	    		{{ form_start(formularioContacto) }}
+	    		<div class="row">
+	    			<div class="col-md-6">
+	    				{{ form_label(formularioContacto.nombre) }}
+						{{ form_errors(formularioContacto.nombre) }}
+						{{ form_widget(formularioContacto.nombre) }}
+	    			</div>
+	    			<div class="col-md-6">
+	    				{{ form_label(formularioContacto.apellido) }}
+						{{ form_errors(formularioContacto.apellido) }}
+						{{ form_widget(formularioContacto.apellido) }}
+	    			</div>
+				</div>
+				<div class="row">
+	    			<div class="col-md-6">
+	    				{{ form_label(formularioContacto.direccion) }}
+						{{ form_errors(formularioContacto.direccion) }}
+						{{ form_widget(formularioContacto.direccion) }}
+	    			</div>
+	    			<div class="col-md-6">
+	    				{{ form_label(formularioContacto.telefono) }}
+						{{ form_errors(formularioContacto.telefono) }}
+						{{ form_widget(formularioContacto.telefono) }}
+	    			</div>
+				</div>				
+				<div class="row">
+	    			<div class="col-md-12">
+	    				{{ form_label(formularioContacto.email) }}
+						{{ form_errors(formularioContacto.email) }}
+						{{ form_widget(formularioContacto.email) }}
+	    			</div>
+	    		</div>	
+	    		<div class="row">
+	    			<div class="col-md-12">
+	    				{{ form_label(formularioContacto.mensaje) }}
+						{{ form_errors(formularioContacto.mensaje) }}
+						{{ form_widget(formularioContacto.mensaje) }}
+	    			</div>
+	    		</div>	
+	    		<br>
+	    		<div style="text-align:center;">
+	    			{{ form_widget(formularioContacto.enviar) }}
+	    		</div>
+					
+					  	
+					
+				{{ form_end(formularioContacto) }}
+      		</div>
+      		<div class="col-md-2">
+
+	    		<div >
+	    		 	<img style="max-height:auto;width:320px;"src="{{asset('bundles/frontend/images/contacto/DibujoArphos.png')}}" alt="">
+	    		</div>
+	    	</div>
+	    </div>
+	</div>
     
 {% endblock %}

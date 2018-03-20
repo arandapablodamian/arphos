@@ -8,7 +8,10 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use BackendBundle\Entity\Turno;
 use BackendBundle\Entity\Category;
+use BackendBundle\Entity\Mensaje;
 use FrontendBundle\Form\FormularioTurnoType;
+use FrontendBundle\Form\FormularioContactoType;
+
 
 /**
      * @Route("/frontend")
@@ -16,7 +19,7 @@ use FrontendBundle\Form\FormularioTurnoType;
 class DefaultController extends Controller
 {
     /**
-     * @Route("/index" , name="index")
+     * @Route("/" , name="index")
      */
     public function indexAction(Request $request)
     {	$turno = new Turno();
@@ -48,13 +51,38 @@ class DefaultController extends Controller
         	'formularioTurno'=>$formularioTurno->createView()));
     }
 
-   	 /**
+    /**
      * @Route("/contacto" , name="contacto")
      */
-    public function contactoAction()
-    {
-        return $this->render('FrontendBundle::contacto.html.twig');
+    public function contactoAction(Request $request)
+    {   $mensaje = new Mensaje();
+          $formularioContacto = $this->createForm(FormularioContactoType::class, $mensaje);
+           
+            $formularioContacto->handleRequest($request);
+
+            if ($formularioContacto->isSubmitted() && $formularioContacto->isValid()) {
+              
+                // $form->getData() holds the submitted values
+                // but, the original `$task` variable has also been updated
+                $formularioContacto = $formularioContacto->getData();
+
+                $message = (new \Swift_Message('Contacto'))
+                ->setSubject('Contacto')
+                ->setFrom($formularioContacto->getEmail())
+                ->setTo('arandapablodamian@gmail.com')
+                ->setBody("Nombre y Apellido: ".$formularioContacto->getNombre().', '.$formularioContacto->getApellido(). "\n\nTeléfono: ".$formularioContacto->getTelefono()."\n\n Mensaje: \n\t\t   ".$formularioContacto->getMensaje() );
+                $this->get('mailer')->send($message);
+
+            dump('envio exitoso');
+            die;
+        }
+
+      
+        return $this->render('FrontendBundle::contacto.html.twig',array(
+            'formularioContacto'=>$formularioContacto->createView()));
     }
+
+  
      /**
      * @Route("/nosotros" , name="nosotros")
      */

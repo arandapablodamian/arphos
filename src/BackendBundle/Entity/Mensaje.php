@@ -58,6 +58,21 @@ class Mensaje
 
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="mensaje", type="text")
+     */
+    private $mensaje;
+
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="fechaCreacion", type="datetime")
+     */
+    private $fechaCreacion;
+
+
+    /**
      * Get id
      *
      * @return int
@@ -185,6 +200,55 @@ class Mensaje
     public function getEmail()
     {
         return $this->email;
+    }
+
+
+    /**
+     * Set nombre
+     *
+     * @param string $mensaje
+     *
+     * @return Mensaje
+     */
+    public function setMensaje($mensaje)
+    {
+        $this->mensaje = $mensaje;
+
+        return $this;
+    }
+
+    /**
+     * Get mensaje
+     *
+     * @return string
+     */
+    public function getMensaje()
+    {
+        return $this->mensaje;
+    }
+
+        /**
+     * Set fechaCreacion
+     *
+     * @param \DateTime $fechaCreacion
+     *
+     * @return Producto
+     */
+    public function setFechaCreacion($fechaCreacion)
+    {
+        $this->fechaCreacion = $fechaCreacion;
+
+        return $this;
+    }
+
+    /**
+     * Get fechaCreacion
+     *
+     * @return \DateTime
+     */
+    public function getFechaCreacion()
+    {
+        return $this->fechaCreacion;
     }
 }
 
