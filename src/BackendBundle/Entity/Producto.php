@@ -84,14 +84,9 @@ class Producto
      */
     private $esNovedad;
 
-
-   /**
-     * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="\BackendBundle\Entity\Categoria")
-     * @ORM\JoinTable(name="categoria_producto",
-     *      joinColumns={@ORM\JoinColumn(name="categoria_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="producto_id", referencedColumnName="id")}
-     *      )
+       /**
+     * @ORM\ManyToOne(targetEntity="\BackendBundle\Entity\Categoria")
+     * @ORM\JoinColumn(name="categoria_id", referencedColumnName="id")
      */
     private $categorias;
 
