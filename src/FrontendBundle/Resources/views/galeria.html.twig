@@ -1,4 +1,33 @@
 {% extends 'FrontendBundle::template.html.twig' %}
+{% block stylesheets %}
+	{{parent()}}
+    <style>
+	    .fb-post iframe {
+	    transform:scale(0.8,0.8);}
+    </style>
+{% endblock %}
 {% block content %}
-    
+<div id="fb-root"></div>
+<script>
+	(function(d, s, id) {
+	  var js, fjs = d.getElementsByTagName(s)[0];
+	  if (d.getElementById(id)) return;
+	  js = d.createElement(s); js.id = id;
+	  js.src = 'https://connect.facebook.net/es_ES/sdk.js#xfbml=1&version=v2.12&appId=1521817874499280&autoLogAppEvents=1';
+	  fjs.parentNode.insertBefore(js, fjs);
+	}(document, 'script', 'facebook-jssdk'));
+</script>
+	<div style="width:1000px; margin-left:auto; margin-right:auto;min-height:600px;">
+		<div class="row">
+			{% for post in pagination %}
+				<div class="col-md-4">
+					<div class="fb-post" data-href="{{post.post}}" ></div>
+   				</div>
+			{% endfor %}
+			
+		</div>
+    		<div class="navigation">
+				{{ knp_pagination_render(pagination) }}
+			</div>
+	</div>
 {% endblock %}

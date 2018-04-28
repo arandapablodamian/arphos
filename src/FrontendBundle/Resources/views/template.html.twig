@@ -3,9 +3,45 @@
 <head>
 	<title>Arphos</title>
 	{% block stylesheets %}
+		<link rel="icon" href="{{ asset('bundles/Frontend/images/template/pata-top-banner.png') }}">
+
 	    <link rel="stylesheet" href="{{ asset('bundles/Frontend/css/template.css') }}" />
 	    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" />
+		<style>
+		.navbar-default {
+			background-color:transparent !important;
+			border-color:transparent;
+			background-image:none;
+			box-shadow:none;	
+		}
+		.navbar li { color: #000 }
 
+		.nabvar-text {
+		  position: absolute;
+		  width: 100%;
+		  left: 0;
+		  top: 0;
+		  text-align: center;
+		  z-index: 10;
+		 }
+
+		.navbar-nav,
+		.navbar-right {
+		  position: relative;
+		  z-index: 99;
+		 }
+
+		.itemMenu{
+			color:#4c2606;
+			font-size: 20px;
+			text-decoration: none;
+		}
+		.itemMenu:hover{
+			color:#d5bbaa;
+			text-decoration: none;
+		}
+		 </style>
+		
 	{% endblock %}
 </head>
 <body>
@@ -16,48 +52,88 @@
 			    <div id="banner-top" style="background-image: url('{{asset('bundles/Frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover;width:100%; height:100px position: fixed;">
 					<a href="{{path('index')}}"><div style="margin-left:20%;background-image: url('{{asset('bundles/Frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
 					</a>
+
 				</div>
+
 			{% endblock %}
 
 			{% block wrapper %}
 			    <div style="background-color:#faf4ee;   ">
-					<div id="wrapper" style="background-image: url('{{asset('bundles/Frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
-		    background-position: center;
-		    background-size: cover;width:100%; height:100% " >
+					<div id="wrapper" style="background-image: url('{{asset('bundles/Frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;background-position: center;background-size: cover;width:100%; height:100% " >
 		    
-			 <div style="background-color: rgba(255,255,255,0.7);height:100%;">
-				<div class="row" >
-                      <div class="col-md-2" style=";text-align:center;color:#4c2606;text-decoration:none;"></div>
-                      <div class="col-md-2"><a href="{{path('nosotros')}}">Nosotros</a></div>
-                      <div class="col-md-2" ><a href="{{path('galeria')}}">Galerìa</a></div>
-                      <div class="col-md-2"><a href="{{path('blog')}}">Blog</a></div>
-                      <div class="col-md-2"><a href="{{path('tienda')}}">Tienda</a></div>
-                      <div class="col-md-2"><a href="{{path('contacto')}}">Contacto</a></div>
-         		</div>
+			<div style="background-color: rgba(255,255,255,0.7);height:100%;">
+				<nav class="navbar navbar-expand-lg navbar-light "   >
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				    <span class="navbar-toggler-icon"></span>
+				  </button>
+
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+				    <ul class="nav justify-content-center" style="width:100%;text-align:center;" >
+				      <li class="nav-item col-md-2">
+				      		 <a class="nav-link itemMenu" href="{{path('index')}}"> Inicio</a>
+				      </li>
+
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu"href="{{path('nosotros')}}">Nosotros</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu" href="{{path('galeria')}}">Galería</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu" href="{{path('blog')}}">Blog</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu"href="{{path('tienda')}}">Tienda</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu"href="{{path('contacto')}}">Contacto</a>
+				      </li>
+				      <!-- <li class="nav-item dropdown">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          Dropdown
+				        </a>
+				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <a class="dropdown-item" href="#">Action</a>
+				          <a class="dropdown-item" href="#">Another action</a>
+				          <div class="dropdown-divider"></div>
+				          <a class="dropdown-item" href="#">Something else here</a>
+				        </div>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link disabled" href="#">Disabled</a>
+				      </li> -->
+				    </ul>
+				    
+				  </div>
+				</nav>
                 <div style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
                 	<hr />
                 </div>
+
+                
+
+
 					    		{% block content %}
 					    		    
 					    		{% endblock %}
-					    </div>
+			</div>
 		    		
-		    		</div>
+		    </div>
 		    </div>
 			{% endblock %}
 		    {% block footer %}
 		      <div id="banner-top" style="background-color:#d5bbaa; height:50px">
 		      	<div  class="row">
-		      		<a  class="col-md-1" href="">
+		      		<a  class="col-md-1" target="_bank" href="https://www.facebook.com/Arphospcmg/">
 		      			<div  style="background-image: url('{{asset('bundles/Frontend/images/template/icono-facebook.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
 		      		</a>
-			      	<a class="col-md-1" href="">
+			      	<a class="col-md-1"  target="_bank" href="https://www.instagram.com/explore/locations/686414201458930/arphos-peluqueria/?hl=es">
 			      		<div  style="background-image: url('{{asset('bundles/Frontend/images/template/icono-instagram.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
 			      	</a>
-			      	<a  class="col-md-1" href="">
-			      		<div style="background-image: url('{{asset('bundles/Frontend/images/template/icono-twitter.png') }}');background-repeat: no-repeat;background-position: center;; height:50px"></div>
+			      	<a  class="col-md-1" target="_bank" href="https://twitter.com/hashtag/arphos">
+			      		<div style="background-image: url('{{asset('bundles/Frontend/images/template/icono-twitter.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
 			      	</a>
-			      	<a  class="col-md-1" href="">
+			      	<a  class="col-md-1" target="_bank" href="https://www.youtube.com/channel/UCcHpvo4gHq5R7yRdx_zBAJQ">
 			      		<div  style="background-image: url('{{asset('bundles/Frontend/images/template/icono-youtube.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
 			      	</a>
 			      	<div class="col-md-5">

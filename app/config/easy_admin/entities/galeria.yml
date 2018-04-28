@@ -1,0 +1,34 @@
+easy_admin:
+    entities:
+        Galeria:
+            class: BackendBundle\Entity\Galeria
+            label: 'Galería'
+            role: ROLE_ADMIN
+            # role_prefix: ROLE_PAGINA
+            # help: 'Global message displayed in all views'
+            list:
+                title: "Lista de Post"
+                fields:
+                    - { property: id, label: 'Nro. de Post',css_class: 'col-md-1'}
+                    - { property: 'publicado' , label: 'Publicado',css_class: 'col-md-2'}
+                    - { property: 'orden' , label: 'Orden',css_class: 'col-md-2'}
+                    - { property: 'titulo' , label: 'Título',css_class: 'col-md-4', }
+                    - { property: 'post' , label: 'URL de Facebook',type: 'url',css_class: 'col-md-4'}
+            form:  # <-- 'form' is applied to both 'new' and 'edit' views
+                title: 'Crear un Post'
+                fields: 
+                    - { type: 'group', css_class: 'col-sm-12', label: 'Post de Facebook' }
+                    - { property: 'publicado' , label: 'Publicado',css_class: 'col-md-6'}
+                    - { property: 'orden' , label: 'Orden',css_class: 'col-md-4'}
+                    - { property: 'titulo' , label: 'Título',css_class: 'col-md-12', }
+                    - { property: 'post' , label: 'URL del post',css_class: 'col-md-12'}
+                    
+            show:
+                fields:
+                    - { property: id, label: 'Nro. de Post',css_class: 'col-md-3'}
+                    - { property: 'publicado' , label: 'Publicado',css_class: '-md-6'}
+                    - { property: 'orden' , label: 'Orden',css_class: 'col-md-6'}
+                    - { property: 'titulo' , label: 'Título',css_class: 'col-md-12', }
+                    - { property: 'post' , label: 'URL del post',type: 'url',css_class: 'col-md-12'}
+            edit:
+                title: 'Editar Post'  

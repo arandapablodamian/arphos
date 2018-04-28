@@ -87,15 +87,27 @@ class DefaultController extends Controller
      * @Route("/nosotros" , name="nosotros")
      */
     public function nostrosAction()
-    {
+    {   
         return $this->render('FrontendBundle::nosotros.html.twig');
     }
      /**
      * @Route("/galeria", name="galeria")
      */
-    public function galeriaAction()
+    public function galeriaAction(Request $request)
     {
-        return $this->render('FrontendBundle::galeria.html.twig');
+        $em = $this->getDoctrine()->getManager(); 
+        $query = $em->createQuery('SELECT g FROM BackendBundle:Galeria g WHERE g.publicado=1 ORDER BY g.orden DESC');
+
+
+        $paginator  = $this->get('knp_paginator');
+        $pagination = $paginator->paginate(
+            $query, /* query NOT result */
+            $request->query->getInt('page', 1)/*page number*/,
+            10/*limit per page*/
+        );
+
+        return $this->render('FrontendBundle::galeria.html.twig', array('pagination' => $pagination));
+        
     }
 
     /**

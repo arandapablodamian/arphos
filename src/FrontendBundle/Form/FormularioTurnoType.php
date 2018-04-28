@@ -22,12 +22,12 @@ class FormularioTurnoType extends AbstractType
     {
         $builder
             ->setMethod('POST')
-            ->add('nombre',null,array('label'=>'Nombre', 'attr'=>['class'=>'col-md-3']))
-            ->add('apellido',null,array('label'=>'Apellido','attr'=>['class'=>'col-md-5']))
-            ->add('direccion',null,array( 'label' => 'Dirección','attr'=>['class'=>'col-md-4']))
-             ->add('telefono',null,array('label' => 'Teléfono','attr'=>['class'=>'col-md-4','type'=>'number']))
+            ->add('nombre',null,array('label'=>'Nombre', 'attr'=>['class'=>'col-md-12']))
+            ->add('apellido',null,array('label'=>'Apellido','attr'=>['class'=>'col-md-12']))
+            ->add('direccion',null,array( 'label' => 'Dirección','attr'=>['class'=>'col-md-12']))
+             ->add('telefono',null,array('label' => 'Teléfono','attr'=>['class'=>'col-md-12','type'=>'number']))
             ->add('correo',EmailType::class, [
-                'attr'=>['class'=>'col-md-5'],
+                'attr'=>['class'=>'col-md-12'],
                 'label' => 'Correo'
             ])
 

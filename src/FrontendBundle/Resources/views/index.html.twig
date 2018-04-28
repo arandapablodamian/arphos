@@ -7,28 +7,15 @@
 			  font-weight:      bold;
 			  color:            #d5bbaa;
 			  } 
+
 		</style>
 		   			<br><br><br><br>
       				<div style="text-align:center;height:500px">
       					<img style="max-width:700px;max-height:900px;" src="{{asset('bundles/Frontend/images/index/logo_index.png') }}">
       				</div>
       				<div style="background-color:white;height:800px;">
-      					<br>
-      					<div style="height:50px;text-align:center;color:#4c2606;text-decoration:none;">
-      						<div class="row" >
-      							
-	      							<div class="col-md-2"></div>
-		      						<div class="col-md-2"><a href="{{path('nosotros')}}">Nosotros</a></div>
-		      						<div class="col-md-2" ><a href="{{path('galeria')}}">Galerìa</a></div>
-		      						<div class="col-md-2"><a href="{{path('tienda')}}">Tienda</a></div>
-		      						<div class="col-md-2"><a href="{{path('contacto')}}">Contacto</a></div>
-	      						
-      						</div>
-      						<div style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
-      							<hr />
-      						</div>
-      					</div>
-      					<br><br>
+
+      					
       					<div>
       						<div class="row">
       							<div class"col-md-3"><img style="max-width: 500px; max-height:400px;" src="{{asset('bundles/Frontend/images/index/logo-perro.png') }}">
@@ -39,30 +26,39 @@
       								<p>Completa la solicitud con tus datos,  y el dia y horario que quisieras tener el turno, a la brevedad te enviaremos un mensaje de texto con la confirmacion del turno.</p>
       							{{ form_start(formularioTurno) }}
       								<div class="row">
-								 	{{ form_label(formularioTurno.nombre) }}
-								    {{ form_errors(formularioTurno.nombre) }}
-								    {{ form_widget(formularioTurno.nombre) }}
-								   <div class="col-md-1"></div>
-								    {{ form_label(formularioTurno.apellido) }}
-								    {{ form_errors(formularioTurno.apellido) }}
-								    {{ form_widget(formularioTurno.apellido) }}
+      									<div class="col-md-6">
+										 	{{ form_label(formularioTurno.nombre) }} 
+										    {{ form_errors(formularioTurno.nombre) }}
+										    {{ form_widget(formularioTurno.nombre) }}
+										</div>
 								    <br>
-								   
-								   	<br>
-								    {{ form_label(formularioTurno.direccion) }}
-								    {{ form_errors(formularioTurno.direccion) }}
-								    {{ form_widget(formularioTurno.direccion) }}
-								     <div class="col-md-1"></div>
-								    {{ form_label(formularioTurno.telefono) }}
-								    {{ form_errors(formularioTurno.telefono) }}
-								    {{ form_widget(formularioTurno.telefono) }}
-								    <br>
-								    <br>
-								    {{ form_label(formularioTurno.correo) }}
-								    {{ form_errors(formularioTurno.correo) }}
-								    {{ form_widget(formularioTurno.correo) }}
-								     <div class="col-md-6"></div>
-								  	
+									   <div class="col-md-6">
+									    {{ form_label(formularioTurno.apellido) }} 
+									    {{ form_errors(formularioTurno.apellido) }}
+									    {{ form_widget(formularioTurno.apellido) }}
+									    <br>
+									   </div>
+									</div>
+									<div class="row">
+									   	<div class="col-md-6">
+										    {{ form_label(formularioTurno.direccion) }}
+										    {{ form_errors(formularioTurno.direccion) }}
+										    {{ form_widget(formularioTurno.direccion) }}
+									    </div>
+									     <div class="col-md-6">
+										    {{ form_label(formularioTurno.telefono) }}
+										    {{ form_errors(formularioTurno.telefono) }}
+										    {{ form_widget(formularioTurno.telefono) }}
+									 	</div>
+									</div>
+									<div class="row">
+									    <div class="col-md-6">
+									    {{ form_label(formularioTurno.correo) }}
+									    {{ form_errors(formularioTurno.correo) }}
+									    {{ form_widget(formularioTurno.correo) }}
+									    </div>
+									</div>
+								  	<hr>
 								    {{ form_widget(formularioTurno.enviar) }}
 								     </div>
 
@@ -71,7 +67,7 @@
       						</div>
       					</div>
       					<div style="height:300px;">
-	      					<div style="height:250px; background-color:#d5bbaa;margin-left:3%;margin-right:3%;">
+	      					<div style="height:250px; background-color:#d5bbaa;">
 		      					<div style="margin-left:5%;margin-right:10%;padding-top:5%;" class="row">
 		      						<div class="col-md-3" style="color:#4c2606">
 		      							<h3>
