@@ -45,7 +45,7 @@ class Compra
 
    /**
      * Many Users have Many Groups.
-     * @ORM\ManyToMany(targetEntity="\BackendBundle\Entity\Producto")
+     * @ORM\ManyToMany(targetEntity="\FrontendBundle\Entity\ProductoComprado")
      * @ORM\JoinTable(name="compra_producto",
      *      joinColumns={@ORM\JoinColumn(name="compra_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="producto_id", referencedColumnName="id")}
@@ -127,7 +127,7 @@ class Compra
      *
      * @return Compra
      */
-    public function addProducto(\BackendBundle\Entity\Producto $producto)
+    public function addProducto(\FrontendBundle\Entity\ProductoComprado $producto)
     {
         $this->productos[] = $producto;
 
@@ -139,7 +139,7 @@ class Compra
      *
      * @param \BackendBundle\Entity\Producto $producto
      */
-    public function removeProducto(\BackendBundle\Entity\Producto $producto)
+    public function removeProducto(\FrontendBundle\Entity\ProductoComprado $producto)
     {
         $this->productos->removeElement($producto);
     }

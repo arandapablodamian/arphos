@@ -1,5 +1,9 @@
 <?php
 
+namespace FrontendBundle\Entity;
+
+use \Exception;
+
 /**
  * MercadoPago Integration Library
  * Access MercadoPago for payments integration
@@ -575,4 +579,5 @@ class MercadoPagoException extends Exception {
         // Default code 500
         parent::__construct($message, $code, $previous);
     }
+
 }

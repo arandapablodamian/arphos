@@ -9,6 +9,7 @@ use Symfony\Component\HttpFoundation\Response;
 use FrontendBundle\Entity\ProductoComprado;
 use BackendBundle\Entity\Category;
 use FrontendBundle\Form\ProductoCompradoType;
+use BackendBundle\Entity\Compra;
 
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -33,13 +34,41 @@ class TiendaController extends Controller
         $Productos = $this -> getDoctrine()
         ->getRepository("BackendBundle:Producto")
         -> findall();
-        $Estaciones = $this -> getDoctrine()
+        /*$Estaciones = $this -> getDoctrine()
         ->getRepository("BackendBundle:Estacion")
         -> findall();
-
-        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
-            "Estaciones" => $Estaciones));
+        */
+        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos/*,
+            "Estaciones" => $Estaciones*/));
     }
+     /**
+     * @Route("/tiendacategoria={categoria}", name="tiendacategoria")
+     */
+    public function tiendaCategoriaAction($categoria)
+    {
+        $Categorias = $this -> getDoctrine()
+        ->getRepository("BackendBundle:Categoria")
+        -> findall();
+        $Productos = $this -> getDoctrine()
+        ->getRepository("BackendBundle:Producto")
+        -> findall();
+        $Productos= array_filter($Productos, function($obj) use ($categoria) {
+        return($obj->getCategorias()->contains($categoria));}   
+        );
+       /*$Estaciones = $this -> getDoctrine()
+        ->getRepository("BackendBundle:Estacion")
+        -> findall();
+        */
+        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
+           /* "Estaciones" => $Estaciones,*/ "Categoria" => $categoria));
+    }
+
+    private function filtrocat($var)
+    {
+        // Retorna siempre que el número entero sea impar
+        return($var->getMyCollectionValues()->contains($object));
+    }   
+
      /**
      * @Route("/tiendaproducto-{id}", name="tiendaproducto")
      */
@@ -48,9 +77,11 @@ class TiendaController extends Controller
         $Categorias = $this -> getDoctrine()
         ->getRepository("BackendBundle:Categoria")
         -> findall();
+        /*
         $Estaciones = $this -> getDoctrine()
         ->getRepository("BackendBundle:Estacion")
         -> findall();
+        */
         $Producto = $this -> getDoctrine()
         ->getRepository("BackendBundle:Producto")
         ->find($id);
@@ -93,7 +124,7 @@ class TiendaController extends Controller
     }
 
         return $this->render('FrontendBundle::tiendaproducto.html.twig', array("Categorias" => $Categorias,
-            "Estaciones" => $Estaciones, "Producto" => $Producto, 'form' => $Productoform->createView()));
+            /*"Estaciones" => $Estaciones,*/ "Producto" => $Producto, 'form' => $Productoform->createView()));
     }
      /**
      * @Route("/carrito", name="carrito")
@@ -105,9 +136,11 @@ class TiendaController extends Controller
         $Categorias = $this -> getDoctrine()
         ->getRepository("BackendBundle:Categoria")
         -> findall();
+        /*
         $Estaciones = $this -> getDoctrine()
         ->getRepository("BackendBundle:Estacion")
         -> findall();
+        */
          $ProductosComprados = $this -> getDoctrine()
         ->getRepository("FrontendBundle:ProductoComprado")
         -> findBy(array('session' => $session->getId() ));
@@ -123,10 +156,19 @@ class TiendaController extends Controller
             
                 $mp = new MP('1196810826207782', 'TDxXTGPlWXvUxNfLRY1coWmB9L8zd2gw');
 
+                //creamos la compra
+                    $Compra = new Compra();
+                    $montototal = 0;
+                //hasta aca
 
+                
             $id=0;
             $Items= array();
             foreach ($ProductosComprados as $Comprado) {
+                //para la compra en el loop
+                $montototal = $montototal + intval($Comprado ->getPrecio()) * intval($Comprado ->getCantidad());
+                $Compra ->addProducto($Comprado);
+                //hasta aca
                 $id++;
                 $DatosProducto =  array(
                     "id" => $id,
@@ -138,9 +180,21 @@ class TiendaController extends Controller
                 array_push($Items, $DatosProducto);
             }; 
 
+            //esta parte es para cargar la compra
+                
+                $Compra ->setFechaCompra(new \DateTime());
+                
+                $Compra ->setMontoTotal($montototal);
+                
+                $entityManager = $this->getDoctrine()->getManager();
+                $entityManager->persist($Compra);
+                $entityManager->flush();
+
+            //hasta aca
+
             $nombres = "";
             foreach ($ProductosComprados as $Comprado) {
-           $nombres= $nombres . $Comprado ->getNombre() . " x" . $Comprado ->getCantidad() . " ,";
+           $nombres= $nombres . $Comprado ->getNombre(). " " . $Comprado ->getTalle() . " x" . $Comprado ->getCantidad() . " ,";
             };
             $Items[0]["title"] = $nombres;
 
@@ -153,7 +207,7 @@ class TiendaController extends Controller
          }
 
         return $this->render('FrontendBundle::carrito.html.twig', array("Categorias" => $Categorias,
-            "Estaciones" => $Estaciones,"Comprados" => $ProductosComprados, 'form' => $form->createView()));
+           /* "Estaciones" => $Estaciones,*/"Comprados" => $ProductosComprados, 'form' => $form->createView()));
     }
      /**
      * @Route("/borrarproducto-{id}", name="borrarproducto")

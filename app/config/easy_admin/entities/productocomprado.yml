@@ -1,0 +1,8 @@
+easy_admin:
+    entities:
+        ProductoComprado:
+            class: FrontendBundle\Entity\ProductoComprado
+            label: 'Producto Comprado'
+            role: ROLE_ADMIN
+            # role_prefix: ROLE_PAGINA
+            # help: 'Global message displayed in all views'

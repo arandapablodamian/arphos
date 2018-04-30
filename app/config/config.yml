@@ -12,6 +12,7 @@ imports:
 # https://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
     locale: es
+    path.root: arphos/web
     path.imagenesProducto: /imagenes/productos
     path.galerias: /imagenes/productos
     path.imagenesPaginas: /imagenes/paginas
@@ -62,6 +63,9 @@ framework:
 twig:
     debug: '%kernel.debug%'
     strict_variables: '%kernel.debug%'
+    globals:
+        root: '%path.root%'
+        imagenes: '%path.imagenesProducto%'
 
 # Doctrine Configuration
 doctrine:

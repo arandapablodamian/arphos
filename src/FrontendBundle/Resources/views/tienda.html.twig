@@ -27,7 +27,7 @@
                                         <h2>Categorias</h2>
                                         <ul>
                                            {% for Categoria in Categorias %}
-                                          <a href="#"><li>{{Categoria.titulo}}</li></a>
+                                          <a href="tiendacategoria={{Categoria.id}}"><li>{{Categoria.titulo}}</li></a>
                                            {% endfor %}
                                         </ul>
                                         <h2>Color:</h2>
@@ -46,9 +46,11 @@
                                         <div style="clear:both;"></div>
                                         <h2>Coleccion:</h2>
                                         <ul>
-                                           {% for Estacion in Estaciones %}
-                                          <a href="#"><li>{{Estacion.titulo}}</li></a>
-                                           {% endfor %}
+                                        /*
+                                           { for Estacion in Estaciones }
+                                          <a href="#"><li>Estacion.titulo</li></a>
+                                           { endfor }
+                                           */
                                         </ul>
                                       </div>
                                 
@@ -79,7 +81,7 @@
         <tbody>
                                   {% for Producto in Productos %}
                                               <tr>
-                <td><a href="tiendaproducto-{{Producto.id}}"><img class="img-fluid img-thumbnail" src="http://placehold.it/400x300" alt=""></a></td>
+                <td><a href="tiendaproducto-{{Producto.id}}"><img width="200" height="200" src="/{{ root }}{{ imagenes }}/{{ Producto.Imagen}}" alt=""></a></td>
                 <td>{{Producto.nombre}}</td>
                 <td>{{Producto.color}}</td>
                 <td>${{Producto.precio}}</td>

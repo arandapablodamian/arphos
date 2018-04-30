@@ -186,5 +186,9 @@ class ProductoComprado
     {
         return $this->talle;
     }
+
+    public function __toString() {
+        return $this->getNombre() . " " . $this->getTalle() . " " . $this->getCantidad();
+    }
 }
 

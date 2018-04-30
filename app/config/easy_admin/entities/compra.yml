@@ -15,7 +15,7 @@ easy_admin:
                     - { property: 'montoTotal',label: 'Monto Total' ,css_class: 'col-md-2' }
                
             form:  # <-- 'form' is applied to both 'new' and 'edit' views
-                title: 'Crear un Compra'
+                title: 'Crear una Compra'
                 fields: 
                     - { type: 'group', css_class: 'col-sm-12', label: 'Información de la Compra' }
                     - { property: 'usuario' , label: 'Usuario',css_class: 'col-md-6'}
