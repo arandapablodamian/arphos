@@ -10,6 +10,7 @@ use FrontendBundle\Entity\ProductoComprado;
 use BackendBundle\Entity\Category;
 use FrontendBundle\Form\ProductoCompradoType;
 use BackendBundle\Entity\Compra;
+use BackendBundle\Entity\Resource;
 
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -52,9 +53,15 @@ class TiendaController extends Controller
         $Productos = $this -> getDoctrine()
         ->getRepository("BackendBundle:Producto")
         -> findall();
-        $Productos= array_filter($Productos, function($obj) use ($categoria) {
-        return($obj->getCategorias()->contains($categoria));}   
-        );
+        
+        $CatElegida = $this->getDoctrine()->getRepository('BackendBundle:Categoria')->find($categoria);
+        $Productos= array_filter($Productos, function($i) use($CatElegida) {
+                if ($i->getCategorias() ->contains($CatElegida)) {
+                    return true;    
+                }
+                return false;
+            });;
+
        /*$Estaciones = $this -> getDoctrine()
         ->getRepository("BackendBundle:Estacion")
         -> findall();
@@ -62,12 +69,6 @@ class TiendaController extends Controller
         return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
            /* "Estaciones" => $Estaciones,*/ "Categoria" => $categoria));
     }
-
-    private function filtrocat($var)
-    {
-        // Retorna siempre que el número entero sea impar
-        return($var->getMyCollectionValues()->contains($object));
-    }   
 
      /**
      * @Route("/tiendaproducto-{id}", name="tiendaproducto")
@@ -85,6 +86,13 @@ class TiendaController extends Controller
         $Producto = $this -> getDoctrine()
         ->getRepository("BackendBundle:Producto")
         ->find($id);
+
+        $Categorias = $Producto -> getCategorias();
+
+        $Imagenes = $this -> getDoctrine()
+        ->getRepository("BackendBundle:Resource")
+        //-> findall();
+        -> findBy(array('producto' => $Producto->getId() ));
 
         /*Esta parte aca me volvio loco, y estoy seguro que es la peor forma de hacerlo */
         $TallesId=$Producto-> getTalles();
@@ -124,7 +132,7 @@ class TiendaController extends Controller
     }
 
         return $this->render('FrontendBundle::tiendaproducto.html.twig', array("Categorias" => $Categorias,
-            /*"Estaciones" => $Estaciones,*/ "Producto" => $Producto, 'form' => $Productoform->createView()));
+            /*"Estaciones" => $Estaciones,*/"Imagenes" => $Imagenes, "Categorias" => $Categorias, "Producto" => $Producto, 'form' => $Productoform->createView()));
     }
      /**
      * @Route("/carrito", name="carrito")

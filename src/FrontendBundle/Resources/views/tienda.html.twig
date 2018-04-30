@@ -3,13 +3,14 @@
   {% block stylesheets %}
       <link rel="stylesheet" href="{{ asset('bundles/Frontend/css/template.css') }}" />
       <link rel="stylesheet" href="{{ asset('bundles/Frontend/bootstrap/css/bootstrap.css') }}" />
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+      <link rel="stylesheet" href="{{ asset('assets/datable/jquery.dataTables.min.css') }}" />
+      <script src="{{ asset('assets/datable/jquery-1.12.4.js') }}"></script>
+      <script src="{{ asset('assets/datable/jquery.dataTables.min.js') }}"></script>
        <script>
         $(document).ready(function() {
-        $('#example').DataTable();
-      } );
+         $.noConflict();
+         $('#example').DataTable();
+          } );
        </script>
   {% endblock %}
 
@@ -60,7 +61,8 @@
                                               <h1 class="text-lg-right">Categoria > Item</h1>
                                 <div class="row text-center text-lg-left">
       
-                                  <table id="example" class="display" width="100%" cellspacing="0">
+  
+                                  <table id="example" class="display" cellspacing="0">
 
       <thead>
             <tr>
@@ -91,6 +93,7 @@
         </tbody>
     </table>
                                 </div>
+
                                 {% endblock %}
                         </div>
                                       </div>

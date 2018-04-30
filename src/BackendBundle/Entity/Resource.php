@@ -7,10 +7,11 @@ use Symfony\Component\Validator\Constraints as Assert;
 use Symfony\Component\HttpFoundation\File\File;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Doctrine\Common\Collections\ArrayCollection;
+
 /**
  * Resource
  *
- * @ORM\Table(name="resource")})
+ * @ORM\Table(name="resource")
  * @ORM\Entity(repositoryClass="BackendBundle\Repository\ResourceRepository")
  * @Vich\Uploadable
  */
