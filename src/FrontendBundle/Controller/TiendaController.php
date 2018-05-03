@@ -69,7 +69,33 @@ class TiendaController extends Controller
         return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
            /* "Estaciones" => $Estaciones,*/ "Categoria" => $categoria));
     }
+     /**
+     * @Route("/tiendacolor={color}", name="tiendacolor")
+     */
+    public function tiendaColorAction($color)
+    {
+        $Categorias = $this -> getDoctrine()
+        ->getRepository("BackendBundle:Categoria")
+        -> findall();
+        $Productos = $this -> getDoctrine()
+        ->getRepository("BackendBundle:Producto")
+        -> findall();
+        
+        //$CatElegida = $this->getDoctrine()->getRepository('BackendBundle:Categoria')->find($categoria);
+        $Productos= array_filter($Productos, function($i) use($color) {
+                if ($i->getColor() == $color) {
+                    return true;    
+                }
+                return false;
+            });;
 
+       /*$Estaciones = $this -> getDoctrine()
+        ->getRepository("BackendBundle:Estacion")
+        -> findall();
+        */
+        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
+           /* "Estaciones" => $Estaciones,*/ "Color" => $color));
+    }
      /**
      * @Route("/tiendaproducto-{id}", name="tiendaproducto")
      */

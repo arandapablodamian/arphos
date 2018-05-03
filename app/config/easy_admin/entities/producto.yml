@@ -32,7 +32,7 @@ easy_admin:
                     - { type: 'divider' }
                     - { property: 'esNovedad' , label: 'Novedad',css_class: 'col-md-6'}
                     - { type: 'divider' }
-                    - { property: 'color', label: 'Color', type: Symfony\Component\Form\Extension\Core\Type\ColorType ,css_class: 'col-md-6'}
+                    - { property: 'color', label: 'Color', type: 'choice', type_options: { choices: { 'rojo': 'rojo', 'azul': 'azul', 'amarillo': 'amarillo', 'blanco': 'blanco', 'negro': 'negro', 'verde': 'verde', 'violeta': 'violeta', 'naranja': 'naranja', 'rosa': 'rosa' } },css_class: 'col-md-6'}
                     - { type: 'divider' }
                     - { property: 'categorias',label: 'Categorias',css_class: 'col-md-6'  } 
                     - { type: 'divider' }
@@ -64,4 +64,4 @@ easy_admin:
                     - { property: 'resources' ,label: 'Galeria', template: 'resource_field.html.twig',css_class: 'col-md-12' }
 
                 edit:
-                title: 'Editar Producto'
+                title: 'Editar Producto' 
