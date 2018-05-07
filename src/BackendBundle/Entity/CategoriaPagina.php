@@ -8,7 +8,7 @@ use Symfony\Component\Validator\Constraints as Assert;
 /**
  * Categoria
  *
- * @ORM\Table(name="categoriaPagina")
+ * @ORM\Table(name="categoria_pagina")
  * @ORM\Entity
  */
 class CategoriaPagina

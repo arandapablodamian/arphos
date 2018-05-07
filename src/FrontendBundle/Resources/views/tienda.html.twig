@@ -1,22 +1,21 @@
 {% extends 'FrontendBundle::template.html.twig' %}
 
   {% block stylesheets %}
-      <link rel="stylesheet" href="{{ asset('bundles/Frontend/css/template.css') }}" />
-      <link rel="stylesheet" href="{{ asset('bundles/Frontend/bootstrap/css/bootstrap.css') }}" />
-      <link rel="stylesheet" href="{{ asset('assets/datable/jquery.dataTables.min.css') }}" />
-      <script src="{{ asset('assets/datable/jquery-1.12.4.js') }}"></script>
-      <script src="{{ asset('assets/datable/jquery.dataTables.min.js') }}"></script>
+      <link rel="stylesheet" href="{{ asset('bundles/frontend/css/template.css') }}" />
+      <link rel="stylesheet" href="{{ asset('bundles/frontend/bootstrap/css/bootstrap.css') }}" />
+      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+      <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+      <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
        <script>
         $(document).ready(function() {
-         $.noConflict();
-         $('#example').DataTable();
-          } );
+        $('#example').DataTable();
+      } );
        </script>
   {% endblock %}
 
 {% block content %}
     <div style="background-color:#faf4ee;">
-                        <div id="wrapper" style="background-image: url('{{asset('bundles/Frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
+                        <div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
                 background-position: center;
                 background-size: cover;width:100%;heigh:100%;" >
                 
@@ -61,8 +60,7 @@
                                               <h1 class="text-lg-right">Categoria > Item</h1>
                                 <div class="row text-center text-lg-left">
       
-  
-                                  <table id="example" class="display" cellspacing="0">
+                                  <table id="example" class="display" width="100%" cellspacing="0">
 
       <thead>
             <tr>
@@ -93,7 +91,6 @@
         </tbody>
     </table>
                                 </div>
-
                                 {% endblock %}
                         </div>
                                       </div>
