@@ -32,15 +32,15 @@
                                         </ul>
                                         <h2>Color:</h2>
                                         <ul>
-                                          <a class="cuadro white" href="#"></a>
-                                          <a class="cuadro black" href="#"></a>
-                                          <a class="cuadro pink" href="#"></a>
-                                          <a class="cuadro red" href="#"></a>
-                                          <a class="cuadro blue" href="#"></a>
-                                          <a class="cuadro yellow" href="#"></a>
-                                          <a class="cuadro green" href="#"></a>
-                                          <a class="cuadro orange" href="#"></a>
-                                          <a class="cuadro violet" href="#"></a>
+                                          <a class="cuadro white" href="tiendacolor=blanco"></a>
+                                          <a class="cuadro black" href="tiendacolor=negro"></a>
+                                          <a class="cuadro pink" href="tiendacolor=rosa"></a>
+                                          <a class="cuadro red" href="tiendacolor=rojo"></a>
+                                          <a class="cuadro blue" href="tiendacolor=azul"></a>
+                                          <a class="cuadro yellow" href="tiendacolor=amarillo"></a>
+                                          <a class="cuadro green" href="tiendacolor=verde"></a>
+                                          <a class="cuadro orange" href="tiendacolor=naranja"></a>
+                                          <a class="cuadro violet" href="tiendacolor=violeta"></a>
 
                                         </ul>
                                         <div style="clear:both;"></div>
@@ -57,7 +57,15 @@
                                 <div class="col-md-7" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
 
                                 {% block producto %}
-                                              <h1 class="text-lg-right">Categoria > Item</h1>
+                                <h1 class="text-lg-right">
+                                {% if Categoria is defined %}
+                                    Categoria > {{Categoria}}
+                                {% elseif Color is defined %}
+                                    Color > {{Color}}
+                                {% else %}
+                                   Categoria > Todos
+                                {% endif %} 
+                                </h1>              
                                 <div class="row text-center text-lg-left">
       
                                   <table id="example" class="display" width="100%" cellspacing="0">
