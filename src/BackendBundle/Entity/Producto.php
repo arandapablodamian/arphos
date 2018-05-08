@@ -90,7 +90,7 @@ class Producto
      * @ORM\ManyToMany(targetEntity="\BackendBundle\Entity\Categoria")
      * @ORM\JoinTable(name="categorias_productos",
      *      joinColumns={@ORM\JoinColumn(name="producto_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="categoria_id", referencedColumnName="id", unique=true)}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="categoria_id", referencedColumnName="id")}
      *      )
      */
     private $categorias;
