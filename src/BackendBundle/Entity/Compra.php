@@ -48,7 +48,7 @@ class Compra
      * @ORM\ManyToMany(targetEntity="\FrontendBundle\Entity\ProductoComprado")
      * @ORM\JoinTable(name="compra_producto",
      *      joinColumns={@ORM\JoinColumn(name="compra_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="producto_id", referencedColumnName="id")}
+     *      inverseJoinColumns={@ORM\JoinColumn(name="producto_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      */
     private $productos;
