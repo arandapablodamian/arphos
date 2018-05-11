@@ -45,6 +45,110 @@
 	{% endblock %}
 </head>
 <body>
+	<div style="min-height:60px;background-color:#7c5428;">
+		<div style="padding-top:10px;padding-right:10px;;text-align:right;">
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalIngresar">Ingresar</button>
+			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalRegistrarse">Registrarse</button>
+
+
+
+			<!-- Ventana modal para ingresar -->
+			<div class="modal fade" id="modalIngresar" tabindex="-1" role="dialog" aria-labelledby="Ingresar" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="Ingresar">Ingresar</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-success">Entrar</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Ventana modal para registrarse -->
+			<div class="modal fade" id="modalRegistrarse" tabindex="-1" role="dialog" aria-labelledby="Registrarse" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="Registrarse">Registrarse</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+					{{ form_start(formularioRegistro) }}
+			    		<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.nombre) }}
+								{{ form_errors(formularioRegistro.nombre) }}
+								{{ form_widget(formularioRegistro.nombre) }}
+			    			</div>
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.apellido) }}
+								{{ form_errors(formularioRegistro.apellido) }}
+								{{ form_widget(formularioRegistro.apellido) }}
+			    			</div>
+						</div>
+						<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.direccion) }}
+								{{ form_errors(formularioRegistro.direccion) }}
+								{{ form_widget(formularioRegistro.direccion) }}
+			    			</div>
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.telefono) }}
+								{{ form_errors(formularioRegistro.telefono) }}
+								{{ form_widget(formularioRegistro.telefono) }}
+			    			</div>
+						</div>				
+						<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.email) }}
+								{{ form_errors(formularioRegistro.email) }}
+								{{ form_widget(formularioRegistro.email) }}
+			    			</div>
+			    		</div>	
+			    		<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.usuario) }}
+								{{ form_errors(formularioRegistro.usuario) }}
+								{{ form_widget(formularioRegistro.usuario) }}
+			    			</div>
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.contrasenia) }}
+								{{ form_errors(formularioRegistro.contrasenia) }}
+								{{ form_widget(formularioRegistro.contrasenia) }}
+			    			</div>
+						</div>		
+			    		
+			    		<br>
+			    		<div style="text-align:center;">
+			    		</div>
+							
+							  	
+							
+			      </div>
+			      <div class="modal-footer">
+			    		{{ form_widget(formularioRegistro.enviar) }}
+			    		{{ form_end(formularioRegistro) }}
+
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+		</div>
+	</div>
 	<div id="container">
 		<div id="page">
 		
@@ -159,5 +263,7 @@
 {% block javascripts %}
    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
    <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+	<script>
 
+	</script>
 {% endblock %}
