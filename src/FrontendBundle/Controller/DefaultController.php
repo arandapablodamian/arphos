@@ -7,10 +7,14 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use BackendBundle\Entity\Turno;
+use BackendBundle\Entity\Cliente;
 use BackendBundle\Entity\Category;
 use BackendBundle\Entity\Mensaje;
 use FrontendBundle\Form\FormularioTurnoType;
 use FrontendBundle\Form\FormularioContactoType;
+use FrontendBundle\Form\FormularioRegistroType;
+use FrontendBundle\Form\FormularioIngresoType;
+
 
 
 /**
@@ -22,10 +26,32 @@ class DefaultController extends Controller
      * @Route("/" , name="index")
      */
     public function indexAction(Request $request)
-    {	$turno = new Turno();
+    {	  $turno = new Turno();
           $formularioTurno = $this->createForm(FormularioTurnoType::class, $turno);
-           
-            $formularioTurno->handleRequest($request);
+
+          //formulario de registro
+            $cliente = new Cliente();
+            $formularioRegistro = $this->createForm(FormularioRegistroType::class, $cliente);
+            $formularioRegistro->handleRequest($request);
+
+            if ($formularioRegistro->isSubmitted() && $formularioRegistro->isValid()) {
+                $datosCliente = $formularioRegistro->getData();    
+                    
+                    //guardo el cliente en la base de datos
+                    $em = $this->getDoctrine()->getManager(); 
+                    $clienteAlta = new Cliente();
+                    $clienteAlta->setNombre($datosCliente->getNombre());
+                    $clienteAlta->setApellido($datosCliente->getApellido());
+                    $clienteAlta->setEmail($datosCliente->getEmail());
+                    $clienteAlta->setDireccion($datosCliente->getDireccion());
+                    $clienteAlta->setTelefono($datosCliente->getTelefono());
+                    $clienteAlta->setUsuario($datosCliente->getUsuario());
+                    $clienteAlta->setContrasenia(md5($datosCliente->getContrasenia()));
+                    $em->persist($clienteAlta);
+                    $em->flush();
+            }
+
+
            
 
         //     if ($form->isSubmitted() && $form->isValid()) {
@@ -48,7 +74,8 @@ class DefaultController extends Controller
         //     'form' => $form->createView(),
         // ));
         return $this->render('FrontendBundle::index.html.twig',array(
-        	'formularioTurno'=>$formularioTurno->createView()));
+        	'formularioTurno'=>$formularioTurno->createView(),
+            'formularioRegistro'=>$formularioRegistro->createView()));
     }
 
     /**
