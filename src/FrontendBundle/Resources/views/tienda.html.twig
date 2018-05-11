@@ -1,97 +1,6 @@
-{% extends 'FrontendBundle::template.html.twig' %}
+{% extends 'FrontendBundle::arreglo.html.twig' %}
 
-  {% block stylesheets %}
-      <link rel="icon" href="{{ asset('bundles/frontend/images/template/pata-top-banner.png') }}">
-      <link rel="stylesheet" href="{{ asset('bundles/frontend/bootstrap/css/bootstrap.css') }}" />
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
-      <link rel="stylesheet" href="{{ asset('bundles/frontend/css/template.css') }}" />
-      <style>
-    .navbar-default {
-      background-color:transparent !important;
-      border-color:transparent;
-      background-image:none;
-      box-shadow:none;  
-    }
-    .navbar li { color: #000 }
-
-    .nabvar-text {
-      position: absolute;
-      width: 100%;
-      left: 0;
-      top: 0;
-      text-align: center;
-      z-index: 10;
-     }
-
-    .navbar-nav,
-    .navbar-right {
-      position: relative;
-      z-index: 99;
-     }
-
-    .itemMenu{
-      color:#4c2606;
-      font-size: 20px;
-      text-decoration: none;
-      font-weight: bold;
-    }
-    .itemMenu:hover{
-      color:#d5bbaa;
-      text-decoration: none;
-    }
-
-    .botonarphos { 
-  color: #FFFFFF; 
-  background-color: #94642E; 
-  border-color: #57350E; 
-} 
- 
-.botonarphos:hover, 
-.botonarphos:focus, 
-.botonarphos:active, 
-.botonarphos.active, 
-.open .dropdown-toggle.botonarphos { 
-  color: #FFFFFF; 
-  background-color: #C78A44; 
-  border-color: #57350E; 
-} 
- 
-.botonarphos:active, 
-.botonarphos.active, 
-.open .dropdown-toggle.botonarphos { 
-  background-image: none; 
-} 
- 
-.botonarphos.disabled, 
-.botonarphos[disabled], 
-fieldset[disabled] .botonarphos, 
-.botonarphos.disabled:hover, 
-.botonarphos[disabled]:hover, 
-fieldset[disabled] .botonarphos:hover, 
-.botonarphos.disabled:focus, 
-.botonarphos[disabled]:focus, 
-fieldset[disabled] .botonarphos:focus, 
-.botonarphos.disabled:active, 
-.botonarphos[disabled]:active, 
-fieldset[disabled] .botonarphos:active, 
-.botonarphos.disabled.active, 
-.botonarphos[disabled].active, 
-fieldset[disabled] .botonarphos.active { 
-  background-color: #94642E; 
-  border-color: #57350E; 
-} 
- 
-.botonarphos .badge { 
-  color: #94642E; 
-  background-color: #FFFFFF; 
-}
-  h2{color:#4c2606}
-  h3{color:#4c2606}
-  h1{color:#4c2606}
-  
-   
-     </style>
-
+  {% block scripts %}
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
        <script>
@@ -108,7 +17,7 @@ fieldset[disabled] .botonarphos.active {
                 background-size: cover;width:100%;heigh:100%;" >
                 
                                   <div style="background-color: rgba(255,255,255,0.7);">
-
+                                  <div class="container">
                                     <div class="row">
                                       <div class="col-md-2" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
                                       <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
@@ -182,6 +91,7 @@ fieldset[disabled] .botonarphos.active {
                                 </div>
                                 {% endblock %}
                         </div>
+                                      </div>
                                       </div>
                                     </div> 
 

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html>
+<head>
+	{% block Titulo %}
+	<title>Arphos</title>
+	{% endblock %}
+	{% block stylesheets %}
+		<link rel="icon" href="{{ asset('bundles/frontend/images/template/pata-top-banner.png') }}">
+	    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" />
+	    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+	    <style>
+		.navbar-default {
+			background-color:transparent !important;
+			border-color:transparent;
+			background-image:none;
+			box-shadow:none;	
+		}
+		.navbar li { color: #000 }
+
+		.nabvar-text {
+		  position: absolute;
+		  width: 100%;
+		  left: 0;
+		  top: 0;
+		  text-align: center;
+		  z-index: 10;
+		 }
+
+		.navbar-nav,
+		.navbar-right {
+		  position: relative;
+		  z-index: 99;
+		 }
+
+		.itemMenu{
+			color:#4c2606;
+			font-size: 20px;
+			text-decoration: none;
+			font-weight: bold;
+		}
+		.itemMenu:hover{
+			color:#d5bbaa;
+			text-decoration: none;
+		}
+		.botonarphos { 
+		  color: #FFFFFF; 
+		  background-color: #94642E; 
+		  border-color: #57350E; 
+		} 
+		 
+		.botonarphos:hover, 
+		.botonarphos:focus, 
+		.botonarphos:active, 
+		.botonarphos.active, 
+		.open .dropdown-toggle.botonarphos { 
+		  color: #FFFFFF; 
+		  background-color: #C78A44; 
+		  border-color: #57350E; 
+		} 
+		 
+		.botonarphos:active, 
+		.botonarphos.active, 
+		.open .dropdown-toggle.botonarphos { 
+		  background-image: none; 
+		} 
+		 
+		.botonarphos.disabled, 
+		.botonarphos[disabled], 
+		fieldset[disabled] .botonarphos, 
+		.botonarphos.disabled:hover, 
+		.botonarphos[disabled]:hover, 
+		fieldset[disabled] .botonarphos:hover, 
+		.botonarphos.disabled:focus, 
+		.botonarphos[disabled]:focus, 
+		fieldset[disabled] .botonarphos:focus, 
+		.botonarphos.disabled:active, 
+		.botonarphos[disabled]:active, 
+		fieldset[disabled] .botonarphos:active, 
+		.botonarphos.disabled.active, 
+		.botonarphos[disabled].active, 
+		fieldset[disabled] .botonarphos.active { 
+		  background-color: #94642E; 
+		  border-color: #57350E; 
+		} 
+		 
+		.botonarphos .badge { 
+		  color: #94642E; 
+		  background-color: #FFFFFF; 
+		}
+		  h2{color:#4c2606}
+		  h3{color:#4c2606}
+		  h1{color:#4c2606}
+
+		 </style>
+	{% endblock %}
+	{% block scripts %}
+	{% endblock %}
+</head>
+<body>
+	{% block header %}
+	    <div id="banner-top" style="background-image: url('{{asset('bundles/frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover; height:100px position: fixed;">
+			<a href="{{path('index')}}"><div style="background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
+			</a>
+
+		</div>
+	{% endblock %}
+
+	{% block wrapper %}
+			    <div style="background-color:#faf4ee;   ">
+					<div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;background-position: center;background-size: cover; height:100% " >
+		    
+			<div style="background-color: rgba(255,255,255,0.7);height:100%;">
+				<nav class="navbar navbar-expand-lg navbar-light "   >
+				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+				    <span class="navbar-toggler-icon"></span>
+				  </button>
+
+				  <div class="collapse navbar-collapse" id="navbarSupportedContent" >
+				    <ul class="nav justify-content-center" style="width:100%;text-align:center;" >
+				      <li class="nav-item col-md-2">
+				      		 <a class="nav-link itemMenu" href="{{path('index')}}"> Inicio</a>
+				      </li>
+
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu"href="{{path('nosotros')}}">Nosotros</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu" href="{{path('galeria')}}">Galería</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu" href="{{path('blog')}}">Blog</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu"href="{{path('tienda')}}">Tienda</a>
+				      </li>
+				      <li class="nav-item col-md-2">
+				        <a class="nav-link itemMenu"href="{{path('contacto')}}">Contacto</a>
+				      </li>
+				      <!-- <li class="nav-item dropdown">
+				        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+				          Dropdown
+				        </a>
+				        <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+				          <a class="dropdown-item" href="#">Action</a>
+				          <a class="dropdown-item" href="#">Another action</a>
+				          <div class="dropdown-divider"></div>
+				          <a class="dropdown-item" href="#">Something else here</a>
+				        </div>
+				      </li>
+				      <li class="nav-item">
+				        <a class="nav-link disabled" href="#">Disabled</a>
+				      </li> -->
+				    </ul>
+				    
+				  </div>
+				</nav>
+                <div style="width:70%;color:#d5bbaa">
+                	<hr />
+                </div>
+
+                
+
+
+					    		{% block content %}
+					    		    <div style="background-color:#faf4ee;">
+                        <div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
+                background-size: cover;width:100%;heigh:100%;" >
+                
+                                  <div style="background-color: rgba(255,255,255,0.7);">
+                                  	<div class="container">
+                                    <div class="row">
+                                      <div class="col-md-2" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
+                                      <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
+                                        <h2>Categorias</h2>
+                                        <ul>
+                                           
+                                          <a href="tiendacategoria="><li></li></a>
+                                          
+                                        </ul>
+                                        <h2>Color:</h2>
+                                        <ul>
+                                          <a class="cuadro white" href="tiendacolor=blanco"></a>
+                                          <a class="cuadro black" href="tiendacolor=negro"></a>
+                                          <a class="cuadro pink" href="tiendacolor=rosa"></a>
+                                          <a class="cuadro red" href="tiendacolor=rojo"></a>
+                                          <a class="cuadro blue" href="tiendacolor=azul"></a>
+                                          <a class="cuadro yellow" href="tiendacolor=amarillo"></a>
+                                          <a class="cuadro green" href="tiendacolor=verde"></a>
+                                          <a class="cuadro orange" href="tiendacolor=naranja"></a>
+                                          <a class="cuadro violet" href="tiendacolor=violeta"></a>
+
+                                        </ul>
+                                        <div style="clear:both;"></div>
+                                        
+                                      </div>
+                                
+                                <div class="col-md-7" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
+
+                                {% block producto %}
+                                <h1 class="text-lg-right">
+                                {% if Categoria is defined %}
+                                    Categoria > {{Categoria}}
+                                {% elseif Color is defined %}
+                                    Color > {{Color}}
+                                {% else %}
+                                   Categoria > Todos
+                                {% endif %} 
+                                </h1>              
+                                <div class="row text-center text-lg-left">
+      
+                                  <table id="example" class="display" width="100%" cellspacing="0">
+
+      <thead>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Color</th>
+                <th>Precio</th>
+            </tr>
+        </thead>
+        <tfoot>
+            <tr>
+                <th>Imagen</th>
+                <th>Nombre</th>
+                <th>Color</th>
+                <th>Precio</th>
+            </tr>
+        </tfoot>
+        <tbody>
+                                  
+                                              <tr>
+                <td><a href="tiendaproducto-"><img width="200" height="200" src="" alt=""></a></td>
+                <td></td>
+                <td></td>
+                <td></td>
+            </tr>
+                                 
+       
+        </tbody>
+    </table>
+                                </div>
+                                {% endblock %}
+                        		</div>
+                                      </div>
+                                    </div> 
+
+                                  </div>
+                        
+                        </div>
+                </div>
+					    		{% endblock %}
+			</div>
+		    		
+		    </div>
+		    </div>
+			{% endblock %}
+
+
+			{% block footer %}
+
+		      <div id="banner-top" style="background-color:#d5bbaa; height:50px">
+		      	<div  class="container">
+		      	<div  class="row">
+		      		<a  class="col-md-1" target="_bank" href="https://www.facebook.com/Arphospcmg/">
+		      			<div  style="background-image: url('{{asset('bundles/frontend/images/template/icono-facebook.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
+		      		</a>
+			      	<a class="col-md-1"  target="_bank" href="https://www.instagram.com/explore/locations/686414201458930/arphos-peluqueria/?hl=es">
+			      		<div  style="background-image: url('{{asset('bundles/frontend/images/template/icono-instagram.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
+			      	</a>
+			      	<a  class="col-md-1" target="_bank" href="https://twitter.com/hashtag/arphos">
+			      		<div style="background-image: url('{{asset('bundles/frontend/images/template/icono-twitter.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
+			      	</a>
+			      	<a  class="col-md-1" target="_bank" href="https://www.youtube.com/channel/UCcHpvo4gHq5R7yRdx_zBAJQ">
+			      		<div  style="background-image: url('{{asset('bundles/frontend/images/template/icono-youtube.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
+			      	</a>
+			      	<div class="col-md-5">
+
+			      	</div>
+			      	<div class="col-md-3" >
+			      		<div  style="background-image: url('{{asset('bundles/frontend/images/template/contacto-footer.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
+			      	</div>
+			      	
+		      	</div>
+		      	</div>
+		      </div>
+    				
+
+		    {% endblock %}
+
+</body>
+</html>
+{% block javascripts %}
+	<script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+	<script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+{% endblock %}
