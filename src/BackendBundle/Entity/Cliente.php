@@ -262,7 +262,7 @@ class Cliente
      */
     public function setContrasenia($contrasenia)
     {
-        $this->contrasenia =md5($contrasenia);
+        $this->contrasenia =$contrasenia;
 
         return $this;
     }

@@ -21,24 +21,16 @@ class FormularioContactoType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('nombre',null,array('label'=>'Nombre'))
-            ->add('apellido',null,array('label'=>'Apellido'))
-            ->add('direccion',null,array( 'label' => 'Dirección'))
-             ->add('telefono',null,array('label' => 'Teléfono'))
-            ->add('email',EmailType::class, [
-                'label' => 'Email'
+          ->add('usuario',null, [
+                'label' => 'Usuario',
+                'attr'=>[
+                ]
             ])
-             ->add('mensaje',TextareaType::class, [
-                'label' => 'mensaje'
-            ])
-            ->add('enviar', SubmitType::class, array(
-                'label' => 'Enviar','attr'=>['class'=>'btn-success'],
-            ))
-            //  ->add('limpiar', ResetType::class, array(
-            //     'label' => 'Limpiar'
-            // )
-            //  );
-        ;
+            ->add('contrasenia',PasswordType::class, [
+                'label' => 'Contraseña',
+                'attr'=>[
+                ]
+            ]);
     }
     /**
      * {@inheritdoc}
