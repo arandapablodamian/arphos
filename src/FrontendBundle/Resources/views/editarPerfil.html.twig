@@ -1,0 +1,58 @@
+{% extends 'FrontendBundle::template.html.twig' %}
+{% block content %}
+		<style type="text/css">
+						a:link    {
+			  /* Applies to all unvisited links */
+			  text-decoration:  none;
+			  font-weight:      bold;
+			  color:            #d5bbaa;
+			  } 
+
+		</style>
+		<div style="height:600px;">
+			<div style="height:500px;width:800px;margin-left:auto;margin-right:auto; margin-top:20px;background-color:#faf4ee;">
+				<h5>Bienvenido a Arphos, por favor ingrese sus datos en los siguientes campos:</h5>
+					{{ form_start(formularioEditar) }}
+			    		
+						<div class="row">
+							<div class="col-md-3"></div>
+			    			<div class="col-md-6" style="text-align:left;">
+			    				{{ form_label(formularioEditar.direccion) }}
+								{{ form_errors(formularioEditar.direccion) }}
+								{{ form_widget(formularioEditar.direccion) }}
+			    			</div>
+			    		</div>
+			    		<div class="row">	
+							<div class="col-md-3"></div>
+			    			<div class="col-md-6" style="text-align:left;">
+			    				{{ form_label(formularioEditar.telefono) }}
+								{{ form_errors(formularioEditar.telefono) }}
+								{{ form_widget(formularioEditar.telefono) }}
+			    			</div>
+						</div>				
+						<div class="row">
+							<div class="col-md-3"></div>
+			    			<div class="col-md-6" style="text-align:left;">
+			    				{{ form_label(formularioEditar.email) }}
+								{{ form_errors(formularioEditar.email) }}
+								{{ form_widget(formularioEditar.email) }}
+			    			</div>
+			    		</div>	
+			    		
+			    		<div class="row">
+							<div class="col-md-3"></div>
+			    			<div class="col-md-6" style="text-align:left;">
+			    				{{ form_label(formularioEditar.contrasenia) }}
+								{{ form_errors(formularioEditar.contrasenia) }}
+								{{ form_widget(formularioEditar.contrasenia) }}
+			    			</div>
+						</div>	
+						<br>
+			    		<div style="text-align:center;">
+			    			{{ form_widget(formularioEditar.enviar) }}
+			    		</div>
+			    			{{ form_end(formularioEditar) }}
+			    		
+			</div>
+		</div>
+{% endblock %}

@@ -102,16 +102,37 @@
 		<div style="padding-top:10px;padding-right:10px;;text-align:right;">
 
 			{% if (app.session.get('usuario') == '') and  (app.session.get('usuario') == null) %}
+
 				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalIngresar">Ingresar</button>
 				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalRegistrarse">Registrarse</button>
 			{% else %}
+
 			    <div class="row">
-			    	<div class="col-md-9"></div>
+			    	<div class="col-md-9">
+			    		
+			    	</div>
 			    	<div class="col-md-1" style="color:white;">
-			    		<h5><strong>{{app.session.get('usuario')}}</strong> </h5>
+			    		
+			    		<div class="dropdown">
+						  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" >
+						  <strong>{{app.session.get('usuario')}}</strong> 
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <a class="dropdown-item" href="#" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/perfil-icon.jpg') }}" alt="">&nbsp Editar Perfil</a>
+						    <a class="dropdown-item" href="#" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/shop-icon.png') }}" alt="">&nbspVer Compras</a>
+						      <a class="dropdown-item" href="#" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/cart-icon.png') }}" alt="">&nbspVer Carrito</a>
+						    <a class="dropdown-item" href="#" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/message-icon.png') }}" alt="">&nbspEnviar Mensaje</a>
+						    <a class="dropdown-item"href="{{path('cerrarSesion')}}" > 
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/logout-icon.png') }}" alt="">&nbspCerrar Sesión</a>
+						  </div>
+						</div>
 			    	</div>
 			    	<div class="col-md-1">
-			    		<button type="button" class="btn btn-info" onclick="location.href = '{{path('cerrarSesion')}}';" >Cerrar Sesión</button>
+			    		
 			    	</div>
 			    </div>
 			{% endif %}
@@ -367,7 +388,10 @@
 </html>
 {% block javascripts %}
    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+   <script src="{{ asset('assets/bootstrap/js/popper.min.js') }}"></script>
+
    <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+
 	
 	<script>
 		{% if mostrarIngreso %}

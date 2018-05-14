@@ -19,6 +19,7 @@ use FrontendBundle\Form\FormularioRegistroType;
 use FrontendBundle\Form\FormularioIngresoType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 
 
@@ -300,10 +301,14 @@ class DefaultController extends Controller
                            
                            $resultadoIngreso=$query->setMaxResults(1)->getOneOrNullResult();
                            if ($resultadoIngreso) {
-                                    $session = new Session();
+                                    
                                 //si encontro registro en la session
-                            if (!$this->container->get('session')->isStarted()) {
+                            if (!$this->container->get('session')->isStarted()) {   $session = new Session();
                                     $session->start();
+                                    
+                               }else {
+                                $session=$this->container->get('session');
+
                                }
                                $session->set('usuario',$resultadoIngreso->getUsuario() );
                                $session->set('contrasenia',$resultadoIngreso->getContrasenia() );
@@ -338,8 +343,105 @@ class DefaultController extends Controller
             $session->remove($key);
         }
         session_destroy();
-        return $this->indexAction($request);
+          return $this->redirectToRoute('index');
 
+    }
+
+
+     /**
+     * @Route("/editarPerfil" , name="editarPerfil")
+     */
+    public function editarPerfilAction(Request $request)
+    {   
+        //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=false;
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+
+        $cliente = new Cliente();
+        $formularioEditar = $this->createFormBuilder($cliente)
+                        ->add('direccion',null,array( 'label' => 'Dirección'))
+                         ->add('telefono',null,array('label' => 'Teléfono'))
+                        ->add('email',EmailType::class, [
+                            'label' => 'Email'
+                        ])
+                        ->add('contrasenia',PasswordType::class, [
+                            'label' => 'Contraseña',
+                            'attr'=>[
+                            ]
+                        ])
+                        ->add('enviar', SubmitType::class, array(
+                            'label' => 'Confirmar','attr'=>['class'=>'btn-success'],
+                        ))
+                        ->getForm();
+         //busco el cliente con el id de sesion que guarde   
+        $session=$this->container->get('session');
+        $em = $this->getDoctrine()->getManager();
+        $clienteEditar = $em->getRepository(Cliente::class)->find($session->get('clienteId'));
+
+        if (!$clienteEditar) {
+            throw $this->createNotFoundException(
+            'Error, el cliente no fue encontrado '.$session->get('clienteId'));
+            }else{
+            //establesco los valores del cliente en el form
+                $formularioEditar->get('direccion')->setData($clienteEditar->getDireccion());
+                $formularioEditar->get('telefono')->setData($clienteEditar->getTelefono());
+                $formularioEditar->get('email')->setData($clienteEditar->getEmail());
+                $formularioEditar->get('contrasenia')->setData($clienteEditar->getContrasenia());
+            }
+        //ahora trato el formulario
+
+        $formularioEditar->handleRequest($request);
+
+            if ($formularioEditar->isSubmitted() && $formularioEditar->isValid()) {
+                //obtengo los datos del cliente
+            
+                $datosCliente = $formularioEditar->getData(); 
+
+               
+
+                    $clienteEditar->setEmail($datosCliente->getEmail());
+                    $clienteEditar->setDireccion($datosCliente->getDireccion());
+                    $clienteEditar->setTelefono($datosCliente->getTelefono());
+                    $clienteEditar->setContrasenia(md5($datosCliente->getContrasenia()));
+                    //guardo el cliente en la base de datos
+                    $em->flush();
+                    
+                    //elimino la session
+                     $this->get('session')->clear();
+                    $session = $this->get('session');
+                    $ses_vars = $session->all();
+                    foreach ($ses_vars as $key => $value) {
+                        $session->remove($key);
+                    }
+                    session_destroy();
+
+                    //redirecciono a la vista
+                     return $this->render('FrontendBundle::edicion_exitosa.html.twig',array(
+                    'formularioEditar'=>$formularioEditar->createView(),
+                    'formularioRegistro'=>$formularioRegistro->createView(),
+                    'formularioIngreso'=> $formularioIngreso->createView(),
+                    'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido));
+
+
+                    }elseif ($formularioRegistro->isSubmitted() && !$formularioRegistro->isValid()) {
+                        return $this->render('FrontendBundle::editarPerfil.html.twig',array(
+                            'formularioEditar'=>$formularioEditar->createView(),
+                            'formularioRegistro'=>$formularioRegistro->createView(),
+                            'formularioIngreso'=> $formularioIngreso->createView(),
+                            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+                        ));
+                    }
+      
+        return $this->render('FrontendBundle::editarPerfil.html.twig',array(
+            'formularioEditar'=>$formularioEditar->createView(),
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        ));
     }
 
 }
