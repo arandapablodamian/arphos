@@ -20,7 +20,7 @@ class Cliente
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    protected $id;
+    private $id;
 
      /**
      * @Assert\NotBlank()

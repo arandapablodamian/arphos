@@ -21,6 +21,11 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
 use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+//para la respuesta del json
+use Symfony\Component\HttpFoundation\JsonResponse;
+
+
 
 
 /**
@@ -325,6 +330,8 @@ class DefaultController extends Controller
 
     }
 
+
+
      /**
      * @Route("/cerrarSesion" , name="cerrarSesion")
      */
@@ -373,11 +380,18 @@ class DefaultController extends Controller
                             'attr'=>[
                             ]
                         ])
+                        ->add('resetearContrasenia', ChoiceType::class, array(
+                         'label'=>'Resetear Contraseña',
+                        'mapped'=>false,
+                        'choices'  => array(
+                            'No' => false,
+                            'Si' => true,)
+                       ))
                         ->add('enviar', SubmitType::class, array(
                             'label' => 'Confirmar','attr'=>['class'=>'btn-success'],
                         ))
                         ->getForm();
-         //busco el cliente con el id de sesion que guarde   
+         //busco el cliente con el id de sesion que guarde 
         $session=$this->container->get('session');
         $em = $this->getDoctrine()->getManager();
         $clienteEditar = $em->getRepository(Cliente::class)->find($session->get('clienteId'));
@@ -391,6 +405,7 @@ class DefaultController extends Controller
                 $formularioEditar->get('telefono')->setData($clienteEditar->getTelefono());
                 $formularioEditar->get('email')->setData($clienteEditar->getEmail());
                 $formularioEditar->get('contrasenia')->setData($clienteEditar->getContrasenia());
+
             }
         //ahora trato el formulario
 
@@ -398,15 +413,19 @@ class DefaultController extends Controller
 
             if ($formularioEditar->isSubmitted() && $formularioEditar->isValid()) {
                 //obtengo los datos del cliente
-            
+                
                 $datosCliente = $formularioEditar->getData(); 
-
-               
+              
 
                     $clienteEditar->setEmail($datosCliente->getEmail());
                     $clienteEditar->setDireccion($datosCliente->getDireccion());
                     $clienteEditar->setTelefono($datosCliente->getTelefono());
-                    $clienteEditar->setContrasenia(md5($datosCliente->getContrasenia()));
+
+                    // me fijo si eligio una nueva contraseña
+                    if ($datosCliente->getContrasenia()!=null and $datosCliente->getContrasenia()!='') {
+                        $clienteEditar->setContrasenia(md5($datosCliente->getContrasenia()));
+                    }
+                   
                     //guardo el cliente en la base de datos
                     $em->flush();
                     
@@ -444,4 +463,108 @@ class DefaultController extends Controller
         ));
     }
 
+
+
+
+    /**
+     * @Route("/verCarrito", name="verCarrito")
+     */
+    public function verCarritoAction(Request $request)
+    {   
+         //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+
+        return $this->render('FrontendBundle::verCarrito.html.twig',array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        ));
+    }
+
+      /**
+     * @Route("/verCompras", name="verCompras")
+     */
+    public function verComprasAction(Request $request)
+    {   
+         //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+
+        return $this->render('FrontendBundle::verCompras.html.twig',array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        ));
+    }
+
+     /**
+     * @Route("/verMensajes", name="verMensajes")
+     */
+    public function verMensajesAction(Request $request)
+    {   
+         //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+
+        return $this->render('FrontendBundle::verMensajes.html.twig',array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        ));
+    }
+
+
+
+       /**
+     * @Route("/verTurnos", name="verTurnos")
+     */
+    public function verTurnosAction(Request $request)
+    {   
+         //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+
+        return $this->render('FrontendBundle::verTurnos.html.twig',array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        ));
+    }
+
+      /**
+     * @Route("/buscarUsuario/{usuario}", name="buscarUsuario", methods={"POST"})
+     */
+    public function buscarUsuarioAction($usuario)
+    {   
+
+        $em = $this->getDoctrine()->getManager(); 
+        $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.usuario =:usuario");
+        $query->setParameter('usuario', $usuario);
+       
+        $busquedaUsuario=$query->getOneOrNullResult();
+        if ($busquedaUsuario!=null) {
+            $resultado='encontro';
+        }else{
+            $resultado='noencontro';
+        }
+     
+        return new JsonResponse($resultado);
+    }
 }

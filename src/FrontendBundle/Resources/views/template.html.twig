@@ -118,14 +118,16 @@
 						  <strong>{{app.session.get('usuario')}}</strong> 
 						  </button>
 						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
-						    <a class="dropdown-item" href="#" >
+						    <a class="dropdown-item" href="{{path('editarPerfil')}}" >
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/perfil-icon.jpg') }}" alt="">&nbsp Editar Perfil</a>
-						    <a class="dropdown-item" href="#" >
+						    <a class="dropdown-item" href="{{path('verCompras')}}" >
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/shop-icon.png') }}" alt="">&nbspVer Compras</a>
-						      <a class="dropdown-item" href="#" >
+						      <a class="dropdown-item" href="{{path('verCarrito')}}" >
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/cart-icon.png') }}" alt="">&nbspVer Carrito</a>
-						    <a class="dropdown-item" href="#" >
+						    <a class="dropdown-item" href="{{path('verMensajes')}}" >
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/message-icon.png') }}" alt="">&nbspEnviar Mensaje</a>
+						    <a class="dropdown-item" href="{{path('verTurnos')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/turno-icon.png') }}" alt="">&nbspVer turnos</a>
 						    <a class="dropdown-item"href="{{path('cerrarSesion')}}" > 
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/logout-icon.png') }}" alt="">&nbspCerrar Sesión</a>
 						  </div>
@@ -243,7 +245,12 @@
 			    				{{ form_label(formularioRegistro.usuario) }}
 								{{ form_errors(formularioRegistro.usuario) }}
 								{{ form_widget(formularioRegistro.usuario) }}
+								<div id="encontroUsuario" style="color:red;">
+								</div>
+								<div id="noencontroUsuario" style="color:green;">
+								</div>
 			    			</div>
+
 			    		</div>
 			    		<div class="row">
 			    			<div class="col-md-12" style="text-align:left;">
@@ -391,9 +398,40 @@
    <script src="{{ asset('assets/bootstrap/js/popper.min.js') }}"></script>
 
    <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
-
+	
 	
 	<script>
+		//comienza deshabilitado el boton
+		document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
+		$("#frontendbundle_mensaje_usuario").keyup(function(){
+		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
+		});
+		
+		$("#frontendbundle_mensaje_usuario").change(function(){
+		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
+		});
+
+
+		function buscarUsuario(usuario){
+			parametroBuscar="{{path('buscarUsuario',{'usuario':'usuario'})}}";
+			parametroBuscar=parametroBuscar.replace('usuario',usuario);
+			$.ajax({
+                        type: "POST",
+                        url: parametroBuscar,
+                        async : false,
+                        success: function(data){
+								if (data=="encontro") {
+									$('#encontroUsuario').html('Lo sentimos el nombre usuario actualmente no esta disponible.');
+									$('#noencontroUsuario').html('');
+									document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
+								}else{
+									$('#noencontroUsuario').html('Usuario Disponible actualmente.');
+									$('#encontroUsuario').html('');
+									document.getElementById("frontendbundle_mensaje_enviar").disabled = false;
+								}
+	                        }
+                    })
+		};
 		{% if mostrarIngreso %}
 			$('#modalIngresar').modal('show');
 		{% endif %}

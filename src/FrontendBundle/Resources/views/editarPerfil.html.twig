@@ -38,13 +38,20 @@
 								{{ form_widget(formularioEditar.email) }}
 			    			</div>
 			    		</div>	
-			    		
+			    		<div class="row">
+							<div class="col-md-3"></div>
+			    			<div class="col-md-6" style="text-align:left;">
+			    				{{ form_label(formularioEditar.resetearContrasenia) }}
+								{{ form_errors(formularioEditar.resetearContrasenia) }}
+								{{ form_widget(formularioEditar.resetearContrasenia, { 'attr': { 'class' : 'elegirResetear' }}) }}
+			    			</div>
+						</div>	
 			    		<div class="row">
 							<div class="col-md-3"></div>
 			    			<div class="col-md-6" style="text-align:left;">
 			    				{{ form_label(formularioEditar.contrasenia) }}
 								{{ form_errors(formularioEditar.contrasenia) }}
-								{{ form_widget(formularioEditar.contrasenia) }}
+								{{ form_widget(formularioEditar.contrasenia, { 'attr': { 'class' : 'contreseniaEditar' }}) }}
 			    			</div>
 						</div>	
 						<br>
@@ -55,4 +62,21 @@
 			    		
 			</div>
 		</div>
+{% endblock %}
+{% block javascripts %}
+    {{parent()}}
+    <script>
+    //primero seteo un valor nulo
+    $(".contreseniaEditar").val('');
+    //desactivo por las dudas el input de la contraseña
+    $(".contreseniaEditar").prop('disabled', true);
+    //event que habilita o deshabilita el input del formulario contraseña en caso de la seleccion de dropdown resetear contraseña
+    $( ".elegirResetear" ).change(function() {
+	 if ( $( ".elegirResetear" ).val()=="1") {
+	 	$(".contreseniaEditar").prop('disabled', false);
+	 }else{
+	 	$(".contreseniaEditar").prop('disabled', true);
+	 }
+	});
+    </script>
 {% endblock %}
