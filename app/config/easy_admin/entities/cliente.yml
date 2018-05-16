@@ -1,0 +1,45 @@
+easy_admin:
+    entities:
+        Cliente:
+            class: BackendBundle\Entity\Cliente
+            role: ROLE_ADMIN
+            label: 'Clientes'
+            list:
+                title: "Clientes"
+                actions:
+                    - { name: 'new', label: 'Crear Cliente'}
+                fields:
+                    - { property: 'activo', label: 'Activo' ,css_class: 'col-md-3', type: 'toggle'}
+                    - { property: 'usuario', label: 'Usuario' ,css_class: 'col-md-3'}
+                    - { property: 'nombre', label: 'Nombre' ,css_class: 'col-md-3'}
+                    - { property: 'apellido', label: 'Apellido',css_class: 'col-md-3' }
+                    - { property: 'direccion', label: 'Dirección' ,css_class: 'col-md-3'}
+                    - { property: 'telefono', label: 'Teléfono' ,css_class: 'col-md-3'}
+                    - { property: 'email', label: 'Email' ,css_class: 'col-md-3'}
+            form:
+                title: 'Crear Cliente'
+                fields:
+                    - { type: 'group', css_class: 'col-md-8', label: 'Datos de usuarios' }
+                    - { property: 'activo', label: 'Activo' ,css_class: 'col-md-12'}
+                    - { property: 'usuario', label: 'Usuario' ,css_class: 'col-md-12'}
+                    - { property: 'nombre', label: 'Nombre' ,css_class: 'col-md-12'}
+                    - { property: 'apellido', label: 'Apellido',css_class: 'col-md-12' }
+                    - { property: 'direccion', label: 'Dirección' ,css_class: 'col-md-12'}
+                    - { property: 'telefono', label: 'Teléfono' ,css_class: 'col-md-12'}
+                    - { property: 'email', label: 'Email' ,css_class: 'col-md-12'}
+            edit:
+                title: 'Editar Cliente'
+            show:
+                title: "Mostrar Cliente"
+                fields:
+                    - { property: 'activo', label: 'Activo' ,css_class: 'col-md-12'}
+                    - { property: 'usuario', label: 'Usuario' ,css_class: 'col-md-12'}
+                    - { property: 'nombre', label: 'Nombre' ,css_class: 'col-md-12'}
+                    - { property: 'apellido', label: 'Apellido',css_class: 'col-md-12' }
+                    - { property: 'direccion', label: 'Dirección' ,css_class: 'col-md-12'}
+                    - { property: 'telefono', label: 'Teléfono' ,css_class: 'col-md-12'}
+                    - { property: 'email', label: 'Email' ,css_class: 'col-md-12'}
+            
+        Group:
+            class: BackendBundle\Entity\Cliente
+

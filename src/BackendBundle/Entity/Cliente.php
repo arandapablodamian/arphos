@@ -89,6 +89,16 @@ class Cliente
     private $contrasenia;
 
 
+   
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="activo", type="boolean", nullable=true)
+     */
+    private $activo;
+
+
+
     /**
      * @var \DateTime
      *
@@ -97,7 +107,9 @@ class Cliente
     private $fechaCreacion;
 
 
-
+     public function __toString() {
+        return $this->getApellido(). ', '.$this->getNombre();
+    }
     /**
      * Get id
      *
@@ -130,6 +142,30 @@ class Cliente
     public function getNombre()
     {
         return $this->nombre;
+    }
+
+      /**
+     * Set activo
+     *
+     * @param boolean $activo
+     *
+     * @return Cliente
+     */
+    public function setActivo($activo)
+    {
+        $this->activo = $activo;
+
+        return $this;
+    }
+
+    /**
+     * Get activo
+     *
+     * @return boolean
+     */
+    public function getActivo()
+    {
+        return $this->activo;
     }
 
     /**

@@ -280,6 +280,7 @@ class DefaultController extends Controller
                     $clienteAlta->setDireccion($datosCliente->getDireccion());
                     $clienteAlta->setTelefono($datosCliente->getTelefono());
                     $clienteAlta->setUsuario($datosCliente->getUsuario());
+                    $clienteAlta->setActivo(true);
                     $clienteAlta->setContrasenia(md5($datosCliente->getContrasenia()));
                     //persisto el cliente
                     $em->persist($clienteAlta); 
@@ -299,7 +300,7 @@ class DefaultController extends Controller
                     if ($formularioIngreso->isSubmitted() && $formularioIngreso->isValid()) {  
                            $datosIngreso = $formularioIngreso->getData();
                            $em = $this->getDoctrine()->getManager(); 
-                           $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.usuario= :usuario  AND c.contrasenia=:contrasenia ");
+                           $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.usuario= :usuario  AND c.contrasenia=:contrasenia and c.activo= 1 ");
                             $query->setParameter('usuario', $datosIngreso->getUsuario());
                             $query->setParameter('contrasenia', md5($datosIngreso->getContrasenia()));
                           

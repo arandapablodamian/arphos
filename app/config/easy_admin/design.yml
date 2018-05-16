@@ -32,6 +32,8 @@ easy_admin:
             - { label: 'Gestión de Compras', entity: 'Compra',icon: 'paw' }
             - { label: 'Gestión de Turnos', entity: 'Turno',icon: 'paw' }
             - { label: 'Gestión de Consultas', entity: 'Mensaje',icon: 'paw' }
+            - { label: 'Gestión de Clientes', entity: 'Cliente',icon: 'paw' }
+            - { label: 'Gestión de Mensajes', entity: 'Consulta',icon: 'paw' }
             - { label: 'Galería', entity: 'Galeria',icon: 'paw' }
             - label: 'Gestión de Paginas'
               icon: 'paw'
