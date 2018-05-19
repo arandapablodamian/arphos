@@ -97,6 +97,110 @@
 	{% endblock %}
 </head>
 <body>
+	<div style="min-height:60px;background-color:#7c5428;">
+		<div style="padding-top:10px;padding-right:10px;;text-align:right;">
+			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalIngresar">Ingresar</button>
+			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalRegistrarse">Registrarse</button>
+
+
+
+			<!-- Ventana modal para ingresar -->
+			<div class="modal fade" id="modalIngresar" tabindex="-1" role="dialog" aria-labelledby="Ingresar" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="Ingresar">Ingresar</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        ...
+			      </div>
+			      <div class="modal-footer">
+			        <button type="button" class="btn btn-success">Entrar</button>
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Ventana modal para registrarse -->
+			<div class="modal fade" id="modalRegistrarse" tabindex="-1" role="dialog" aria-labelledby="Registrarse" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="Registrarse">Registrarse</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+					{{ form_start(formularioRegistro) }}
+			    		<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.nombre) }}
+								{{ form_errors(formularioRegistro.nombre) }}
+								{{ form_widget(formularioRegistro.nombre) }}
+			    			</div>
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.apellido) }}
+								{{ form_errors(formularioRegistro.apellido) }}
+								{{ form_widget(formularioRegistro.apellido) }}
+			    			</div>
+						</div>
+						<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.direccion) }}
+								{{ form_errors(formularioRegistro.direccion) }}
+								{{ form_widget(formularioRegistro.direccion) }}
+			    			</div>
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.telefono) }}
+								{{ form_errors(formularioRegistro.telefono) }}
+								{{ form_widget(formularioRegistro.telefono) }}
+			    			</div>
+						</div>				
+						<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.email) }}
+								{{ form_errors(formularioRegistro.email) }}
+								{{ form_widget(formularioRegistro.email) }}
+			    			</div>
+			    		</div>	
+			    		<div class="row">
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.usuario) }}
+								{{ form_errors(formularioRegistro.usuario) }}
+								{{ form_widget(formularioRegistro.usuario) }}
+			    			</div>
+			    			<div class="col-md-12">
+			    				{{ form_label(formularioRegistro.contrasenia) }}
+								{{ form_errors(formularioRegistro.contrasenia) }}
+								{{ form_widget(formularioRegistro.contrasenia) }}
+			    			</div>
+						</div>		
+			    		
+			    		<br>
+			    		<div style="text-align:center;">
+			    		</div>
+							
+							  	
+							
+			      </div>
+			      <div class="modal-footer">
+			    		{{ form_widget(formularioRegistro.enviar) }}
+			    		{{ form_end(formularioRegistro) }}
+
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+		</div>
+	</div>
 	{% block header %}
 	    <div id="banner-top" style="background-image: url('{{asset('bundles/frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover; height:100px position: fixed;">
 			<a href="{{path('index')}}"><div style="background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
@@ -162,98 +266,7 @@
 
 
 					    		{% block content %}
-					    		    <div style="background-color:#faf4ee;">
-                        <div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
-                background-size: cover;width:100%;heigh:100%;" >
-                
-                                  <div style="background-color: rgba(255,255,255,0.7);">
-                                  	<div class="container">
-                                    <div class="row">
-                                      <div class="col-md-2" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
-                                      <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
-                                        <h2>Categorias</h2>
-                                        <ul>
-                                           
-                                          <a href="tiendacategoria="><li></li></a>
-                                          
-                                        </ul>
-                                        <h2>Color:</h2>
-                                        <ul>
-                                          <a class="cuadro white" href="tiendacolor=blanco"></a>
-                                          <a class="cuadro black" href="tiendacolor=negro"></a>
-                                          <a class="cuadro pink" href="tiendacolor=rosa"></a>
-                                          <a class="cuadro red" href="tiendacolor=rojo"></a>
-                                          <a class="cuadro blue" href="tiendacolor=azul"></a>
-                                          <a class="cuadro yellow" href="tiendacolor=amarillo"></a>
-                                          <a class="cuadro green" href="tiendacolor=verde"></a>
-                                          <a class="cuadro orange" href="tiendacolor=naranja"></a>
-                                          <a class="cuadro violet" href="tiendacolor=violeta"></a>
-
-                                        </ul>
-                                        <div style="clear:both;"></div>
-                                        
-                                      </div>
-                                
-                                <div class="col-md-7" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
-
-                                {% block producto %}
-                                <h1 class="text-lg-right">
-                                {% if Categoria is defined %}
-                                    Categoria > {{Categoria}}
-                                {% elseif Color is defined %}
-                                    Color > {{Color}}
-                                {% else %}
-                                   Categoria > Todos
-                                {% endif %} 
-                                </h1>              
-                                <div class="row text-center text-lg-left">
-      
-                                  <table id="example" class="display" width="100%" cellspacing="0">
-
-      <thead>
-            <tr>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Color</th>
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <th>Color</th>
-                <th>Precio</th>
-            </tr>
-        </tfoot>
-        <tbody>
-                                  
-                                              <tr>
-                <td><a href="tiendaproducto-"><img width="200" height="200" src="" alt=""></a></td>
-                <td></td>
-                <td></td>
-                <td></td>
-            </tr>
-                                 
-       
-        </tbody>
-    </table>
-                                </div>
-                                {% endblock %}
-                        		</div>
-                                      </div>
-                                    </div> 
-
-                                  </div>
-                        
-                        </div>
-                </div>
 					    		{% endblock %}
-			</div>
-		    		
-		    </div>
-		    </div>
-			{% endblock %}
 
 
 			{% block footer %}
@@ -286,7 +299,7 @@
     				
 
 		    {% endblock %}
-
+{% endblock %}
 </body>
 </html>
 {% block javascripts %}
