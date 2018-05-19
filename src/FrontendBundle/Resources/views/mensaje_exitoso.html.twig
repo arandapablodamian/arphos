@@ -1,0 +1,24 @@
+{% extends 'FrontendBundle::template.html.twig' %}
+{% block content %}
+		<style type="text/css">
+						a:link    {
+			  /* Applies to all unvisited links */
+			  text-decoration:  none;
+			  font-weight:      bold;
+			  color:            #d5bbaa;
+			  } 
+
+		</style>
+		<div style="height:600px;">
+			<div style="height:300px;width:600px;margin-left:auto;margin-right:auto; margin-top:20px;background-color:#faf4ee;">
+				<div style="text-align:center;">
+					<h2><strong>¡El mensaje fue enviado exitosamente!</strong></h2>
+					<hr>
+					<h5>A la brevedad le estaremos contestando.</h5>
+				</div>
+				<div style="text-align:center;">
+					<button type="button" class="btn btn-success"  onclick="location.href = '{{path('verMensajes')}}';">Regresar</button>
+				</div>
+			</div>
+		</div>
+{% endblock %}

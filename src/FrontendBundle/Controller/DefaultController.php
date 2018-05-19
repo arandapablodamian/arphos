@@ -7,6 +7,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
+use Symfony\Component\Validator\Constraints\DateTime;
+//para las entidades
 use BackendBundle\Entity\Turno;
 use BackendBundle\Entity\Cliente;
 use BackendBundle\Entity\Category;
@@ -19,6 +21,8 @@ use FrontendBundle\Form\FormularioTurnoType;
 use FrontendBundle\Form\FormularioContactoType;
 use FrontendBundle\Form\FormularioRegistroType;
 use FrontendBundle\Form\FormularioIngresoType;
+use FrontendBundle\Form\FormularioMensajeType;
+
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\EmailType;
@@ -553,7 +557,7 @@ class DefaultController extends Controller
         $clienteId=$session->get('clienteId');
         //obtengo los mensajes del usuario
         $em = $this->getDoctrine()->getManager(); 
-        $query = $em->createQuery("SELECT c FROM BackendBundle:Consulta c WHERE c.usuario.id =:clienteId");
+        $query = $em->createQuery("SELECT c FROM BackendBundle:Consulta c WHERE c.cliente =:clienteId");
         $query->setParameter('clienteId', $clienteId);
         $mensajes = $query->getResult();
 
@@ -563,34 +567,41 @@ class DefaultController extends Controller
         $formularioMensaje->handleRequest($request);
 
         if ($formularioMensaje->isSubmitted() && $formularioMensaje->isValid()) {
-                $datosMensaje = $formularioRegistro->getData();    
+                $datosMensaje = $formularioMensaje->getData();    
                     
                     //guardo el mensaje la base de datos
                     $em = $this->getDoctrine()->getManager(); 
                     //creo una clase cliente
                     $mensaje = new Consulta();
                     //le asigno los campos que complete en en formulario de registros
-                    $mensaje->setMensaje($datosCliente->getNombre());
+                     $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.id =:idCliente");
+                    $query->setParameter('idCliente', $clienteId);
+                    $cliente=$query->getOneOrNullResult();
+
+                    //creo el mensaje
+                    $mensaje->setCliente($cliente);
+                    $mensaje->setEstado(false);
+                    $mensaje->setFechaCreacion(new \DateTime("now"));
+                    $mensaje->setMensaje($datosMensaje->getMensaje());
                     
                     //persisto el cliente
-                    $em->persist($clienteAlta); 
+                    $em->persist($mensaje); 
                     //ejecuto la consulta
                     $em->flush();
 
-                     return $this->render('FrontendBundle::registracion_exitosa.html.twig',array(
-                    'formularioTurno'=>$formularioTurno->createView(),
-                    'formularioRegistro'=>$formularioRegistro->createView(),
-                    'formularioIngreso'=> $formularioIngreso->createView()));
 
-                    }elseif ($formularioRegistro->isSubmitted() && !$formularioRegistro->isValid()) {
-                        $mostrarRegistro=true;
+
+                     return $this->render('FrontendBundle::mensaje_exitoso.html.twig',array(
+                'formularioRegistro'=>$formularioRegistro->createView(),
+                'formularioIngreso'=> $formularioIngreso->createView(),
+                'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido));
                     }
 
 
         return $this->render('FrontendBundle::verMensajes.html.twig',array(
             'formularioRegistro'=>$formularioRegistro->createView(),
             'formularioIngreso'=> $formularioIngreso->createView(),
-            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,'formularioMensaje'=>$formularioMensaje->createView(),'mensajes'=>$mensajes
         ));
     }
 

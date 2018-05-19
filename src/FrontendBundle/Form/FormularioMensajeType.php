@@ -23,7 +23,7 @@ class FormularioMensajeType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-             ->add('mensaje', CKEditorType::class, , [
+             ->add('mensaje',TextareaType::class , [
                 'label' => 'Mensaje'
             ])
 

@@ -10,15 +10,69 @@
 
 		</style>
 		<div style="height:600px;">
-			<div style="height:300px;width:600px;margin-left:auto;margin-right:auto; margin-top:20px;background-color:#faf4ee;">
-				<div style="text-align:center;">
-					<h2><strong>¡Bienvenido a Arphos!</strong></h2>
-					<hr>
-					<h5>Sección actualmente en construcción, contenido disponible en breve.</h5>
+			<div class="row" style="min-height:600px;margin-left:auto;margin-right:auto; margin-top:20px;background-color:#faf4ee;">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+
+					<div style="text-align:center;">
+						<h2><strong>¡Mensajes!</strong></h2>
+						<!-- <hr>
+						<h5>Sección actualmente en construcción, contenido disponible en breve.</h5> -->
+							<h5>Bienvenido  a la sección de mensajes, aqui podrá ver las consultas que realize:</h5>
+							<br>
+							<h5>Nuevo Mensaje: </h5>
+							<br>
+						{{ form_start(formularioMensaje) }}
+				    		<div class="row">
+				    			<div class="col-md-12" style="text-align:left;">
+				    				{{ form_label(formularioMensaje.mensaje) }}
+									{{ form_errors(formularioMensaje.mensaje) }}
+									{{ form_widget(formularioMensaje.mensaje) }}
+				    			</div>
+				    		</div>
+							<br>
+				    		{{ form_widget(formularioMensaje.enviar) }}
+				    		{{ form_end(formularioMensaje) }}
+					</div>
+					<br>
+					<div class="text-align:center;">
+						<table class="table-striped">
+							{% if not mensajes is empty %}
+								<thead>
+										<tr>
+											<col width="300">
+  											<col width="300">
+  											<col width="300">
+  											<col width="300">
+											<th>Fecha de envio</th>
+											<th>Fecha de Contestación</th>
+											<th>Mensaje</th>
+											<th>Respuesta</th>
+
+										</tr>
+									</thead>
+									<tbody>
+								{% for mensaje in mensajes %}
+								    <tr>
+								    	<td>{{mensaje.fechaCreacion|date("d/m/Y h:i")}}</td>
+								    	{% if mensaje.fechaContestacion %}
+											<td>{{mensaje.fechaContestacion|date("d/m/Y h:i")}}</td>
+										{% else %}
+										    <td></td>
+								    	{% endif %}
+										
+										<td>{{mensaje.mensaje}}</td>
+										<td>{{mensaje.respuesta}}</td>
+									</tr>
+								{% endfor %}
+								</tbody>
+							{% endif %}
+							
+						</table>
+					</div>
+					
 				</div>
-				<div style="text-align:center;">
-					<button type="button" class="btn btn-success"  onclick="location.href = '{{path('index')}}';">Regresar</button>
-				</div>
+				<div class="col-md-1"></div>
 			</div>
 		</div>
 {% endblock %}

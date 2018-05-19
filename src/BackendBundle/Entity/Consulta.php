@@ -45,7 +45,7 @@ class Consulta
     /**
      * @var string
      *
-     * @ORM\Column(name="respuesta", type="text")
+     * @ORM\Column(name="respuesta", type="text", nullable=true)
      */
     private $respuesta;
 
@@ -59,7 +59,7 @@ class Consulta
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaContestacion", type="datetime")
+     * @ORM\Column(name="fechaContestacion", type="datetime", nullable=true)
      */
     private $fechaContestacion;
 
