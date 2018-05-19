@@ -11,6 +11,8 @@ use BackendBundle\Entity\Turno;
 use BackendBundle\Entity\Cliente;
 use BackendBundle\Entity\Category;
 use BackendBundle\Entity\Mensaje;
+use BackendBundle\Entity\Consulta;
+
 
 //para los formularios
 use FrontendBundle\Form\FormularioTurnoType;
@@ -47,11 +49,39 @@ class DefaultController extends Controller
           $mostrarIngreso=$variablesLogin['mostrarIngreso'];
           $usuarioInvalido=$variablesLogin['usuarioInvalido'];
 
+
+        if (array_key_exists ('registroExitoso' ,$variablesLogin)) {
+            return $this->render('FrontendBundle::registracion_exitosa.html.twig',array(
+            'formularioTurno'=>$formularioTurno->createView(),
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        )); 
+        }
+
+
         return $this->render('FrontendBundle::index.html.twig',array(
         	'formularioTurno'=>$formularioTurno->createView(),
             'formularioRegistro'=>$formularioRegistro->createView(),
             'formularioIngreso'=> $formularioIngreso->createView(),
             'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        ));
+    }
+
+    public function registracionExitosaAction (Request $request){
+         $variablesLogin=$this->formularios($request);
+          $formularioRegistro=$variablesLogin['formularioRegistro'];
+          $formularioIngreso=$variablesLogin['formularioIngreso'];
+          $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+          $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+          $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+
+        return $this->render('FrontendBundle::index.html.twig',array(
+            'formularioTurno'=>$formularioTurno->createView(),
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,
+            'usuarioInvalido'=>$usuarioInvalido
         ));
     }
 
@@ -287,10 +317,8 @@ class DefaultController extends Controller
                     //ejecuto la consulta
                     $em->flush();
 
-                     return $this->render('FrontendBundle::registracion_exitosa.html.twig',array(
-                    'formularioTurno'=>$formularioTurno->createView(),
-                    'formularioRegistro'=>$formularioRegistro->createView(),
-                    'formularioIngreso'=> $formularioIngreso->createView()));
+                  return array('formularioRegistro'=>$formularioRegistro,'formularioIngreso'=>$formularioIngreso,'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,'registroExitoso'=>true);
+
 
                     }elseif ($formularioRegistro->isSubmitted() && !$formularioRegistro->isValid()) {
                         $mostrarRegistro=true;
@@ -519,6 +547,45 @@ class DefaultController extends Controller
         $mostrarRegistro=$variablesLogin['mostrarRegistro'];
         $mostrarIngreso=$variablesLogin['mostrarIngreso'];
         $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+
+        //obtengo el id del usuario
+        $session=$this->container->get('session');
+        $clienteId=$session->get('clienteId');
+        //obtengo los mensajes del usuario
+        $em = $this->getDoctrine()->getManager(); 
+        $query = $em->createQuery("SELECT c FROM BackendBundle:Consulta c WHERE c.usuario.id =:clienteId");
+        $query->setParameter('clienteId', $clienteId);
+        $mensajes = $query->getResult();
+
+        //ahora obtengo el formulario para crear el mensaje
+        $mensaje = new Consulta();
+        $formularioMensaje = $this->createForm(FormularioMensajeType::class, $mensaje);
+        $formularioMensaje->handleRequest($request);
+
+        if ($formularioMensaje->isSubmitted() && $formularioMensaje->isValid()) {
+                $datosMensaje = $formularioRegistro->getData();    
+                    
+                    //guardo el mensaje la base de datos
+                    $em = $this->getDoctrine()->getManager(); 
+                    //creo una clase cliente
+                    $mensaje = new Consulta();
+                    //le asigno los campos que complete en en formulario de registros
+                    $mensaje->setMensaje($datosCliente->getNombre());
+                    
+                    //persisto el cliente
+                    $em->persist($clienteAlta); 
+                    //ejecuto la consulta
+                    $em->flush();
+
+                     return $this->render('FrontendBundle::registracion_exitosa.html.twig',array(
+                    'formularioTurno'=>$formularioTurno->createView(),
+                    'formularioRegistro'=>$formularioRegistro->createView(),
+                    'formularioIngreso'=> $formularioIngreso->createView()));
+
+                    }elseif ($formularioRegistro->isSubmitted() && !$formularioRegistro->isValid()) {
+                        $mostrarRegistro=true;
+                    }
+
 
         return $this->render('FrontendBundle::verMensajes.html.twig',array(
             'formularioRegistro'=>$formularioRegistro->createView(),
