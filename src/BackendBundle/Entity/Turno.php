@@ -59,10 +59,16 @@ class Turno
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="diayhora", type="datetime")
+     * @ORM\Column(name="diayhorapiso", type="datetime")
      */
-    private $diayhora;
+    private $diayhorapiso;
 
+    /**
+     * @var \DateTime
+     *
+     * @ORM\Column(name="diayhoratecho", type="datetime")
+     */
+    private $diayhoratecho;
 
     /**
      * Get id
@@ -195,27 +201,52 @@ class Turno
     }
 
     /**
-     * Set diayhora
+     * Set diayhorapiso
      *
-     * @param \DateTime $diayhora
+     * @param \DateTime $diayhorapiso
      *
      * @return Turno
      */
-    public function setDiayhora($diayhora)
+    public function setDiayhorapiso($diayhorapiso)
     {
-        $this->diayhora = $diayhora;
+        $this->diayhorapiso = $diayhorapiso;
 
         return $this;
     }
 
     /**
-     * Get diayhora
+     * Get diayhorapiso
      *
      * @return \DateTime
      */
-    public function getDiayhora()
+    public function getDiayhorapiso()
     {
-        return $this->diayhora;
+        return $this->diayhorapiso;
     }
+
+    /**
+     * Set diayhoratecho
+     *
+     * @param \DateTime $diayhoratecho
+     *
+     * @return Turno
+     */
+    public function setDiayhoratecho($diayhoratecho)
+    {
+        $this->diayhoratecho = $diayhoratecho;
+
+        return $this;
+    }
+
+    /**
+     * Get diayhoratecho
+     *
+     * @return \DateTime
+     */
+    public function getDiayhoratecho()
+    {
+        return $this->diayhoratecho;
+    }
+
 }
 

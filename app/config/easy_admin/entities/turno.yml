@@ -9,20 +9,23 @@ easy_admin:
             list:
                 title: "Turnos"
                 fields:
-                    - { property: 'id', label: 'Nro. de Turno'}
-                    - { property: 'nombre' , label: 'Nombre'}
-                    - { property: 'diayhora' , label: 'Día y Hora'}
-                    - { property: 'apellido' , label: 'Apellido'}
-                    - { property: 'direccion' , label: 'Dirección'}
-                    - { property: 'correo' , label: 'Correo'}
-                    - { property: 'telefono' , label: 'Teléfono'}
+                    - { property: 'id', label: 'Nro. de Turno', css_class: 'col-md-6'}
+                    - { property: 'nombre' , label: 'Nombre', css_class: 'col-md-6'}
+                    - { property: 'apellido' , label: 'Apellido', css_class: 'col-md-6'}
+                    - { property: 'diayhorapiso' , label: 'Inicio Turno', format: 'd/m/Y g:i A', css_class: 'col-md-6'}
+                    - { property: 'diayhoratecho' , label: 'Final Turno', format: 'd/m/Y g:i A', css_class: 'col-md-6'}
+                    - { property: 'direccion' , label: 'Dirección', css_class: 'col-md-6'}
+                    - { property: 'correo' , label: 'Correo', css_class: 'col-md-6'}
+                    - { property: 'telefono' , label: 'Teléfono', css_class: 'col-md-6'}
             form:  # <-- 'form' is applied to both 'new' and 'edit' views
                 title: 'Crear un Turno'
                 fields: 
                     - { type: 'group', css_class: 'col-md-12', label: 'Descripción del Turno' }
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
                     - { type: 'divider' }
-                    - { property: 'diayhora' , label: 'Día y Hora',type: 'date', type_options: { widget: 'single_text' },css_class: 'col-md-6'}
+                    #- { property: 'diayhora' , label: 'Día y Hora',type: 'date', type_options: { widget: 'single_text' },css_class: 'col-md-6'}
+                    - { property: 'diayhorapiso' , label: 'Día y Hora',type: 'datetime', css_class: 'col-md-6', type_options: { widget: 'text' }}
+                    - { property: 'diayhoratecho' , label: 'Día y Hora',type: 'datetime', css_class: 'col-md-6',  type_options: {widget: 'choice' , format: 'yyyy-MM-dd'}}
                     - { type: 'divider' }
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
                     - { type: 'divider' }
@@ -34,7 +37,8 @@ easy_admin:
             show:
                 fields:
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
-                    - { property: 'diayhora' , label: 'Día y Hora',css_class: 'col-md-6'}
+                    - { property: 'diayhorapiso' , label: 'Inicio Turno', format: 'd/m/Y g:i A', css_class: 'col-md-6'}
+                    - { property: 'diayhoratecho' , label: 'Final Turno', format: 'd/m/Y g:i A', css_class: 'col-md-6'}
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
                     - { property: 'direccion' , label: 'Dirección',css_class: 'col-md-6'}
                     - { property: 'correo' , label: 'Correo',css_class: 'col-md-6'}
