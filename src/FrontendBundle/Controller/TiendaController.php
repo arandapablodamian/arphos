@@ -260,5 +260,12 @@ class TiendaController extends Controller
 
         return $response;
     }
-
+     /**
+     * @Route("/arreglo", name="arreglo")
+     */
+    public function arreglo()
+    {   
+        
+      return $this->render('FrontendBundle::arreglo.html.twig', array());
+    }
 }

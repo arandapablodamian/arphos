@@ -1,0 +1,24 @@
+{% extends 'FrontendBundle::template.html.twig' %}
+{% block content %}
+		<style type="text/css">
+						a:link    {
+			  /* Applies to all unvisited links */
+			  text-decoration:  none;
+			  font-weight:      bold;
+			  color:            #d5bbaa;
+			  } 
+
+		</style>
+		<div style="height:600px;">
+			<div style="height:300px;width:600px;margin-left:auto;margin-right:auto; margin-top:20px;background-color:#faf4ee;">
+				<div style="text-align:center;">
+					<h2><strong>¡Bienvenido a Arphos!</strong></h2>
+					<hr>
+					<h5>Sección actualmente en construcción, contenido disponible en breve.</h5>
+				</div>
+				<div style="text-align:center;">
+					<button type="button" class="btn btn-success"  onclick="location.href = '{{path('index')}}';">Regresar</button>
+				</div>
+			</div>
+		</div>
+{% endblock %}

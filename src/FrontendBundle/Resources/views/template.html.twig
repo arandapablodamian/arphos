@@ -7,6 +7,7 @@
 
 	    <link rel="stylesheet" href="{{ asset('bundles/frontend/css/template.css') }}" />
 	    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" />
+	    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
 		<style>
 		.navbar-default {
 			background-color:transparent !important;
@@ -35,22 +36,256 @@
 			color:#4c2606;
 			font-size: 20px;
 			text-decoration: none;
+			font-weight: bold;
 		}
 		.itemMenu:hover{
 			color:#d5bbaa;
 			text-decoration: none;
 		}
+		.botonarphos { 
+		  color: #FFFFFF; 
+		  background-color: #94642E; 
+		  border-color: #57350E; 
+		} 
+		 
+		.botonarphos:hover, 
+		.botonarphos:focus, 
+		.botonarphos:active, 
+		.botonarphos.active, 
+		.open .dropdown-toggle.botonarphos { 
+		  color: #FFFFFF; 
+		  background-color: #C78A44; 
+		  border-color: #57350E; 
+		} 
+		 
+		.botonarphos:active, 
+		.botonarphos.active, 
+		.open .dropdown-toggle.botonarphos { 
+		  background-image: none; 
+		} 
+		 
+		.botonarphos.disabled, 
+		.botonarphos[disabled], 
+		fieldset[disabled] .botonarphos, 
+		.botonarphos.disabled:hover, 
+		.botonarphos[disabled]:hover, 
+		fieldset[disabled] .botonarphos:hover, 
+		.botonarphos.disabled:focus, 
+		.botonarphos[disabled]:focus, 
+		fieldset[disabled] .botonarphos:focus, 
+		.botonarphos.disabled:active, 
+		.botonarphos[disabled]:active, 
+		fieldset[disabled] .botonarphos:active, 
+		.botonarphos.disabled.active, 
+		.botonarphos[disabled].active, 
+		fieldset[disabled] .botonarphos.active { 
+		  background-color: #94642E; 
+		  border-color: #57350E; 
+		} 
+		 
+		.botonarphos .badge { 
+		  color: #94642E; 
+		  background-color: #FFFFFF; 
+		}
+		  h2{color:#4c2606}
+		  h3{color:#4c2606}
+		  h1{color:#4c2606}
+
 		 </style>
 		
 	{% endblock %}
+	{% block scripts %}
+	{% endblock %}
 </head>
 <body>
+	<div style="min-height:60px;background-color:#7c5428;">
+		<div style="padding-top:10px;padding-right:10px;;text-align:right;">
+
+			{% if (app.session.get('usuario') == '') and  (app.session.get('usuario') == null) %}
+
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalIngresar">Ingresar</button>
+				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalRegistrarse">Registrarse</button>
+			{% else %}
+
+			    <div class="row">
+			    	<div class="col-md-9">
+			    		
+			    	</div>
+			    	<div class="col-md-1" style="color:white;">
+			    		
+			    		<div class="dropdown">
+						  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" >
+						  <strong>{{app.session.get('usuario')}}</strong> 
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <a class="dropdown-item" href="{{path('editarPerfil')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/perfil-icon.jpg') }}" alt="">&nbsp Editar Perfil</a>
+						    <a class="dropdown-item" href="{{path('verCompras')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/shop-icon.png') }}" alt="">&nbspVer Compras</a>
+						      <a class="dropdown-item" href="{{path('verCarrito')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/cart-icon.png') }}" alt="">&nbspVer Carrito</a>
+						    <a class="dropdown-item" href="{{path('verMensajes')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/message-icon.png') }}" alt="">&nbspEnviar Mensaje</a>
+						    <a class="dropdown-item" href="{{path('verTurnos')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/turno-icon.png') }}" alt="">&nbspVer turnos</a>
+						    <a class="dropdown-item"href="{{path('cerrarSesion')}}" > 
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/logout-icon.png') }}" alt="">&nbspCerrar Sesión</a>
+						  </div>
+						</div>
+			    	</div>
+			    	<div class="col-md-1">
+			    		
+			    	</div>
+			    </div>
+			{% endif %}
+
+
+			<!-- Ventana modal para ingresar -->
+			<div class="modal fade" id="modalIngresar" tabindex="-1" role="dialog" aria-labelledby="Ingresar" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="Ingresar">Ingresar</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body">
+			        	<div style="text-align:center;"><h3>Ingreso a Arphos</h3></div>
+					{{ form_start(formularioIngreso) }}
+			    		<div class="row">
+			    			<div class="col-md-2"></div>
+			    			<div class="col-md-8" style="text-align:left;">
+			    				{{ form_label(formularioIngreso.usuario) }}
+								{{ form_errors(formularioIngreso.usuario) }}
+								{{ form_widget(formularioIngreso.usuario) }}
+			    			</div>
+			    			<div class="col-md-2"></div>
+			    		</div>
+			    		<div class="row">
+			    			<div class="col-md-2"></div>
+			    			<div class="col-md-8" style="text-align:left;">
+			    				{{ form_label(formularioIngreso.contrasenia) }}
+								{{ form_errors(formularioIngreso.contrasenia) }}
+								{{ form_widget(formularioIngreso.contrasenia) }}
+			    			</div>
+			    			<div class="col-md-2"></div>
+						</div>	
+			    		
+			    		<br>
+			    		<div class="row">
+			    			<div class="col-md-2"></div>
+				    		<div class="col-md-8" style="text-align:center;color:red;">
+				    			{% if usuarioInvalido %}
+									Usuario y/o contraseña inválidos, por favor vuelva a intentar.
+				    			{% endif %}
+				    		</div>
+			    			<div class="col-md-2"></div>
+			    		</div>
+			      </div>
+			      <div class="modal-footer">
+			        {{ form_widget(formularioIngreso.enviar) }}
+			    		{{ form_end(formularioIngreso) }}
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+			<!-- Ventana modal para registrarse -->
+			<div class="modal fade" id="modalRegistrarse" tabindex="-1" role="dialog" aria-labelledby="Registrarse" aria-hidden="true">
+			  <div class="modal-dialog" role="document">
+			    <div class="modal-content">
+			      <div class="modal-header">
+			        <h5 class="modal-title" id="Registrarse">Registrarse</h5>
+			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+			          <span aria-hidden="true">&times;</span>
+			        </button>
+			      </div>
+			      <div class="modal-body" style="text-align:left;">
+			      	<h5>Bienvenido a Arphos, por favor ingrese sus datos en los siguientes campos:</h5>
+					{{ form_start(formularioRegistro) }}
+			    		<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
+			    				{{ form_label(formularioRegistro.nombre) }}
+								{{ form_errors(formularioRegistro.nombre) }}
+								{{ form_widget(formularioRegistro.nombre) }}
+			    			</div>
+			    		</div>
+			    		<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
+			    				{{ form_label(formularioRegistro.apellido) }}
+								{{ form_errors(formularioRegistro.apellido) }}
+								{{ form_widget(formularioRegistro.apellido) }}
+			    			</div>
+						</div>
+						<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
+			    				{{ form_label(formularioRegistro.direccion) }}
+								{{ form_errors(formularioRegistro.direccion) }}
+								{{ form_widget(formularioRegistro.direccion) }}
+			    			</div>
+			    		</div>
+			    		<div class="row">	
+			    			<div class="col-md-12" style="text-align:left;">
+			    				{{ form_label(formularioRegistro.telefono) }}
+								{{ form_errors(formularioRegistro.telefono) }}
+								{{ form_widget(formularioRegistro.telefono) }}
+			    			</div>
+						</div>				
+						<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
+			    				{{ form_label(formularioRegistro.email) }}
+								{{ form_errors(formularioRegistro.email) }}
+								{{ form_widget(formularioRegistro.email) }}
+			    			</div>
+			    		</div>	
+			    		<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
+			    				{{ form_label(formularioRegistro.usuario) }}
+								{{ form_errors(formularioRegistro.usuario) }}
+								{{ form_widget(formularioRegistro.usuario) }}
+								<div id="encontroUsuario" style="color:red;">
+								</div>
+								<div id="noencontroUsuario" style="color:green;">
+								</div>
+			    			</div>
+
+			    		</div>
+			    		<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
+			    				{{ form_label(formularioRegistro.contrasenia) }}
+								{{ form_errors(formularioRegistro.contrasenia) }}
+								{{ form_widget(formularioRegistro.contrasenia) }}
+			    			</div>
+						</div>	
+			    		
+			    		<br>
+			    		<div style="text-align:center;">
+			    		</div>
+							
+							  	
+							
+			      </div>
+			      <div class="modal-footer">
+			    		{{ form_widget(formularioRegistro.enviar) }}
+			    		{{ form_end(formularioRegistro) }}
+
+			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+			      </div>
+			    </div>
+			  </div>
+			</div>
+
+
+		</div>
+	</div>
 	<div id="container">
 		<div id="page">
 		
 			{% block header %}
-			    <div id="banner-top" style="background-image: url('{{asset('bundles/frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover;width:100%; height:100px position: fixed;">
-					<a href="{{path('index')}}"><div style="margin-left:20%;background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
+			    <div id="banner-top" style="background-image: url('{{asset('bundles/frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover; height:100px position: fixed;">
+					<a href="{{path('index')}}"><div style="background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
 					</a>
 
 				</div>
@@ -59,7 +294,7 @@
 
 			{% block wrapper %}
 			    <div style="background-color:#faf4ee;   ">
-					<div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;background-position: center;background-size: cover;width:100%; height:100% " >
+					<div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;background-position: center;background-size: cover; height:100% " >
 		    
 			<div style="background-color: rgba(255,255,255,0.7);height:100%;">
 				<nav class="navbar navbar-expand-lg navbar-light "   >
@@ -106,7 +341,7 @@
 				    
 				  </div>
 				</nav>
-                <div style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
+                <div style="width:70%;color:#d5bbaa">
                 	<hr />
                 </div>
 
@@ -123,6 +358,7 @@
 			{% endblock %}
 		    {% block footer %}
 		      <div id="banner-top" style="background-color:#d5bbaa; height:50px">
+		      	<div  class="container">
 		      	<div  class="row">
 		      		<a  class="col-md-1" target="_bank" href="https://www.facebook.com/Arphospcmg/">
 		      			<div  style="background-image: url('{{asset('bundles/frontend/images/template/icono-facebook.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
@@ -144,6 +380,7 @@
 			      	</div>
 			      	
 		      	</div>
+		      	</div>
 		      </div>
     				
 
@@ -158,6 +395,51 @@
 </html>
 {% block javascripts %}
    <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
-   <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+   <script src="{{ asset('assets/bootstrap/js/popper.min.js') }}"></script>
 
+   <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+	
+	
+	<script>
+		//comienza deshabilitado el boton
+		document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
+		$("#frontendbundle_mensaje_usuario").keyup(function(){
+		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
+		});
+		
+		$("#frontendbundle_mensaje_usuario").change(function(){
+		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
+		});
+
+
+		function buscarUsuario(usuario){
+			parametroBuscar="{{path('buscarUsuario',{'usuario':'usuario'})}}";
+			parametroBuscar=parametroBuscar.replace('usuario',usuario);
+			$.ajax({
+                        type: "POST",
+                        url: parametroBuscar,
+                        async : false,
+                        success: function(data){
+								if (data=="encontro") {
+									$('#encontroUsuario').html('Lo sentimos el nombre usuario actualmente no esta disponible.');
+									$('#noencontroUsuario').html('');
+									document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
+								}else{
+									$('#noencontroUsuario').html('Usuario Disponible actualmente.');
+									$('#encontroUsuario').html('');
+									document.getElementById("frontendbundle_mensaje_enviar").disabled = false;
+								}
+	                        }
+                    })
+		};
+		{% if mostrarIngreso %}
+			$('#modalIngresar').modal('show');
+		{% endif %}
+		{% if mostrarRegistro %}
+			$('#modalRegistrarse').modal('show');
+		{% endif %}
+		{% if usuarioInvalido %}
+			$('#modalIngresar').modal('show');
+		{% endif %}
+	</script>
 {% endblock %}

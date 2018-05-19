@@ -1,9 +1,6 @@
-{% extends 'FrontendBundle::template.html.twig' %}
+{% extends 'FrontendBundle::arreglo.html.twig' %}
 
-  {% block stylesheets %}
-      <link rel="stylesheet" href="{{ asset('bundles/frontend/css/template.css') }}" />
-      <link rel="stylesheet" href="{{ asset('bundles/frontend/bootstrap/css/bootstrap.css') }}" />
-      <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+  {% block scripts %}
       <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
       <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
        <script>
@@ -20,10 +17,10 @@
                 background-size: cover;width:100%;heigh:100%;" >
                 
                                   <div style="background-color: rgba(255,255,255,0.7);">
-
+                                  <div class="container">
                                     <div class="row">
                                       <div class="col-md-2" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
-                                      <a class="btn btn-primary" href="carrito">Ir Al Carrito</a>
+                                      <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
                                         <h2>Categorias</h2>
                                         <ul>
                                            {% for Categoria in Categorias %}
@@ -94,6 +91,7 @@
                                 </div>
                                 {% endblock %}
                         </div>
+                                      </div>
                                       </div>
                                     </div> 
 

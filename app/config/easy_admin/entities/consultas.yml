@@ -1,0 +1,40 @@
+easy_admin:
+    entities:
+        Consulta:
+            class: BackendBundle\Entity\Consulta
+            label: 'Consultas'
+            role: ROLE_ADMIN
+            # role_prefix: ROLE_PAGINA
+            # help: 'Global message displayed in all views'
+            list:
+                title: "Consultas"
+                fields:
+                    - { property: id, label: 'Nro de Consulta'}
+                    - { property: 'cliente' , label: 'Cliente'}
+                    - { property: 'estado' , label: 'Contestado', type: toggle}
+                    - { property: 'fechaCreacion' , label: 'Fecha de Creación' , type: datetime}
+                    - { property: 'fechaContestacion' , label: 'Fecha de Contestación' , type: datetime}
+            form:
+                title: 'Crear Consulta'
+                fields:
+                    - { type: 'group', css_class: 'col-md-12', label: 'Consulta' }
+                    - { property: 'cliente' , label: 'Cliente',css_class: 'col-md-12'}
+                    - { property: 'estado' , label: 'Contestado',css_class: 'col-md-12'} 
+                    - { property: 'mensaje' , label: 'Mensaje',type: 'ckeditor',css_class: 'col-md-12'}
+                    - { property: 'respuesta' , label: 'Respuesta',type: 'ckeditor',css_class: 'col-md-12'}
+            show:
+                fields:
+                    - { property: id, label: 'Nro de Consulta'}
+                    - { property: 'cliente' , label: 'Cliente',css_class: 'col-md-12'}
+                    - { property: 'estado' , label: 'Contestado',css_class: 'col-md-12'}
+                    - { property: 'mensaje' , label: 'Mensaje',type: 'text',css_class: 'col-md-12'}
+                    - { property: 'respuesta' , label: 'Respuesta',type: 'text',css_class: 'col-md-12'}
+                    - { property: 'fechaCreacion' , label: 'Fecha de Creación' , type: datetime,css_class: 'col-md-12'}
+                    - { property: 'fechaContestacion' , label: 'Fecha de Contestación' , type: datetime,css_class: 'col-md-12'}
+            edit:
+                title: 'Editar Consulta'
+                fields:
+                    - { type: 'group', css_class: 'col-md-12', label: 'Datos de Clientes' }
+                    - { property: 'estado' , label: 'Contestado',css_class: 'col-md-12'} 
+                    - { property: 'mensaje' , label: 'Mensaje',type: 'ckeditor',css_class: 'col-md-12'}
+                    - { property: 'respuesta' , label: 'Respuesta',type: 'ckeditor',css_class: 'col-md-12'}
