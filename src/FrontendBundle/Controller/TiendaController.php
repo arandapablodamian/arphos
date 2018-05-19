@@ -11,6 +11,10 @@ use BackendBundle\Entity\Category;
 use FrontendBundle\Form\ProductoCompradoType;
 use BackendBundle\Entity\Compra;
 use BackendBundle\Entity\Resource;
+use Symfony\Component\HttpFoundation\Session\Session;
+use BackendBundle\Entity\Turno;
+use BackendBundle\Entity\Cliente;
+use BackendBundle\Entity\Mensaje;
 
 
 use Symfony\Component\Form\Extension\Core\Type\TextType;
@@ -19,6 +23,15 @@ use Symfony\Component\Form\Extension\Core\Type\HiddenType;
 use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
+//para los formularios
+use FrontendBundle\Form\FormularioTurnoType;
+use FrontendBundle\Form\FormularioContactoType;
+use FrontendBundle\Form\FormularioRegistroType;
+use FrontendBundle\Form\FormularioIngresoType;
+use Symfony\Component\Form\Extension\Core\Type\EmailType;
+use Symfony\Component\Form\Extension\Core\Type\PasswordType;
+//para la respuesta del json
+use Symfony\Component\HttpFoundation\JsonResponse;
 
 use FrontendBundle\Entity\MP;
 
@@ -27,8 +40,16 @@ class TiendaController extends Controller
      /**
      * @Route("/tienda", name="tienda")
      */
-    public function tiendaAction()
+    public function tiendaAction(Request $request)
     {
+        //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+        ///
         $Categorias = $this -> getDoctrine()
         ->getRepository("BackendBundle:Categoria")
         -> findall();
@@ -39,14 +60,26 @@ class TiendaController extends Controller
         ->getRepository("BackendBundle:Estacion")
         -> findall();
         */
-        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos/*,
+        return $this->render('FrontendBundle::tienda.html.twig', array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
+        "Categorias" => $Categorias, "Productos" => $Productos/*,
             "Estaciones" => $Estaciones*/));
     }
      /**
      * @Route("/tiendacategoria={categoria}", name="tiendacategoria")
      */
-    public function tiendaCategoriaAction($categoria)
-    {
+    public function tiendaCategoriaAction($categoria, Request $request)
+    {   
+         //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+        ///
         $Categorias = $this -> getDoctrine()
         ->getRepository("BackendBundle:Categoria")
         -> findall();
@@ -66,14 +99,26 @@ class TiendaController extends Controller
         ->getRepository("BackendBundle:Estacion")
         -> findall();
         */
-        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
+        return $this->render('FrontendBundle::tienda.html.twig', array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
+            "Categorias" => $Categorias, "Productos" => $Productos,
            /* "Estaciones" => $Estaciones,*/ "Categoria" => $categoria));
     }
      /**
      * @Route("/tiendacolor={color}", name="tiendacolor")
      */
-    public function tiendaColorAction($color)
+    public function tiendaColorAction($color, Request $request)
     {
+        //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+        ///
         $Categorias = $this -> getDoctrine()
         ->getRepository("BackendBundle:Categoria")
         -> findall();
@@ -93,7 +138,11 @@ class TiendaController extends Controller
         ->getRepository("BackendBundle:Estacion")
         -> findall();
         */
-        return $this->render('FrontendBundle::tienda.html.twig', array("Categorias" => $Categorias, "Productos" => $Productos,
+        return $this->render('FrontendBundle::tienda.html.twig', array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
+            "Categorias" => $Categorias, "Productos" => $Productos,
            /* "Estaciones" => $Estaciones,*/ "Color" => $color));
     }
      /**
@@ -101,6 +150,14 @@ class TiendaController extends Controller
      */
     public function tiendaproductoAction($id,Request $request)
     {
+        //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+        ///
         $Categorias = $this -> getDoctrine()
         ->getRepository("BackendBundle:Categoria")
         -> findall();
@@ -157,7 +214,11 @@ class TiendaController extends Controller
          $entityManager->flush();
     }
 
-        return $this->render('FrontendBundle::tiendaproducto.html.twig', array("Categorias" => $Categorias,
+        return $this->render('FrontendBundle::tiendaproducto.html.twig', array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
+            "Categorias" => $Categorias,
             /*"Estaciones" => $Estaciones,*/"Imagenes" => $Imagenes, "Categorias" => $Categorias, "Producto" => $Producto, 'form' => $Productoform->createView()));
     }
      /**
@@ -165,6 +226,14 @@ class TiendaController extends Controller
      */
     public function carritoAction(Request $request)
     {   
+        //variables para el login
+        $variablesLogin=$this->formularios($request);
+        $formularioRegistro=$variablesLogin['formularioRegistro'];
+        $formularioIngreso=$variablesLogin['formularioIngreso'];
+        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+        ///
         $session = $request->getSession();
         $session->start();
         $Categorias = $this -> getDoctrine()
@@ -240,7 +309,11 @@ class TiendaController extends Controller
           
          }
 
-        return $this->render('FrontendBundle::carrito.html.twig', array("Categorias" => $Categorias,
+        return $this->render('FrontendBundle::carrito.html.twig', array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
+            "Categorias" => $Categorias,
            /* "Estaciones" => $Estaciones,*/"Comprados" => $ProductosComprados, 'form' => $form->createView()));
     }
      /**
@@ -268,4 +341,107 @@ class TiendaController extends Controller
         
       return $this->render('FrontendBundle::arreglo.html.twig', array());
     }
+
+    public function formularios (Request $request){
+        $turno = new Turno();
+        $formularioTurno = $this->createForm(FormularioTurnoType::class, $turno);
+
+         //banderas para saber si muestro o no las ventanas modales de regristro e ingreso,y si ya se logeo al sistema
+            $mostrarRegistro=false;
+            $mostrarIngreso=false;
+            $usuarioInvalido=false;
+          //formulario de registro
+            $cliente = new Cliente();
+            $formularioRegistro = $this->createForm(FormularioRegistroType::class, $cliente);
+            $formularioRegistro->handleRequest($request);
+
+
+            //ahora para la parte de login
+
+                    $clienteIngresando =   new Cliente();
+
+                     $formularioIngreso = $this->createFormBuilder($clienteIngresando)
+                        ->add('usuario',null, [
+                            'label' => 'Usuario',
+                            'attr'=>[
+                            ]
+                        ])
+                        ->add('contrasenia',PasswordType::class, [
+                            'label' => 'Contraseña',
+                            'attr'=>[
+                            ]
+                        ])
+                        ->add('enviar', SubmitType::class, array(
+                            'label' => 'Ingresar','attr'=>['class'=>'btn-success'],
+                        ))
+                        ->getForm();
+
+                    $formularioIngreso->handleRequest($request);
+
+
+
+            if ($formularioRegistro->isSubmitted() && $formularioRegistro->isValid()) {
+                $datosCliente = $formularioRegistro->getData();    
+                    
+                    //guardo el cliente en la base de datos
+                    $em = $this->getDoctrine()->getManager(); 
+                    //creo una clase cliente
+                    $clienteAlta = new Cliente();
+                    //le asigno los campos que complete en en formulario de registros
+                    $clienteAlta->setNombre($datosCliente->getNombre());
+                    $clienteAlta->setApellido($datosCliente->getApellido());
+                    $clienteAlta->setEmail($datosCliente->getEmail());
+                    $clienteAlta->setDireccion($datosCliente->getDireccion());
+                    $clienteAlta->setTelefono($datosCliente->getTelefono());
+                    $clienteAlta->setUsuario($datosCliente->getUsuario());
+                    $clienteAlta->setContrasenia(md5($datosCliente->getContrasenia()));
+                    //persisto el cliente
+                    $em->persist($clienteAlta); 
+                    //ejecuto la consulta
+                    $em->flush();
+
+                     return $this->render('FrontendBundle::registracion_exitosa.html.twig',array(
+                    'formularioTurno'=>$formularioTurno->createView(),
+                    'formularioRegistro'=>$formularioRegistro->createView(),
+                    'formularioIngreso'=> $formularioIngreso->createView()));
+
+                    }elseif ($formularioRegistro->isSubmitted() && !$formularioRegistro->isValid()) {
+                        $mostrarRegistro=true;
+                    }
+
+
+                    if ($formularioIngreso->isSubmitted() && $formularioIngreso->isValid()) {  
+                           $datosIngreso = $formularioIngreso->getData();
+                           $em = $this->getDoctrine()->getManager(); 
+                           $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.usuario= :usuario  AND c.contrasenia=:contrasenia ");
+                            $query->setParameter('usuario', $datosIngreso->getUsuario());
+                            $query->setParameter('contrasenia', md5($datosIngreso->getContrasenia()));
+                          
+                           
+                           $resultadoIngreso=$query->setMaxResults(1)->getOneOrNullResult();
+                           if ($resultadoIngreso) {
+                                    
+                                //si encontro registro en la session
+                            if (!$this->container->get('session')->isStarted()) {   $session = new Session();
+                                    $session->start();
+                                    
+                               }else {
+                                $session=$this->container->get('session');
+
+                               }
+                               $session->set('usuario',$resultadoIngreso->getUsuario() );
+                               $session->set('contrasenia',$resultadoIngreso->getContrasenia() );
+                                $session->set('clienteId',$resultadoIngreso->getId() );
+
+                           }else{
+                            $usuarioInvalido=true;
+                           }
+                        }elseif ($formularioIngreso->isSubmitted() && !$formularioIngreso->isValid()){
+                                 $mostrarIngreso=true;
+                        }
+
+            return array('formularioRegistro'=>$formularioRegistro,'formularioIngreso'=>$formularioIngreso,'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido);
+
+    }
+
 }

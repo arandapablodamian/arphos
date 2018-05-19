@@ -24,8 +24,8 @@ class Compra
     private $id;
 
     /**
-     * @ORM\ManyToOne(targetEntity="\BackendBundle\Entity\Producto")
-     * @ORM\JoinColumn(name="usesr_id", referencedColumnName="id")
+     * @ORM\ManyToOne(targetEntity="\BackendBundle\Entity\Cliente")
+     * @ORM\JoinColumn(name="cliente", referencedColumnName="id")
      */
     private $usuario;
 
@@ -162,7 +162,7 @@ class Compra
      *
      * @return Compra
      */
-    public function setUsuario(\BackendBundle\Entity\User $usuario)
+    public function setUsuario(\BackendBundle\Entity\Cliente $usuario)
     {
         $this->usuario = $usuario;
 
