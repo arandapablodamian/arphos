@@ -94,7 +94,7 @@ class TiendaController extends Controller
                 }
                 return false;
             });;
-
+        $categoria=  $CatElegida ->getTitulo();
        /*$Estaciones = $this -> getDoctrine()
         ->getRepository("BackendBundle:Estacion")
         -> findall();
@@ -286,9 +286,13 @@ class TiendaController extends Controller
             //esta parte es para cargar la compra
                 
                 $Compra ->setFechaCompra(new \DateTime());
-                
+                //conseguir cliente
+                $Cliente = $this -> getDoctrine()
+                ->getRepository("BackendBundle:Cliente")
+                ->find($session->get('clienteId'));
+                //hasta aca
                 $Compra ->setMontoTotal($montototal);
-                
+                $Compra ->setUsuario($Cliente);
                 $entityManager = $this->getDoctrine()->getManager();
                 $entityManager->persist($Compra);
                 $entityManager->flush();
