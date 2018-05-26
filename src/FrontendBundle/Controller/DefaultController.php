@@ -42,17 +42,45 @@ class DefaultController extends Controller
     /**
      * @Route("/" , name="index")
      */
-    public function indexAction(Request $request)
-    {	  $turno = new Turno();
-          $formularioTurno = $this->createForm(FormularioTurnoType::class, $turno);
-          //variables para el login
-          $variablesLogin=$this->formularios($request);
-          $formularioRegistro=$variablesLogin['formularioRegistro'];
-          $formularioIngreso=$variablesLogin['formularioIngreso'];
-          $mostrarRegistro=$variablesLogin['mostrarRegistro'];
-          $mostrarIngreso=$variablesLogin['mostrarIngreso'];
-          $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+    public function indexAction(Request $request){
+      
+      //variables para el login
+      $variablesLogin=$this->formularios($request);
+      $formularioRegistro=$variablesLogin['formularioRegistro'];
+      $formularioIngreso=$variablesLogin['formularioIngreso'];
+      $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+      $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+      $usuarioInvalido=$variablesLogin['usuarioInvalido'];
 
+      $turno = new Turno();
+      $formularioTurno = $this->createForm(FormularioTurnoType::class, $turno);
+      $formularioTurno->handleRequest($request);
+        
+      if ($formularioTurno->isSubmitted() && $formularioTurno->isValid()){
+        
+        $datosTurno = $formularioTurno->getData();
+        
+        //guardo el turno en la base de datos
+        $em = $this->getDoctrine()->getManager();
+
+        //Creo un objeto de la clase Turno
+        $turnoAlta = new Turno();
+
+        //le asigno los campos que complete en el formulario
+        $turnoAlta->setNombre($datosTurno->getNombre());
+        $turnoAlta->setApellido($datosTurno->getApellido());
+        $turnoAlta->setDireccion($datosTurno->getDireccion());
+        $turnoAlta->setCorreo($datosTurno->getCorreo());
+        $turnoAlta->setTelefono($datosTurno->getTelefono());
+        $turnoAlta->setDiayhorapiso($datosTurno->getDiayhorapiso());
+        $turnoAlta->setDiayhoratecho($datosTurno->getDiayhoratecho());
+   
+        //persisto el turno
+        $em->persist($turnoAlta);
+   
+        //ejecuto la instrucción
+        $em->flush();
+      }
 
         if (array_key_exists ('registroExitoso' ,$variablesLogin)) {
             return $this->render('FrontendBundle::registracion_exitosa.html.twig',array(

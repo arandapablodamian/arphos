@@ -25,12 +25,13 @@ class FormularioTurnoType extends AbstractType
             ->add('nombre',null,array('label'=>'Nombre', 'attr'=>['class'=>'col-md-12']))
             ->add('apellido',null,array('label'=>'Apellido','attr'=>['class'=>'col-md-12']))
             ->add('direccion',null,array( 'label' => 'Dirección','attr'=>['class'=>'col-md-12']))
-             ->add('telefono',null,array('label' => 'Teléfono','attr'=>['class'=>'col-md-12','type'=>'number']))
             ->add('correo',EmailType::class, [
                 'attr'=>['class'=>'col-md-12'],
                 'label' => 'Correo'
             ])
-
+            ->add('telefono',null,array('label' => 'Teléfono','attr'=>['class'=>'col-md-12','type'=>'number']))
+            ->add('diayhorapiso', null, array('label' => 'Día y Fecha Piso'))
+            ->add('diayhoratecho', null, array('label' => 'Dia y Hora Piso'))
             ->add('enviar', SubmitType::class, array(
                 'label' => 'Enviar','attr'=>['class'=>'btn-success'],
             ))
