@@ -1,6 +1,6 @@
-{% extends 'FrontendBundle::arreglo.html.twig' %}
+{% extends 'FrontendBundle::template.html.twig' %}
 {% block content %}
-	<div style="height:500px;" class="container">
+	<div style="min-height:500px;">
 		<div class="row">
 			<div class="col-md-1"></div>
 	    	<div class="col-md-3">
@@ -14,9 +14,7 @@
 
 	    	</div>
 	    	<div class="col-md-5">
-	    	<div class="container">
 	    		{{ form_start(formularioContacto) }}
-	    		
 	    		<div class="row">
 	    			<div class="col-md-6">
 	    				{{ form_label(formularioContacto.nombre) }}
@@ -40,38 +38,37 @@
 						{{ form_errors(formularioContacto.telefono) }}
 						{{ form_widget(formularioContacto.telefono) }}
 	    			</div>
-				</div>				
+				</div>
 				<div class="row">
 	    			<div class="col-md-12">
 	    				{{ form_label(formularioContacto.email) }}
 						{{ form_errors(formularioContacto.email) }}
 						{{ form_widget(formularioContacto.email) }}
 	    			</div>
-	    		</div>	
+	    		</div>
 	    		<div class="row">
 	    			<div class="col-md-12">
 	    				{{ form_label(formularioContacto.mensaje) }}
 						{{ form_errors(formularioContacto.mensaje) }}
 						{{ form_widget(formularioContacto.mensaje) }}
 	    			</div>
-	    		</div>	
+	    		</div>
 	    		<br>
-	    		<div style="text-align:center;" class="container">
+	    		<div style="text-align:center;">
 	    			{{ form_widget(formularioContacto.enviar) }}
 	    		</div>
-					
-					  	
-					
+
+
+
 				{{ form_end(formularioContacto) }}
-				</div>
       		</div>
       		<div class="col-md-2">
 
 	    		<div >
-	    		 	<img style="max-height:auto;width:300px;"src="{{asset('bundles/frontend/images/contacto/DibujoArphos.png')}}" alt="">
+	    		 	<img style="width:320px;"src="{{asset('bundles/frontend/images/contacto/DibujoArphos.png')}}" alt="">
 	    		</div>
 	    	</div>
 	    </div>
 	</div>
-    
+
 {% endblock %}

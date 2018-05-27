@@ -14,7 +14,7 @@
 			background-color:transparent !important;
 			border-color:transparent;
 			background-image:none;
-			box-shadow:none;	
+			box-shadow:none;
 		}
 		.navbar li { color: #000 }
 
@@ -43,57 +43,57 @@
 			color:#d5bbaa;
 			text-decoration: none;
 		}
-		.botonarphos { 
-		  color: #FFFFFF; 
-		  background-color: #94642E; 
-		  border-color: #57350E; 
-		} 
-		 
-		.botonarphos:hover, 
-		.botonarphos:focus, 
-		.botonarphos:active, 
-		.botonarphos.active, 
-		.open .dropdown-toggle.botonarphos { 
-		  color: #FFFFFF; 
-		  background-color: #C78A44; 
-		  border-color: #57350E; 
-		} 
-		 
-		.botonarphos:active, 
-		.botonarphos.active, 
-		.open .dropdown-toggle.botonarphos { 
-		  background-image: none; 
-		} 
-		 
-		.botonarphos.disabled, 
-		.botonarphos[disabled], 
-		fieldset[disabled] .botonarphos, 
-		.botonarphos.disabled:hover, 
-		.botonarphos[disabled]:hover, 
-		fieldset[disabled] .botonarphos:hover, 
-		.botonarphos.disabled:focus, 
-		.botonarphos[disabled]:focus, 
-		fieldset[disabled] .botonarphos:focus, 
-		.botonarphos.disabled:active, 
-		.botonarphos[disabled]:active, 
-		fieldset[disabled] .botonarphos:active, 
-		.botonarphos.disabled.active, 
-		.botonarphos[disabled].active, 
-		fieldset[disabled] .botonarphos.active { 
-		  background-color: #94642E; 
-		  border-color: #57350E; 
-		} 
-		 
-		.botonarphos .badge { 
-		  color: #94642E; 
-		  background-color: #FFFFFF; 
+		.botonarphos {
+		  color: #FFFFFF;
+		  background-color: #94642E;
+		  border-color: #57350E;
+		}
+
+		.botonarphos:hover,
+		.botonarphos:focus,
+		.botonarphos:active,
+		.botonarphos.active,
+		.open .dropdown-toggle.botonarphos {
+		  color: #FFFFFF;
+		  background-color: #C78A44;
+		  border-color: #57350E;
+		}
+
+		.botonarphos:active,
+		.botonarphos.active,
+		.open .dropdown-toggle.botonarphos {
+		  background-image: none;
+		}
+
+		.botonarphos.disabled,
+		.botonarphos[disabled],
+		fieldset[disabled] .botonarphos,
+		.botonarphos.disabled:hover,
+		.botonarphos[disabled]:hover,
+		fieldset[disabled] .botonarphos:hover,
+		.botonarphos.disabled:focus,
+		.botonarphos[disabled]:focus,
+		fieldset[disabled] .botonarphos:focus,
+		.botonarphos.disabled:active,
+		.botonarphos[disabled]:active,
+		fieldset[disabled] .botonarphos:active,
+		.botonarphos.disabled.active,
+		.botonarphos[disabled].active,
+		fieldset[disabled] .botonarphos.active {
+		  background-color: #94642E;
+		  border-color: #57350E;
+		}
+
+		.botonarphos .badge {
+		  color: #94642E;
+		  background-color: #FFFFFF;
 		}
 		  h2{color:#4c2606}
 		  h3{color:#4c2606}
 		  h1{color:#4c2606}
 
 		 </style>
-		
+
 	{% endblock %}
 	{% block scripts %}
 	{% endblock %}
@@ -110,13 +110,13 @@
 
 			    <div class="row">
 			    	<div class="col-md-9">
-			    		
+
 			    	</div>
 			    	<div class="col-md-1" style="color:white;">
-			    		
+
 			    		<div class="dropdown">
 						  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" >
-						  <strong>{{app.session.get('usuario')}}</strong> 
+						  <strong>{{app.session.get('usuario')}}</strong>
 						  </button>
 						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
 						    <a class="dropdown-item" href="{{path('editarPerfil')}}" >
@@ -129,13 +129,13 @@
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/message-icon.png') }}" alt="">&nbspEnviar Mensaje</a>
 						    <a class="dropdown-item" href="{{path('verTurnos')}}" >
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/turno-icon.png') }}" alt="">&nbspVer turnos</a>
-						    <a class="dropdown-item"href="{{path('cerrarSesion')}}" > 
+						    <a class="dropdown-item"href="{{path('cerrarSesion')}}" >
 						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/logout-icon.png') }}" alt="">&nbspCerrar Sesión</a>
 						  </div>
 						</div>
 			    	</div>
 			    	<div class="col-md-1">
-			    		
+
 			    	</div>
 			    </div>
 			{% endif %}
@@ -171,8 +171,8 @@
 								{{ form_widget(formularioIngreso.contrasenia) }}
 			    			</div>
 			    			<div class="col-md-2"></div>
-						</div>	
-			    		
+						</div>
+
 			    		<br>
 			    		<div class="row">
 			    			<div class="col-md-2"></div>
@@ -227,20 +227,20 @@
 								{{ form_widget(formularioRegistro.direccion) }}
 			    			</div>
 			    		</div>
-			    		<div class="row">	
+			    		<div class="row">
 			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.telefono) }}
 								{{ form_errors(formularioRegistro.telefono) }}
 								{{ form_widget(formularioRegistro.telefono) }}
 			    			</div>
-						</div>				
+						</div>
 						<div class="row">
 			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.email) }}
 								{{ form_errors(formularioRegistro.email) }}
 								{{ form_widget(formularioRegistro.email) }}
 			    			</div>
-			    		</div>	
+			    		</div>
 			    		<div class="row">
 			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.usuario) }}
@@ -259,14 +259,14 @@
 								{{ form_errors(formularioRegistro.contrasenia) }}
 								{{ form_widget(formularioRegistro.contrasenia) }}
 			    			</div>
-						</div>	
-			    		
+						</div>
+
 			    		<br>
 			    		<div style="text-align:center;">
 			    		</div>
-							
-							  	
-							
+
+
+
 			      </div>
 			      <div class="modal-footer">
 			    		{{ form_widget(formularioRegistro.enviar) }}
@@ -283,7 +283,7 @@
 	</div>
 	<div id="container">
 		<div id="page">
-		
+
 			{% block header %}
 			    <div id="banner-top" style="background-image: url('{{asset('bundles/frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover; height:100px position: fixed;">
 					<a href="{{path('index')}}"><div style="background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
@@ -296,7 +296,7 @@
 			{% block wrapper %}
 			    <div style="background-color:#faf4ee;   ">
 					<div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;background-position: center;background-size: cover; height:100% " >
-		    
+
 			<div style="background-color: rgba(255,255,255,0.7);height:100%;">
 				<nav class="navbar navbar-expand-lg navbar-light "   >
 				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -339,26 +339,26 @@
 				        <a class="nav-link disabled" href="#">Disabled</a>
 				      </li> -->
 				    </ul>
-				    
+
 				  </div>
 				</nav>
                 <div style="width:70%;color:#d5bbaa">
                 	<hr />
                 </div>
 
-                
+
 
 
 					    		{% block content %}
-					    		    
+
 					    		{% endblock %}
 			</div>
-		    		
+
 		    </div>
 		    </div>
 			{% endblock %}
 		    {% block footer %}
-		      <div id="banner-top" style="background-color:#d5bbaa; height:50px">
+		      <div id="banner-top" style="background-color:#d5bbaa; min-height:50px">
 		      	<div  class="container">
 		      	<div  class="row">
 		      		<a  class="col-md-1" target="_bank" href="https://www.facebook.com/Arphospcmg/">
@@ -379,18 +379,18 @@
 			      	<div class="col-md-3" >
 			      		<div  style="background-image: url('{{asset('bundles/frontend/images/template/contacto-footer.png') }}');background-repeat: no-repeat;background-position: center; height:50px"></div>
 			      	</div>
-			      	
+
 		      	</div>
 		      	</div>
 		      </div>
-    				
+
 
 		    {% endblock %}
-		   
-   
-				
+
+
+
 			</div>
-			
+
 	</div>
 </body>
 </html>
@@ -399,15 +399,15 @@
    <script src="{{ asset('assets/bootstrap/js/popper.min.js') }}"></script>
    <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
    <script src="{{ asset('assets/datepicker/bootstrap-datepicker.min.js') }}"></script>
-   <script src="{{ asset('assets/datepicker/bootstrap-datepicker.es.min.js') }}"></script>	
-	
+   <script src="{{ asset('assets/datepicker/bootstrap-datepicker.es.min.js') }}"></script>
+
 	<script>
 		//comienza deshabilitado el boton
 		document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
 		$("#frontendbundle_mensaje_usuario").keyup(function(){
 		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
 		});
-		
+
 		$("#frontendbundle_mensaje_usuario").change(function(){
 		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
 		});

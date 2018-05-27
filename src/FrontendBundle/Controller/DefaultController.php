@@ -44,7 +44,7 @@ class DefaultController extends Controller
      * @Route("/" , name="index")
      */
     public function indexAction(Request $request){
-      
+
       //variables para el login
       $variablesLogin=$this->formularios($request);
       $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -56,11 +56,11 @@ class DefaultController extends Controller
       $turno = new Turno();
       $formularioTurno = $this->createForm(FormularioTurnoType::class, $turno);
       $formularioTurno->handleRequest($request);
-        
+
       if ($formularioTurno->isSubmitted() && $formularioTurno->isValid()){
-        
+
         $datosTurno = $formularioTurno->getData();
-        
+
         //guardo el turno en la base de datos
         $em = $this->getDoctrine()->getManager();
 
@@ -77,16 +77,11 @@ class DefaultController extends Controller
         $turnoAlta->setHora($datosTurno->getHora());
 
         //por defecto la hora techo se carga con una hora mas que la hora piso
-        $auxDate= date_format($datosTurno->getHora(),'Y-m-d H:i:s');
-
-        $dateNuevo= strtotime(" + 1 hour $auxDate");
-        dump($dateNuevo);
-        die;
-        $turnoAlta->setHoratecho($dateNuevo);
-
+        $auxDate= date_format($datosTurno->getHora(),'H:i');
+        $turnoAlta->setHoratecho(\DateTime::createFromFormat('H:i',date('H:i',strtotime('+1 hour',strtotime($auxDate)))));
         //persisto el turno
         $em->persist($turnoAlta);
-   
+
         //ejecuto la instrucción
         $em->flush();
       }
@@ -97,7 +92,7 @@ class DefaultController extends Controller
             'formularioRegistro'=>$formularioRegistro->createView(),
             'formularioIngreso'=> $formularioIngreso->createView(),
             'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
-        )); 
+        ));
         }
 
 
@@ -130,7 +125,7 @@ class DefaultController extends Controller
      * @Route("/contacto" , name="contacto")
      */
     public function contactoAction(Request $request)
-    {   
+    {
         //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -142,11 +137,11 @@ class DefaultController extends Controller
         /////////////////////
         $mensaje = new Mensaje();
         $formularioContacto = $this->createForm(FormularioContactoType::class, $mensaje);
-           
+
         $formularioContacto->handleRequest($request);
 
             if ($formularioContacto->isSubmitted() && $formularioContacto->isValid()) {
-              
+
                 // $form->getData() holds the submitted values
                 // but, the original `$task` variable has also been updated
                 $formularioContacto = $formularioContacto->getData();
@@ -162,7 +157,7 @@ class DefaultController extends Controller
             die;
         }
 
-      
+
         return $this->render('FrontendBundle::contacto.html.twig',array(
             'formularioContacto'=>$formularioContacto->createView(),
             'formularioRegistro'=>$formularioRegistro->createView(),
@@ -171,12 +166,12 @@ class DefaultController extends Controller
         ));
     }
 
-  
+
      /**
      * @Route("/nosotros" , name="nosotros")
      */
     public function nostrosAction(Request $request)
-    {   
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -196,7 +191,7 @@ class DefaultController extends Controller
      * @Route("/galeria", name="galeria")
      */
     public function galeriaAction(Request $request)
-    {   
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -208,7 +203,7 @@ class DefaultController extends Controller
         /////////////////////
 
 
-        $em = $this->getDoctrine()->getManager(); 
+        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery('SELECT g FROM BackendBundle:Galeria g WHERE g.publicado=1 ORDER BY g.orden DESC');
 
 
@@ -224,14 +219,14 @@ class DefaultController extends Controller
             'formularioIngreso'=> $formularioIngreso->createView(),
             'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
         ));
-        
+
     }
 
     /**
      * @Route("/blog{categoria}", name="blog")
      */
     public function blogAction(Request $request,$categoria = 0)
-    {   
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -242,7 +237,7 @@ class DefaultController extends Controller
 
         /////////////////////
 
-        $em = $this->getDoctrine()->getManager(); 
+        $em = $this->getDoctrine()->getManager();
         if (!$categoria || $categoria==0) {
             $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.publicado=1 ORDER BY p.fechaCreacion DESC') ->setMaxResults(10);
             $entradas = $query->getResult();
@@ -270,7 +265,7 @@ class DefaultController extends Controller
      * @Route("/detalleEntrada{idPagina}", name="detalleEntrada")
      */
     public function detalleEntrada(Request $request,$idPagina)
-    {    
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -281,12 +276,12 @@ class DefaultController extends Controller
 
         /////////////////////
 
-        $em = $this->getDoctrine()->getManager(); 
+        $em = $this->getDoctrine()->getManager();
 
             $query = $em->createQuery('SELECT p FROM BackendBundle:Pagina p WHERE p.id=:idPagina');
             $query->setParameter('idPagina', $idPagina);
             $entrada = $query->getSingleResult();
-        
+
          $query = $em->createQuery('SELECT c FROM BackendBundle:CategoriaPagina c ORDER BY c.titulo DESC');
             $categorias = $query->getResult();
 
@@ -338,10 +333,10 @@ class DefaultController extends Controller
 
 
             if ($formularioRegistro->isSubmitted() && $formularioRegistro->isValid()) {
-                $datosCliente = $formularioRegistro->getData();    
-                    
+                $datosCliente = $formularioRegistro->getData();
+
                     //guardo el cliente en la base de datos
-                    $em = $this->getDoctrine()->getManager(); 
+                    $em = $this->getDoctrine()->getManager();
                     //creo una clase cliente
                     $clienteAlta = new Cliente();
                     //le asigno los campos que complete en en formulario de registros
@@ -354,7 +349,7 @@ class DefaultController extends Controller
                     $clienteAlta->setActivo(true);
                     $clienteAlta->setContrasenia(md5($datosCliente->getContrasenia()));
                     //persisto el cliente
-                    $em->persist($clienteAlta); 
+                    $em->persist($clienteAlta);
                     //ejecuto la consulta
                     $em->flush();
 
@@ -366,21 +361,21 @@ class DefaultController extends Controller
                     }
 
 
-                    if ($formularioIngreso->isSubmitted() && $formularioIngreso->isValid()) {  
+                    if ($formularioIngreso->isSubmitted() && $formularioIngreso->isValid()) {
                            $datosIngreso = $formularioIngreso->getData();
-                           $em = $this->getDoctrine()->getManager(); 
+                           $em = $this->getDoctrine()->getManager();
                            $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.usuario= :usuario  AND c.contrasenia=:contrasenia and c.activo= 1 ");
                             $query->setParameter('usuario', $datosIngreso->getUsuario());
                             $query->setParameter('contrasenia', md5($datosIngreso->getContrasenia()));
-                          
-                           
+
+
                            $resultadoIngreso=$query->setMaxResults(1)->getOneOrNullResult();
                            if ($resultadoIngreso) {
-                                    
+
                                 //si encontro registro en la session
                             if (!$this->container->get('session')->isStarted()) {   $session = new Session();
                                     $session->start();
-                                    
+
                                }else {
                                 $session=$this->container->get('session');
 
@@ -429,7 +424,7 @@ class DefaultController extends Controller
      * @Route("/editarPerfil" , name="editarPerfil")
      */
     public function editarPerfilAction(Request $request)
-    {   
+    {
         //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -461,7 +456,7 @@ class DefaultController extends Controller
                             'label' => 'Confirmar','attr'=>['class'=>'btn-success'],
                         ))
                         ->getForm();
-         //busco el cliente con el id de sesion que guarde 
+         //busco el cliente con el id de sesion que guarde
         $session=$this->container->get('session');
         $em = $this->getDoctrine()->getManager();
         $clienteEditar = $em->getRepository(Cliente::class)->find($session->get('clienteId'));
@@ -483,9 +478,9 @@ class DefaultController extends Controller
 
             if ($formularioEditar->isSubmitted() && $formularioEditar->isValid()) {
                 //obtengo los datos del cliente
-                
-                $datosCliente = $formularioEditar->getData(); 
-              
+
+                $datosCliente = $formularioEditar->getData();
+
 
                     $clienteEditar->setEmail($datosCliente->getEmail());
                     $clienteEditar->setDireccion($datosCliente->getDireccion());
@@ -495,10 +490,10 @@ class DefaultController extends Controller
                     if ($datosCliente->getContrasenia()!=null and $datosCliente->getContrasenia()!='') {
                         $clienteEditar->setContrasenia(md5($datosCliente->getContrasenia()));
                     }
-                   
+
                     //guardo el cliente en la base de datos
                     $em->flush();
-                    
+
                     //elimino la session
                      $this->get('session')->clear();
                     $session = $this->get('session');
@@ -524,7 +519,7 @@ class DefaultController extends Controller
                             'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
                         ));
                     }
-      
+
         return $this->render('FrontendBundle::editarPerfil.html.twig',array(
             'formularioEditar'=>$formularioEditar->createView(),
             'formularioRegistro'=>$formularioRegistro->createView(),
@@ -540,7 +535,7 @@ class DefaultController extends Controller
      * @Route("/verCarrito", name="verCarrito")
      */
     public function verCarritoAction(Request $request)
-    {   
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -560,7 +555,7 @@ class DefaultController extends Controller
      * @Route("/verCompras", name="verCompras")
      */
     public function verComprasAction(Request $request)
-    {   
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -580,7 +575,7 @@ class DefaultController extends Controller
      * @Route("/verMensajes", name="verMensajes")
      */
     public function verMensajesAction(Request $request)
-    {   
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -593,7 +588,7 @@ class DefaultController extends Controller
         $session=$this->container->get('session');
         $clienteId=$session->get('clienteId');
         //obtengo los mensajes del usuario
-        $em = $this->getDoctrine()->getManager(); 
+        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery("SELECT c FROM BackendBundle:Consulta c WHERE c.cliente =:clienteId");
         $query->setParameter('clienteId', $clienteId);
         $mensajes = $query->getResult();
@@ -604,10 +599,10 @@ class DefaultController extends Controller
         $formularioMensaje->handleRequest($request);
 
         if ($formularioMensaje->isSubmitted() && $formularioMensaje->isValid()) {
-                $datosMensaje = $formularioMensaje->getData();    
-                    
+                $datosMensaje = $formularioMensaje->getData();
+
                     //guardo el mensaje la base de datos
-                    $em = $this->getDoctrine()->getManager(); 
+                    $em = $this->getDoctrine()->getManager();
                     //creo una clase cliente
                     $mensaje = new Consulta();
                     //le asigno los campos que complete en en formulario de registros
@@ -620,9 +615,9 @@ class DefaultController extends Controller
                     $mensaje->setEstado(false);
                     $mensaje->setFechaCreacion(new \DateTime("now"));
                     $mensaje->setMensaje($datosMensaje->getMensaje());
-                    
+
                     //persisto el cliente
-                    $em->persist($mensaje); 
+                    $em->persist($mensaje);
                     //ejecuto la consulta
                     $em->flush();
 
@@ -648,7 +643,7 @@ class DefaultController extends Controller
      * @Route("/verTurnos", name="verTurnos")
      */
     public function verTurnosAction(Request $request)
-    {   
+    {
          //variables para el login
         $variablesLogin=$this->formularios($request);
         $formularioRegistro=$variablesLogin['formularioRegistro'];
@@ -668,32 +663,34 @@ class DefaultController extends Controller
      * @Route("/buscarUsuario/{usuario}", name="buscarUsuario", methods={"POST"})
      */
     public function buscarUsuarioAction($usuario)
-    {   
+    {
 
-        $em = $this->getDoctrine()->getManager(); 
+        $em = $this->getDoctrine()->getManager();
         $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.usuario =:usuario");
         $query->setParameter('usuario', $usuario);
-       
+
         $busquedaUsuario=$query->getOneOrNullResult();
         if ($busquedaUsuario!=null) {
             $resultado='encontro';
         }else{
             $resultado='noencontro';
         }
-     
+
         return new JsonResponse($resultado);
     }
 
     /**
      * @Route("/obtenerTurnoDisponible/{fecha}/{hora}/{minuto}", name="obtenerTurnoDisponible")
      */
-    public function obtenerTurnoDisponibleAction($fecha, $hora, $minuto){ 
+    public function obtenerTurnoDisponibleAction($fecha, $hora, $minuto){
 
 
 
-      $em = $this->getDoctrine()->getManager(); 
-      $query = $em->createQuery("SELECT t.hora FROM BackendBundle:Turno t WHERE t.diayhorapiso =:fecha and '".$hora."-".$minuto."' >= t.diayhorapiso and '".$hora."-".$minuto."' <= t.horatecho");
+      $em = $this->getDoctrine()->getManager();
+      $query = $em->createQuery("SELECT t.hora FROM BackendBundle:Turno t WHERE t.diayhorapiso =:fecha and :hora >= t.hora and :hora <= t.horatecho");
       $query->setParameter('fecha', $fecha);
+      $query->setParameter('hora', $hora.":".$minuto);
+
       $turnosOcupados = $query->getResult();
 
       return new JsonResponse($turnosOcupados);

@@ -6,19 +6,19 @@
 			  text-decoration:  none;
 			  font-weight:      bold;
 			  color:            #d5bbaa;
-			  } 
+			  }
 
 		</style>
 		   			<br><br><br><br>
       				<div style="text-align:center;height:500px">
       					<img style="max-width:700px;max-height:900px;" src="{{asset('bundles/frontend/images/index/logo_index.png') }}">
       				</div>
-      				<div style="background-color:white;height:800px;">
+      				<div style="background-color:white;">
 
-      					
+
       					<div>
       						<div class="row">
-      							<div class"col-md-3"><img style="max-width: 500px; max-height:400px;" src="{{asset('bundles/frontend/images/index/logo-perro.png') }}">
+      							<div class"col-md-3"><img style="max-width: 500px; min-height:400px;" src="{{asset('bundles/frontend/images/index/logo-perro.png') }}">
       							</div>
       							<div class="col-md-7">
       								<span><h4>¡SOLICITA TU TURNO AQUI!</h4></span>
@@ -27,13 +27,13 @@
       							{{ form_start(formularioTurno) }}
       								<div class="row">
       									<div class="col-md-6">
-										 	{{ form_label(formularioTurno.nombre) }} 
+										 	{{ form_label(formularioTurno.nombre) }}
 										    {{ form_errors(formularioTurno.nombre) }}
 										    {{ form_widget(formularioTurno.nombre) }}
 										</div>
 								    <br>
 									   <div class="col-md-6">
-									    {{ form_label(formularioTurno.apellido) }} 
+									    {{ form_label(formularioTurno.apellido) }}
 									    {{ form_errors(formularioTurno.apellido) }}
 									    {{ form_widget(formularioTurno.apellido) }}
 									    <br>
@@ -64,6 +64,13 @@
 									    {{ form_errors(formularioTurno.diayhorapiso) }}
 									    {{ form_widget(formularioTurno.diayhorapiso) }}
 									    </div>
+											<br>
+											<div style="color:red" id="noPuedeCrearTurno">
+
+											</div>
+											<div style="color:green" id="sePuedeCrearTurno">
+
+											</div>
 									</div>
 									<div class="row">
 									    <div class="col-md-6">
@@ -80,8 +87,9 @@
       							</div>
       						</div>
       					</div>
-      					<div style="height:300px;">
-	      					<div style="height:250px; background-color:#d5bbaa;">
+								<br>
+      					<div >
+	      					<div style="min-height:250px; background-color:#d5bbaa;text-align:center;">
 		      					<div style="margin-left:5%;margin-right:10%;padding-top:5%;" class="row">
 		      						<div class="col-md-3" style="color:#4c2606">
 		      							<h3>
@@ -93,7 +101,7 @@
 		      						</div>
 		      						<div class="col-md-3">
 		      							<img src="{{asset('bundles/frontend/images/index/ceclia-logo.png') }}">
-		      							
+
 		      								<div  style="color:#4c2606">
 		      									<h4 >
 		      										<p>CECILIA ALEGRE</p>
@@ -102,10 +110,10 @@
 		      										Super fan de los perros
 		      									</p>
 		      								</div>
-		      								
+
 		      							<p></p>
 		      						</div>
-		      						
+
 		      						<div class="col-md-3">
 		      							<img src="{{asset('bundles/frontend/images/index/dogchow-logo.png') }}">
 		      							<div  style="color:#4c2606">
@@ -130,11 +138,11 @@
 		      						</div>
 		      					</div>
 	      					</div>
-	      						
+
       					</div>
       				</div>
-      				
-		    		
+							<br><br>
+
 		      		<!-- <div id="quienes-somos" style="margin-left:display:inline-block;background-image: url('{{asset('bundles/Frontend/images/template/banner-botoom.png') }}');background-repeat: no-repeat; background-position: center;width:100%; height:500px"></div> -->
 {% endblock %}
 {% block javascripts %}
@@ -147,9 +155,12 @@
                     autoclose:true,
                     language: 'es'
                 });
-        
-        $( "#frontendbundle_formulariocontacto_diayhorapiso" ).change(function() {
-        		
+
+
+			document.getElementById("frontendbundle_formulariocontacto_enviar").disabled = true;
+
+        $( "#frontendbundle_formulariocontacto_diayhorapiso, #frontendbundle_formulariocontacto_hora_hour, #frontendbundle_formulariocontacto_hora_minute" ).change(function() {
+
         		fecha= $( "#frontendbundle_formulariocontacto_diayhorapiso" ).val();
         		hora= $( "#frontendbundle_formulariocontacto_hora_hour" ).val();
             	minuto= $( "#frontendbundle_formulariocontacto_hora_minute" ).val();
@@ -164,8 +175,27 @@
                         type: "GET",
                         url: ruta,
                         success: function(data){
-                        console.log(data);
-                        }
+													if (data) {
+														if (data.length >0) {
+															$('#noPuedeCrearTurno').html('El horario no se encuentra disponible para solicitar un turno, por favor eliga otro horario.');
+															$('#sePuedeCrearTurno').html('');
+															document.getElementById("frontendbundle_formulariocontacto_enviar").disabled = true;
+															console.log('aca');
+														}else{
+															$('#sePuedeCrearTurno').html('El horario se encuentra disponible para solicitar un turno.');
+															$('#noPuedeCrearTurno').html('');
+															document.getElementById("frontendbundle_formulariocontacto_enviar").disabled = false;
+															console.log('aca2');
+
+														}
+													}else{
+													$('#sePuedeCrearTurno').html('El horario se encuentra disponible para solicitar un turno.');
+													$('#noPuedeCrearTurno').html('');
+													document.getElementById("frontendbundle_formulariocontacto_enviar").disabled = false;
+													console.log('ac3');
+													}
+
+											  }
                     }
              )
 
