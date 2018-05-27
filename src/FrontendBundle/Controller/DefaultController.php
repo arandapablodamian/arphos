@@ -687,8 +687,10 @@ class DefaultController extends Controller
 
 
       $em = $this->getDoctrine()->getManager();
-      $query = $em->createQuery("SELECT t.hora FROM BackendBundle:Turno t WHERE t.diayhorapiso =:fecha and '".$hora."-".$minuto."' >= t.diayhorapiso and '".$hora."-".$minuto."' <= t.horatecho");
+      $query = $em->createQuery("SELECT t.hora FROM BackendBundle:Turno t WHERE t.diayhorapiso =:fecha and :hora >= t.hora and :hora <= t.horatecho");
       $query->setParameter('fecha', $fecha);
+      $query->setParameter('hora', $hora.":".$minuto);
+
       $turnosOcupados = $query->getResult();
 
       return new JsonResponse($turnosOcupados);
