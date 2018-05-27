@@ -9,6 +9,17 @@
 	    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" />
 	    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
 	    <style>
+	    .display{
+	    	color:#7c5529;
+	    	background-color: #faf4ee;
+	    	border-style: solid;
+	    	font-size: large;
+	    	margin-bottom: 20px;
+	    }
+	    .display tr{
+	    	color:#7c5529;
+	    	border-style: solid;
+	    }
 		.navbar-default {
 			background-color:transparent !important;
 			border-color:transparent;
@@ -89,7 +100,27 @@
 		}
 		  h2{color:#4c2606}
 		  h3{color:#4c2606}
+		  h3 a{color:#4c2606}
 		  h1{color:#4c2606}
+
+		  table {
+			    border-collapse:separate;
+			    border-radius:10px;
+			    -moz-border-radius:10px;
+			}
+
+			td, th {
+			    border-left:solid black 1px;
+			    border-top:solid black 1px;
+			}
+
+			th {
+			    border-top: none;
+			}
+
+			td:first-child, th:first-child {
+			     border-left: none;
+			}
 
 		 </style>
 	{% endblock %}
@@ -97,11 +128,47 @@
 	{% endblock %}
 </head>
 <body>
+
 	<div style="min-height:60px;background-color:#7c5428;">
 		<div style="padding-top:10px;padding-right:10px;;text-align:right;">
-			<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalIngresar">Ingresar</button>
-			<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalRegistrarse">Registrarse</button>
 
+			{% if (app.session.get('usuario') == '') and  (app.session.get('usuario') == null) %}
+
+				<button type="button" class="btn btn-success" data-toggle="modal" data-target="#modalIngresar">Ingresar</button>
+				<button type="button" class="btn btn-info" data-toggle="modal" data-target="#modalRegistrarse">Registrarse</button>
+			{% else %}
+
+			    <div class="row">
+			    	<div class="col-md-9">
+			    		
+			    	</div>
+			    	<div class="col-md-1" style="color:white;">
+			    		
+			    		<div class="dropdown">
+						  <button class="btn btn-success dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" >
+						  <strong>{{app.session.get('usuario')}}</strong> 
+						  </button>
+						  <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+						    <a class="dropdown-item" href="{{path('editarPerfil')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/perfil-icon.jpg') }}" alt="">&nbsp Editar Perfil</a>
+						    <a class="dropdown-item" href="{{path('verCompras')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/shop-icon.png') }}" alt="">&nbspVer Compras</a>
+						      <a class="dropdown-item" href="{{path('verCarrito')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/cart-icon.png') }}" alt="">&nbspVer Carrito</a>
+						    <a class="dropdown-item" href="{{path('verMensajes')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/message-icon.png') }}" alt="">&nbspEnviar Mensaje</a>
+						    <a class="dropdown-item" href="{{path('verTurnos')}}" >
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/turno-icon.png') }}" alt="">&nbspVer turnos</a>
+						    <a class="dropdown-item"href="{{path('cerrarSesion')}}" > 
+						    	<img class="img-fluid" style="width:20px;" src="{{ asset('bundles/frontend/images/template/logout-icon.png') }}" alt="">&nbspCerrar Sesión</a>
+						  </div>
+						</div>
+			    	</div>
+			    	<div class="col-md-1">
+			    		
+			    	</div>
+			    </div>
+			{% endif %}
 
 
 			<!-- Ventana modal para ingresar -->
@@ -115,10 +182,41 @@
 			        </button>
 			      </div>
 			      <div class="modal-body">
-			        ...
+			        	<div style="text-align:center;"><h3>Ingreso a Arphos</h3></div>
+					{{ form_start(formularioIngreso) }}
+			    		<div class="row">
+			    			<div class="col-md-2"></div>
+			    			<div class="col-md-8" style="text-align:left;">
+			    				{{ form_label(formularioIngreso.usuario) }}
+								{{ form_errors(formularioIngreso.usuario) }}
+								{{ form_widget(formularioIngreso.usuario) }}
+			    			</div>
+			    			<div class="col-md-2"></div>
+			    		</div>
+			    		<div class="row">
+			    			<div class="col-md-2"></div>
+			    			<div class="col-md-8" style="text-align:left;">
+			    				{{ form_label(formularioIngreso.contrasenia) }}
+								{{ form_errors(formularioIngreso.contrasenia) }}
+								{{ form_widget(formularioIngreso.contrasenia) }}
+			    			</div>
+			    			<div class="col-md-2"></div>
+						</div>	
+			    		
+			    		<br>
+			    		<div class="row">
+			    			<div class="col-md-2"></div>
+				    		<div class="col-md-8" style="text-align:center;color:red;">
+				    			{% if usuarioInvalido %}
+									Usuario y/o contraseña inválidos, por favor vuelva a intentar.
+				    			{% endif %}
+				    		</div>
+			    			<div class="col-md-2"></div>
+			    		</div>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-success">Entrar</button>
+			        {{ form_widget(formularioIngreso.enviar) }}
+			    		{{ form_end(formularioIngreso) }}
 			        <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
 			      </div>
 			    </div>
@@ -135,51 +233,63 @@
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
-			      <div class="modal-body">
+			      <div class="modal-body" style="text-align:left;">
+			      	<h5>Bienvenido a Arphos, por favor ingrese sus datos en los siguientes campos:</h5>
 					{{ form_start(formularioRegistro) }}
 			    		<div class="row">
-			    			<div class="col-md-12">
+			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.nombre) }}
 								{{ form_errors(formularioRegistro.nombre) }}
 								{{ form_widget(formularioRegistro.nombre) }}
 			    			</div>
-			    			<div class="col-md-12">
+			    		</div>
+			    		<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.apellido) }}
 								{{ form_errors(formularioRegistro.apellido) }}
 								{{ form_widget(formularioRegistro.apellido) }}
 			    			</div>
 						</div>
 						<div class="row">
-			    			<div class="col-md-12">
+			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.direccion) }}
 								{{ form_errors(formularioRegistro.direccion) }}
 								{{ form_widget(formularioRegistro.direccion) }}
 			    			</div>
-			    			<div class="col-md-12">
+			    		</div>
+			    		<div class="row">	
+			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.telefono) }}
 								{{ form_errors(formularioRegistro.telefono) }}
 								{{ form_widget(formularioRegistro.telefono) }}
 			    			</div>
 						</div>				
 						<div class="row">
-			    			<div class="col-md-12">
+			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.email) }}
 								{{ form_errors(formularioRegistro.email) }}
 								{{ form_widget(formularioRegistro.email) }}
 			    			</div>
 			    		</div>	
 			    		<div class="row">
-			    			<div class="col-md-12">
+			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.usuario) }}
 								{{ form_errors(formularioRegistro.usuario) }}
 								{{ form_widget(formularioRegistro.usuario) }}
+								<div id="encontroUsuario" style="color:red;">
+								</div>
+								<div id="noencontroUsuario" style="color:green;">
+								</div>
 			    			</div>
-			    			<div class="col-md-12">
+
+			    		</div>
+			    		<div class="row">
+			    			<div class="col-md-12" style="text-align:left;">
 			    				{{ form_label(formularioRegistro.contrasenia) }}
 								{{ form_errors(formularioRegistro.contrasenia) }}
 								{{ form_widget(formularioRegistro.contrasenia) }}
 			    			</div>
-						</div>		
+						</div>	
 			    		
 			    		<br>
 			    		<div style="text-align:center;">
@@ -198,9 +308,10 @@
 			  </div>
 			</div>
 
-
 		</div>
 	</div>
+	<div id="container">
+		<div id="page">
 	{% block header %}
 	    <div id="banner-top" style="background-image: url('{{asset('bundles/frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover; height:100px position: fixed;">
 			<a href="{{path('index')}}"><div style="background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
@@ -267,11 +378,14 @@
 
 					    		{% block content %}
 					    		{% endblock %}
-
-
+			</div>
+		    		
+		    </div>
+		    </div>
+		    {% endblock %}
 			{% block footer %}
 
-		      <div id="banner-top" style="background-color:#d5bbaa; height:50px">
+		     <div id="banner-top" style="background-color:#d5bbaa; height:50px">
 		      	<div  class="container">
 		      	<div  class="row">
 		      		<a  class="col-md-1" target="_bank" href="https://www.facebook.com/Arphospcmg/">
@@ -295,14 +409,63 @@
 			      	
 		      	</div>
 		      	</div>
-		      </div>
+		     </div>
     				
 
 		    {% endblock %}
-{% endblock %}
+
+			</div>
+			
+	</div>
 </body>
 </html>
 {% block javascripts %}
-	<script src="{{ asset('assets/jquery/jquery.js') }}"></script>
-	<script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+   <script src="{{ asset('assets/jquery/jquery.js') }}"></script>
+   <script src="{{ asset('assets/bootstrap/js/popper.min.js') }}"></script>
+   <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
+   <script src="{{ asset('assets/datepicker/bootstrap-datepicker.min.js') }}"></script>
+   <script src="{{ asset('assets/datepicker/bootstrap-datepicker.es.min.js') }}"></script>	
+	
+	<script>
+		//comienza deshabilitado el boton
+		document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
+		$("#frontendbundle_mensaje_usuario").keyup(function(){
+		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
+		});
+		
+		$("#frontendbundle_mensaje_usuario").change(function(){
+		     buscarUsuario($("#frontendbundle_mensaje_usuario").val());
+		});
+
+
+		function buscarUsuario(usuario){
+			parametroBuscar="{{path('buscarUsuario',{'usuario':'usuario'})}}";
+			parametroBuscar=parametroBuscar.replace('usuario',usuario);
+			$.ajax({
+                        type: "POST",
+                        url: parametroBuscar,
+                        // async : false,
+                        success: function(data){
+								if (data=="encontro") {
+									$('#encontroUsuario').html('Lo sentimos el nombre usuario actualmente no esta disponible.');
+									$('#noencontroUsuario').html('');
+									document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
+								}else{
+									$('#noencontroUsuario').html('Usuario Disponible actualmente.');
+									$('#encontroUsuario').html('');
+									document.getElementById("frontendbundle_mensaje_enviar").disabled = false;
+								}
+	                        }
+                    })
+		};
+		{% if mostrarIngreso %}
+			$('#modalIngresar').modal('show');
+		{% endif %}
+		{% if mostrarRegistro %}
+			$('#modalRegistrarse').modal('show');
+		{% endif %}
+		{% if usuarioInvalido %}
+			$('#modalIngresar').modal('show');
+		{% endif %}
+	</script>
 {% endblock %}

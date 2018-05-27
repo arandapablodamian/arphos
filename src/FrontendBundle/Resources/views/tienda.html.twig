@@ -11,12 +11,10 @@
   {% endblock %}
 
 {% block content %}
-    <div style="background-color:#faf4ee;">
-                        <div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
-                background-position: center;
-                background-size: cover;width:100%;heigh:100%;" >
+    <div style="">
+                        <div id="wrapper" style="" >
                 
-                                  <div style="background-color: rgba(255,255,255,0.7);">
+                                  <div>
                                   <div class="container">
                                     <div class="row">
                                       <div class="col-md-2" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
@@ -24,7 +22,7 @@
                                         <h2>Categorias</h2>
                                         <ul>
                                            {% for Categoria in Categorias %}
-                                          <a href="tiendacategoria={{Categoria.id}}"><li>{{Categoria.titulo}}</li></a>
+                                          <h3><a href="tiendacategoria={{Categoria.id}}"><li>{{Categoria.titulo}}</li></a></h3>
                                            {% endfor %}
                                         </ul>
                                         <h2>Color:</h2>
@@ -44,7 +42,7 @@
                                         
                                       </div>
                                 
-                                <div class="col-md-7" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
+                                <div class="col-md-10" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
 
                                 {% block producto %}
                                 <h1 class="text-lg-right">
@@ -56,7 +54,7 @@
                                    Categoria > Todos
                                 {% endif %} 
                                 </h1>              
-                                <div class="row text-center text-lg-left">
+                                <div class="text-center text-lg-left">
       
                                   <table id="example" class="display" width="100%" cellspacing="0">
 
