@@ -8,6 +8,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpFoundation\Session\Session;
 use Symfony\Component\Validator\Constraints\DateTime;
+use Symfony\Component\Validator\Constraints\DateInterval;
 //para las entidades
 use BackendBundle\Entity\Turno;
 use BackendBundle\Entity\Cliente;
@@ -73,8 +74,16 @@ class DefaultController extends Controller
         $turnoAlta->setCorreo($datosTurno->getCorreo());
         $turnoAlta->setTelefono($datosTurno->getTelefono());
         $turnoAlta->setDiayhorapiso($datosTurno->getDiayhorapiso());
-        $turnoAlta->setDiayhoratecho($datosTurno->getDiayhoratecho());
-   
+        $turnoAlta->setHora($datosTurno->getHora());
+
+        //por defecto la hora techo se carga con una hora mas que la hora piso
+        $auxDate= date_format($datosTurno->getHora(),'Y-m-d H:i:s');
+
+        $dateNuevo= strtotime(" + 1 hour $auxDate");
+        dump($dateNuevo);
+        die;
+        $turnoAlta->setHoratecho($dateNuevo);
+
         //persisto el turno
         $em->persist($turnoAlta);
    
@@ -674,4 +683,21 @@ class DefaultController extends Controller
      
         return new JsonResponse($resultado);
     }
+
+    /**
+     * @Route("/obtenerTurnoDisponible/{fecha}/{hora}/{minuto}", name="obtenerTurnoDisponible")
+     */
+    public function obtenerTurnoDisponibleAction($fecha, $hora, $minuto){ 
+
+
+
+      $em = $this->getDoctrine()->getManager(); 
+      $query = $em->createQuery("SELECT t.hora FROM BackendBundle:Turno t WHERE t.diayhorapiso =:fecha and '".$hora."-".$minuto."' >= t.diayhorapiso and '".$hora."-".$minuto."' <= t.horatecho");
+      $query->setParameter('fecha', $fecha);
+      $turnosOcupados = $query->getResult();
+
+      return new JsonResponse($turnosOcupados);
+    }
+
+
 }

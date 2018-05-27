@@ -1,7 +1,7 @@
 <?php
 
 namespace BackendBundle\Entity;
-
+use Symfony\Component\Validator\Constraints as Assert;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -50,25 +50,31 @@ class Turno
     private $correo;
 
     /**
-     * @var int
-     *
-     * @ORM\Column(name="telefono", type="bigint")
+     * @var string
+     * @ORM\Column(name="telefono", type="string")
      */
     private $telefono;
 
     /**
-     * @var \DateTime
+     * @var \String
      *
-     * @ORM\Column(name="diayhorapiso", type="datetime")
+     * @ORM\Column(name="diayhorapiso", type="string")
      */
     private $diayhorapiso;
 
     /**
-     * @var \DateTime
+     * @var \Time
      *
-     * @ORM\Column(name="diayhoratecho", type="datetime")
+     * @ORM\Column(name="horatecho", type="time", nullable= true)
      */
-    private $diayhoratecho;
+    private $horatecho;
+
+    /**
+     * @var \Time
+     *
+     * @ORM\Column(name="hora", type="time")
+     */
+    private $hora;
 
     /**
      * Get id
@@ -179,7 +185,7 @@ class Turno
     /**
      * Set telefono
      *
-     * @param integer $telefono
+     * @param string $telefono
      *
      * @return Turno
      */
@@ -193,7 +199,7 @@ class Turno
     /**
      * Get telefono
      *
-     * @return int
+     * @return string
      */
     public function getTelefono()
     {
@@ -203,7 +209,7 @@ class Turno
     /**
      * Set diayhorapiso
      *
-     * @param \DateTime $diayhorapiso
+     * @param \Date $diayhorapiso
      *
      * @return Turno
      */
@@ -217,7 +223,7 @@ class Turno
     /**
      * Get diayhorapiso
      *
-     * @return \DateTime
+     * @return \Date
      */
     public function getDiayhorapiso()
     {
@@ -225,27 +231,51 @@ class Turno
     }
 
     /**
-     * Set diayhoratecho
+     * Set horatecho
      *
-     * @param \DateTime $diayhoratecho
+     * @param \Time $horatecho
      *
      * @return Turno
      */
-    public function setDiayhoratecho($diayhoratecho)
+    public function setHoratecho($horatecho)
     {
-        $this->diayhoratecho = $diayhoratecho;
+        $this->horatecho = $horatecho;
 
         return $this;
     }
 
     /**
-     * Get diayhoratecho
+     * Get horatecho
      *
-     * @return \DateTime
+     * @return \Time
      */
-    public function getDiayhoratecho()
+    public function getHoratecho()
     {
-        return $this->diayhoratecho;
+        return $this->horatecho;
+    }
+
+        /**
+     * Set hora
+     *
+     * @param \Time $hora
+     *
+     * @return Turno
+     */
+    public function setHora($hora)
+    {
+        $this->hora = $hora;
+
+        return $this;
+    }
+
+    /**
+     * Get hora
+     *
+     * @return \Time
+     */
+    public function getHora()
+    {
+        return $this->hora;
     }
 
 }

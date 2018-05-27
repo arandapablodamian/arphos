@@ -67,9 +67,9 @@
 									</div>
 									<div class="row">
 									    <div class="col-md-6">
-									    {{ form_label(formularioTurno.diayhoratecho) }}
-									    {{ form_errors(formularioTurno.diayhoratecho) }}
-									    {{ form_widget(formularioTurno.diayhoratecho) }}
+									    {{ form_label(formularioTurno.hora) }}
+									    {{ form_errors(formularioTurno.hora) }}
+									    {{ form_widget(formularioTurno.hora) }}
 									    </div>
 									</div>
 								  	<hr>
@@ -136,4 +136,47 @@
       				
 		    		
 		      		<!-- <div id="quienes-somos" style="margin-left:display:inline-block;background-image: url('{{asset('bundles/Frontend/images/template/banner-botoom.png') }}');background-repeat: no-repeat; background-position: center;width:100%; height:500px"></div> -->
+{% endblock %}
+{% block javascripts %}
+    {{ parent() }}
+
+    <script type="text/javascript">
+
+        $("#frontendbundle_formulariocontacto_diayhorapiso").datepicker({
+                    format: 'dd-mm-yyyy',
+                    autoclose:true,
+                    language: 'es'
+                });
+        
+        $( "#frontendbundle_formulariocontacto_diayhorapiso" ).change(function() {
+        		
+        		fecha= $( "#frontendbundle_formulariocontacto_diayhorapiso" ).val();
+        		hora= $( "#frontendbundle_formulariocontacto_hora_hour" ).val();
+            	minuto= $( "#frontendbundle_formulariocontacto_hora_minute" ).val();
+
+
+        		ruta = "{{path('obtenerTurnoDisponible',{'fecha':'fecha', 'hora':'hora', 'minuto':'minuto'})}}";
+        		ruta = ruta.replace("fecha", fecha);
+        		ruta = ruta.replace("hora", hora);
+        		ruta = ruta.replace("minuto", minuto);
+
+         	    $.ajax({
+                        type: "GET",
+                        url: ruta,
+                        success: function(data){
+                        console.log(data);
+                        }
+                    }
+             )
+
+
+        });
+
+
+
+
+    </script>
+
+
+
 {% endblock %}
