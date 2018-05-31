@@ -6,8 +6,11 @@
 	{% endblock %}
 	{% block stylesheets %}
 		<link rel="icon" href="{{ asset('bundles/frontend/images/template/pata-top-banner.png') }}">
+
+	    <link rel="stylesheet" href="{{ asset('bundles/frontend/css/template.css') }}" />
 	    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" />
-	    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+	    <link rel="stylesheet" href="{{ asset('bundles/frontend/css/jquery.dataTables.min.css') }}" />
+	    <link rel="stylesheet" href="{{ asset('assets/datepicker/bootstrap-datepicker.min.css') }}" />
 	    <style>
 	    .display{
 	    	color:#7c5529;
@@ -424,7 +427,32 @@
    <script src="{{ asset('assets/bootstrap/js/popper.min.js') }}"></script>
    <script src="{{ asset('assets/bootstrap/js/bootstrap.js') }}"></script>
    <script src="{{ asset('assets/datepicker/bootstrap-datepicker.min.js') }}"></script>
-   <script src="{{ asset('assets/datepicker/bootstrap-datepicker.es.min.js') }}"></script>	
+   <script src="{{ asset('assets/datepicker/bootstrap-datepicker.es.min.js') }}"></script>
+   <script src="{{ asset('assets/jquery/jquery.dataTables.min.js') }}"></script>
+   <script>
+        $(document).ready(function() {
+    	$('#example').DataTable({
+    		language: {
+       		  	processing:     "Procesando...",
+       			search:         "Busqueda:",
+		        lengthMenu:    "Mostrar _MENU_  elementos",
+		        info:           "Mostrando de _START_ a _END_ de _TOTAL_ elementos",
+		        infoEmpty:      "Mostrando de 0 a 0 de 0 elementos",
+		        infoFiltered:   "(filtrado de _MAX_ elementos en total)",
+		        infoPostFix:    "",
+		        loadingRecords: "Cargando...",
+		        zeroRecords:    "No hay productos que satisfagan la busqueda",
+		        emptyTable:     "No hay productos que satisfagan la busqueda",
+		        paginate: {
+		            first:      "Primero",
+		            previous:   "Anterior",
+		            next:       "Siguiente",
+		            last:       "Ultimo"
+		        },
+   			}
+			});
+		} );
+       </script>	
 	
 	<script>
 		//comienza deshabilitado el boton
