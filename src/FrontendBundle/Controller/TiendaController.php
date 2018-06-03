@@ -198,7 +198,7 @@ class TiendaController extends Controller
             ->add('cantidad', IntegerType::class, array('data' => 1,'data' => 1))
             ->add('precio', HiddenType::class, array('empty_data' => $Producto -> getPrecio() ,))
             ->add('talle', ChoiceType::class, array( 'choices'  => $Talles ))
-            ->add('save', SubmitType::class, array('label' => 'Cargar a Carrito'))
+            ->add('save', SubmitType::class, array('label' => 'Cargar a Carrito', 'attr' => array('class'=>'botonarphos')))
             ->getForm();
         $Productoform->handleRequest($request);
 
