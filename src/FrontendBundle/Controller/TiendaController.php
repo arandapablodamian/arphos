@@ -202,7 +202,10 @@ class TiendaController extends Controller
             ->getForm();
         $Productoform->handleRequest($request);
 
+         $agregadoAlCarrito= false;
         if ($Productoform->isSubmitted() && $Productoform->isValid()) {
+            $mostrarIngreso=false;
+            $agregadoAlCarrito= true;
         // $form->getData() holds the submitted values
         // but, the original `$task` variable has also been updated
         $ProductoComprado = $Productoform->getData();
@@ -219,7 +222,7 @@ class TiendaController extends Controller
             'formularioIngreso'=> $formularioIngreso->createView(),
             'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
             "Categorias" => $Categorias,
-            /*"Estaciones" => $Estaciones,*/"Imagenes" => $Imagenes, "Categorias" => $Categorias, "Producto" => $Producto, 'form' => $Productoform->createView()));
+            /*"Estaciones" => $Estaciones,*/"Imagenes" => $Imagenes, "Categorias" => $Categorias,"Agregado" => $agregadoAlCarrito, "Producto" => $Producto, 'form' => $Productoform->createView()));
     }
      /**
      * @Route("/carrito", name="carrito")
@@ -234,6 +237,9 @@ class TiendaController extends Controller
         $mostrarIngreso=$variablesLogin['mostrarIngreso'];
         $usuarioInvalido=$variablesLogin['usuarioInvalido'];
         ///
+
+        
+
         $session = $request->getSession();
         $session->start();
         $Categorias = $this -> getDoctrine()
@@ -255,8 +261,9 @@ class TiendaController extends Controller
 
         $form->handleRequest($request);
 
-        if ($form->isSubmitted() && $form->isValid()) {
-            
+        if ($form->isSubmitted() && $form->isValid()) { 
+                
+
                 $mp = new MP('1196810826207782', 'TDxXTGPlWXvUxNfLRY1coWmB9L8zd2gw');
 
                 //creamos la compra

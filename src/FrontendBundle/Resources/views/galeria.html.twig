@@ -1,13 +1,40 @@
-{% extends 'FrontendBundle::template.html.twig' %}
+{% extends 'FrontendBundle::arreglo.html.twig' %}
 {% block stylesheets %}
 	{{parent()}}
     <style>
+
+		.fb-post {
+			width: 100% !important;
+			height: auto !important;
+
+		}
+
+		 .fb-post span{
+		 	width: 90% !important;
+		 	//height: auto !important;
+		 	
+		 }
+		
 	    .fb-post iframe {
-	    transform:scale(0.8,0.8);}
+	    	width: 100% !important;
+	    	
+	    }
+	    .capsula {
+	    	border-radius:10px;
+	    	margin-bottom:5px !important;
+	    	heigh:100%;
+	    	width:300px;
+	    }
+	    .capsula h3{
+	    	color:#70c195;
+	    }
+	    .divisor {
+	    	
+	    }
     </style>
 {% endblock %}
 {% block content %}
-<div id="fb-root"></div>
+<div id="fb-root" class="text-center"></div>
 <script>
 	(function(d, s, id) {
 	  var js, fjs = d.getElementsByTagName(s)[0];
@@ -17,12 +44,16 @@
 	  fjs.parentNode.insertBefore(js, fjs);
 	}(document, 'script', 'facebook-jssdk'));
 </script>
-	<div style="width:1000px; margin-left:auto; margin-right:auto;min-height:600px;">
-		<div class="row">
+	<div class="container">
+		<div class="d-flex flex-row flex-wrap justify-content-around">
 			{% for post in pagination %}
-				<div class="col-md-4">
+				
+					<div class="d-flex flex-column p-2 text-center display capsula">
+					<h3 class=""><u>{{post.titulo}}</u></h3>
 					<div class="fb-post" data-href="{{post.post}}" ></div>
-   				</div>
+					</div>
+   				
+   				<div class="divisor"></div>
 			{% endfor %}
 			
 		</div>

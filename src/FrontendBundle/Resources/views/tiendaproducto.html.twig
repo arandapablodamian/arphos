@@ -51,9 +51,11 @@
                   {{ form_start(form) }}
                   {{ form_widget(form) }}
                   {{ form_end(form) }}
-
+                  {% if Agregado %}
+                    <div class="success">Agregado al carrito</div>
+                  {% endif %}
                 </div>
               </div>
 <h3>Descripcion del producto:</h3>
-<div class="display" style="border-radius:10px; -moz-border-radius:10px;">   {{Producto.descripcion |raw}} </div>
+<div class="display" style="border-radius:10px; -moz-border-radius:10px;">{{Producto.descripcion |raw}} </div>
 {% endblock %}
