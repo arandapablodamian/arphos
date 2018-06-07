@@ -170,7 +170,7 @@ class TiendaController extends Controller
         ->getRepository("BackendBundle:Producto")
         ->find($id);
 
-        $Categorias = $Producto -> getCategorias();
+        $CategoriasP = $Producto -> getCategorias();
 
         $Imagenes = $this -> getDoctrine()
         ->getRepository("BackendBundle:Resource")
@@ -222,7 +222,7 @@ class TiendaController extends Controller
             'formularioIngreso'=> $formularioIngreso->createView(),
             'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
             "Categorias" => $Categorias,
-            /*"Estaciones" => $Estaciones,*/"Imagenes" => $Imagenes, "Categorias" => $Categorias,"Agregado" => $agregadoAlCarrito, "Producto" => $Producto, 'form' => $Productoform->createView()));
+            /*"Estaciones" => $Estaciones,*/"Imagenes" => $Imagenes, "CategoriasP" => $CategoriasP,"Agregado" => $agregadoAlCarrito, "Producto" => $Producto, 'form' => $Productoform->createView()));
     }
      /**
      * @Route("/carrito", name="carrito")

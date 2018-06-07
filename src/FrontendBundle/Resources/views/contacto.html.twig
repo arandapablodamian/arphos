@@ -1,19 +1,41 @@
-{% extends 'FrontendBundle::template.html.twig' %}
+{% extends 'FrontendBundle::arreglo.html.twig' %}
 {% block content %}
-	<div style="min-height:500px;">
+	<div style="min-height:500px;" class="container">
 		<div class="row">
-			<div class="col-md-1"></div>
+			
 	    	<div class="col-md-3">
-	    		<div> <img src="{{asset('bundles/frontend/images/contacto/BurbujaContaco.png')}}" alt=""></div><br>
-	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/FacebookContacto.png')}}" alt=""></a></div><br>
-	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/InstagramArphos.png')}}" alt=""></a></div><br>
-	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/TwitterArphos.png')}}" alt=""></a></div><br>
-	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/YoutubeContacto.png')}}" alt=""></a></div><br>
-	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/WhatsappContacto.png')}}" alt=""></a></div><br>
-	    		<div><a href=""><img src="{{asset('bundles/frontend/images/contacto/EmailContacto.png')}}" alt=""></a></div><br>
-
+	    		<div class="d-flex flex-column">
+		    		<div class="contactodiv">
+		    			<img style="width:100%" src="{{asset('bundles/frontend/images/contacto/BurbujaContaco.png')}}" alt="">
+		    		</div>
+		    		<br>
+		    		<div class="contactodiv">
+		    			<a class="contacto" href=""><img class="contactoimagen" src="{{asset('bundles/frontend/images/contacto/FacebookContacto.png')}}" alt=""> @Arphospcmg</a>
+		    		</div>
+		    		<br>
+		    		<div class="contactodiv">
+		    			<a class="contacto" href=""><img class="contactoimagen" src="{{asset('bundles/frontend/images/contacto/InstagramArphos.png')}}" alt=""> Arphos_peluqueria</a>
+		    		</div>
+		    		<br>
+		    		<div class="contactodiv">
+		    			<a class="contacto" href=""><img class="contactoimagen" src="{{asset('bundles/frontend/images/contacto/TwitterArphos.png')}}" alt=""> @Arhospc</a>
+		    		</div>
+		    		<br>
+		    		<div class="contactodiv">
+		    			<a class="contacto" href=""><img class="contactoimagen" src="{{asset('bundles/frontend/images/contacto/YoutubeContacto.png')}}" alt=""> Arphos C.L.</a>
+		    		</div>
+		    		<br>
+		    		<div class="contactodiv">
+		    			<a class="contacto" href=""><img class="contactoimagen" src="{{asset('bundles/frontend/images/contacto/WhatsappContacto.png')}}" alt=""> 0379-154206843</a>
+		    		</div>
+		    		<br>
+		    		<div class="contactodiv">
+		    			<a class="contacto" href=""><img class="contactoimagen" src="{{asset('bundles/frontend/images/contacto/EmailContacto.png')}}" alt=""> Arphospc@gmail.com</a>
+		    		</div>
+		    		<br>
+	    		</div>
 	    	</div>
-	    	<div class="col-md-5">
+	    	<div class="col-md-6">
 	    		{{ form_start(formularioContacto) }}
 	    		<div class="row">
 	    			<div class="col-md-6">
@@ -62,10 +84,10 @@
 
 				{{ form_end(formularioContacto) }}
       		</div>
-      		<div class="col-md-2">
+      		<div class="col-md-3">
 
 	    		<div >
-	    		 	<img style="width:320px;"src="{{asset('bundles/frontend/images/contacto/DibujoArphos.png')}}" alt="">
+	    		 	<img style="width:100%;"src="{{asset('bundles/frontend/images/contacto/DibujoArphos.png')}}" alt="">
 	    		</div>
 	    	</div>
 	    </div>
