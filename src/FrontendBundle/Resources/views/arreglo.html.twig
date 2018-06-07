@@ -139,6 +139,11 @@
 			     border-left: none;
 			}
 
+			.wapo {
+				border-top: solid;
+				border-color: #7c5428;
+			}
+
 		 </style>
 	{% endblock %}
 	{% block scripts %}
@@ -332,7 +337,7 @@
 		<div id="page">
 	{% block header %}
 	    <div id="banner-top" style="background-image: url('{{asset('bundles/frontend/images/template/top-banner.png') }}');background-repeat: no-repeat;background-position: center; background-size: cover; height:100px position: fixed;">
-			<a href="{{path('index')}}"><div style="background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:100px"></div>
+			<a href="{{path('index')}}"><div style="margin-left:20px ; background-image: url('{{asset('bundles/frontend/images/template/pata-top-banner.png') }}');background-repeat: no-repeat;background-position: left; width:auto; height:120px"></div>
 			</a>
 
 		</div>
@@ -340,9 +345,9 @@
 
 	{% block wrapper %}
 			    <div style="background-color:#faf4ee;   ">
-					<div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;background-position: center;background-size: cover; height:100% " >
+					<div class="wapo" id="wrapper" >
 		    
-			<div style="background-color: rgba(255,255,255,0.7);height:100%;">
+			<div style="background-color:#faf4ee; background-color: rgba(255,255,255,0.7);height:100%;">
 				<nav class="navbar navbar-expand-lg navbar-light "   >
 				  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
 				    <span class="navbar-toggler-icon"></span>
@@ -387,8 +392,9 @@
 				    
 				  </div>
 				</nav>
-                <div style="width:70%;color:#d5bbaa">
-                	<hr />
+                <div style="width:100%;color:#d5bbaa; padding-left: 5%;padding-right: 5%; margin-bottom:30px">
+                	<div style="width:100%; border-top: solid">
+                	</div>
                 </div>
 
                 
