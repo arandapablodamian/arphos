@@ -10,22 +10,26 @@
                                   <div>
                                   <div class="container">
                                     <div class="row">
-                                      <div class="col-md-2" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
+                                      <div class="col-md-3" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
                                       <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
-                                        <h2>Categorias</h2>
+                                        <h2><b>Categorias</b></h2>
                                         <ul>
                                            {% for Categoria in Categorias %}
-                                          <h3><a href="tiendacategoria={{Categoria.id}}"><li>{{Categoria.titulo}}</li></a></h3>
+                                          <h3><a style="color:#4bb27d" href="tiendacategoria={{Categoria.id}}"><li><b>{{Categoria.titulo}}</b></li></a></h3>
                                            {% endfor %}
                                         </ul>
-                                        <h2>Color:</h2>
+                                        <h2><b>Color:</b></h2>
+
                                         <ul>
+                                          
                                           <a class="cuadro white" href="tiendacolor=blanco"></a>
                                           <a class="cuadro black" href="tiendacolor=negro"></a>
                                           <a class="cuadro pink" href="tiendacolor=rosa"></a>
+                                          <br><h6> </h6>
                                           <a class="cuadro red" href="tiendacolor=rojo"></a>
                                           <a class="cuadro blue" href="tiendacolor=azul"></a>
                                           <a class="cuadro yellow" href="tiendacolor=amarillo"></a>
+                                          <br><h6> </h6>
                                           <a class="cuadro green" href="tiendacolor=verde"></a>
                                           <a class="cuadro orange" href="tiendacolor=naranja"></a>
                                           <a class="cuadro violet" href="tiendacolor=violeta"></a>
@@ -35,16 +39,16 @@
                                         
                                       </div>
                                 
-                                <div class="col-md-10" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
+                                <div class="col-md-9" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
 
                                 {% block producto %}
                                 <h1 class="text-lg-right">
                                 {% if Categoria is defined %}
-                                    Categoria > {{Categoria}}
+                                   <b>Categoria > {{Categoria}}</b>
                                 {% elseif Color is defined %}
-                                    Color > {{Color}}
+                                    <b>Color > {{Color}}</b>
                                 {% else %}
-                                   Categoria > Todos
+                                   <b>Categoria > Todos</b>
                                 {% endif %} 
                                 </h1>              
                                 <div class="text-center text-lg-left">
@@ -53,9 +57,9 @@
 
       <thead>
             <tr>
-                <th>Imagen</th>
+                <th>Fotografia</th>
                 <th>Nombre</th>
-                <th>Color</th>
+                <!--<th>Color</th>-->
                 <th>Precio</th>
             </tr>
         </thead>
@@ -63,8 +67,8 @@
             <tr>
                 <th>Imagen</th>
                 <th>Nombre</th>
-                <th>Color</th>
-                <th>Precio</th>
+                <!--<th>Color</th>-->
+                <th>Precio</<!--th>
             </tr>
         </tfoot>
         <tbody>
@@ -72,7 +76,7 @@
                                               <tr>
                 <td><a href="tiendaproducto-{{Producto.id}}"><img width="200" height="200" src="/{{ root }}{{ imagenes }}/{{ Producto.Imagen}}" alt=""></a></td>
                 <td>{{Producto.nombre}}</td>
-                <td>{{Producto.color}}</td>
+                <!--<td>{{Producto.color}}</td>-->
                 <td>${{Producto.precio}}</td>
             </tr>
                                   {% endfor %}
