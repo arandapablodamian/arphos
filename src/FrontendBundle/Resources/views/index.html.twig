@@ -40,6 +40,25 @@
 									   </div>
 									</div>
 									<div class="row">
+									    <div class="col-md-6">
+									    {{ form_label(formularioTurno.diayhorapiso) }}
+									    {{ form_errors(formularioTurno.diayhorapiso) }}
+									    {{ form_widget(formularioTurno.diayhorapiso) }}
+									    </div>
+										<br>
+										<div style="color:red" id="noPuedeCrearTurno">
+										</div>
+										<div style="color:green" id="sePuedeCrearTurno">
+										</div>
+									</div>
+									<div class="row">
+									    <div class="col-md-6">
+									    {{ form_label(formularioTurno.hora) }}
+									    {{ form_errors(formularioTurno.hora) }}
+									    {{ form_widget(formularioTurno.hora) }}
+									    </div>
+									</div>
+									<div class="row">
 									   	<div class="col-md-6">
 										    {{ form_label(formularioTurno.direccion) }}
 										    {{ form_errors(formularioTurno.direccion) }}
@@ -56,27 +75,6 @@
 									    {{ form_label(formularioTurno.correo) }}
 									    {{ form_errors(formularioTurno.correo) }}
 									    {{ form_widget(formularioTurno.correo) }}
-									    </div>
-									</div>
-									<div class="row">
-									    <div class="col-md-6">
-									    {{ form_label(formularioTurno.diayhorapiso) }}
-									    {{ form_errors(formularioTurno.diayhorapiso) }}
-									    {{ form_widget(formularioTurno.diayhorapiso) }}
-									    </div>
-											<br>
-											<div style="color:red" id="noPuedeCrearTurno">
-
-											</div>
-											<div style="color:green" id="sePuedeCrearTurno">
-
-											</div>
-									</div>
-									<div class="row">
-									    <div class="col-md-6">
-									    {{ form_label(formularioTurno.hora) }}
-									    {{ form_errors(formularioTurno.hora) }}
-									    {{ form_widget(formularioTurno.hora) }}
 									    </div>
 									</div>
 								  	<hr>
