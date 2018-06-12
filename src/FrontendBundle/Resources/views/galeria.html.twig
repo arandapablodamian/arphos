@@ -10,7 +10,7 @@
 		}
 
 		 .fb-post span{
-		 	width: 90% !important;
+		 	width: 100% !important;
 		 	//height: auto !important;
 		 	
 		 }
@@ -23,7 +23,7 @@
 	    	border-radius:10px;
 	    	margin-bottom:5px !important;
 	    	heigh:100%;
-	    	width:300px;
+	    	width:250px;
 	    }
 	    .capsula h3{
 	    	color:#70c195;
@@ -49,8 +49,13 @@
 			{% for post in pagination %}
 				
 					<div class="d-flex flex-column p-2 text-center display capsula">
-					<h3 class=""><u>{{post.titulo}}</u></h3>
+					
 					<div class="fb-post" data-href="{{post.post}}" ></div>
+					<div style="width:100%;color:#d5bbaa; padding-left: 5%;padding-right: 5%; margin-top:5px">
+                		<div style="width:100%; border-top: solid">
+                		</div>
+                	</div>
+					<h3 class=""><u>{{post.titulo}}</u></h3>
 					</div>
    				
    				<div class="divisor"></div>

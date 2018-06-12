@@ -1,63 +1,11 @@
 {% extends 'FrontendBundle::arreglo.html.twig' %}
 {% block content %}
 <div style="background-color:#faf4ee;   ">
-                              <div id="wrapper" style="background-image: url('{{asset('bundles/F/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
+                              <div id="wrapper" class="container"  style="background-image: url('{{asset('bundles/F/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
                 background-position: center;
-                background-size: cover;width:100%; height:1400px " >
+                background-size: cover;width:100%; " >
                 
-                                  <div style="background-color: rgba(255,255,255,0.7);height:1400px;">
-                                         <br>
-                                    <div style="height:50px,">
-        <div style="height:50px;text-align:center;color:#4c2606;text-decoration:none;">
-                  <nav class="navbar navbar-expand-lg navbar-light "   >
-                    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                      <span class="navbar-toggler-icon"></span>
-                    </button>
-
-                    <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-                      <ul class="nav justify-content-center" style="width:100%;text-align:center;" >
-                        <li class="nav-item col-md-2">
-                          <a class="nav-link itemMenu" href="{{path('index')}}"> Inicio</a>
-                        </li>
-
-                        <li class="nav-item col-md-2">
-                          <a class="nav-link itemMenu"href="{{path('nosotros')}}">Nosotros</a>
-                        </li>
-                        <li class="nav-item col-md-2">
-                          <a class="nav-link itemMenu" href="{{path('galeria')}}">Galería</a>
-                        </li>
-                        <li class="nav-item col-md-2">
-                          <a class="nav-link itemMenu" href="{{path('blog')}}">Blog</a>
-                        </li>
-                        <li class="nav-item col-md-2">
-                          <a class="nav-link itemMenu"href="{{path('tienda')}}">Tienda</a>
-                        </li>
-                        <li class="nav-item col-md-2">
-                          <a class="nav-link itemMenu"href="{{path('contacto')}}">Contacto</a>
-                        </li>
-                        <!-- <li class="nav-item dropdown">
-                          <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            Dropdown
-                          </a>
-                          <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <a class="dropdown-item" href="#">Action</a>
-                            <a class="dropdown-item" href="#">Another action</a>
-                            <div class="dropdown-divider"></div>
-                            <a class="dropdown-item" href="#">Something else here</a>
-                          </div>
-                        </li>
-                        <li class="nav-item">
-                          <a class="nav-link disabled" href="#">Disabled</a>
-                        </li> -->
-                      </ul>
-                      
-                    </div>
-                  </nav>
-                  <div style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
-                    <hr />
-                  </div>
-                  <br>
-                </div>
+                                 
 
                                           <div class="row" style="margin-top:30px;">
                                                 <div clas="col-md-1"> </div>
@@ -102,7 +50,7 @@
                                                             Contamos con un innovador sistema de cedulas que permite identificar al animal en una red social, generando a traves del codigo presente en la cedula, la posibilidad de encontrar al animal perdido con la ayuda de toda una comunidad.
                                                             Somos una pequeña empresa dedicada a promover la salud y bienestar de los animales domesticos a traves de los cuidados mas basicos  que pueden brindarse. Baño, peluqueria y asesoramiento. </p>
                                                             <p>Ellos son ARPHOS y SALEM, nuestras mascotas:</p>
-                                                             <img  src="{{asset('bundles/frontend/images/nosotros/mascotas.png') }}">
+                                                             <img style="width:100%" src="{{asset('bundles/frontend/images/nosotros/mascotas.png') }}">
                                                       </div>
                                                       <div style="text-align:center;background-color:white;">
                                                            
