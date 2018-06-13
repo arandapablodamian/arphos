@@ -9,64 +9,21 @@
       .entrada{
          color: #4c2606;
       }
+
+      h2{
+      color:#70c195;
+       font-weight: bold;
+       text-align:center;
+      }
     </style>
 {% endblock %}
 
-{% block wrapper %}
+{% block content %}
   
 
   <div style="background-color:#faf4ee;   ">
-    <div id="wrapper" style="background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-repeat: no-repeat;
-                  background-position: center;
-                  background-size: cover;width:100%; height:1400px " >
-      <div style="background-color: rgba(255,255,255,0.7);height:1400px;">
-        <nav class="navbar navbar-expand-lg navbar-light "   >
-          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-
-          <div class="collapse navbar-collapse" id="navbarSupportedContent" >
-            <ul class="nav justify-content-center" style="width:100%;text-align:center;" >
-              <li class="nav-item col-md-2">
-                <a class="nav-link itemMenu" href="{{path('index')}}"> Inicio</a>
-              </li>
-
-              <li class="nav-item col-md-2">
-                <a class="nav-link itemMenu"href="{{path('nosotros')}}">Nosotros</a>
-              </li>
-              <li class="nav-item col-md-2">
-                <a class="nav-link itemMenu" href="{{path('galeria')}}">Galería</a>
-              </li>
-              <li class="nav-item col-md-2">
-                <a class="nav-link itemMenu" href="{{path('blog')}}">Blog</a>
-              </li>
-              <li class="nav-item col-md-2">
-                <a class="nav-link itemMenu"href="{{path('tienda')}}">Tienda</a>
-              </li>
-              <li class="nav-item col-md-2">
-                <a class="nav-link itemMenu"href="{{path('contacto')}}">Contacto</a>
-              </li>
-              <!-- <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                  Dropdown
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Action</a>
-                  <a class="dropdown-item" href="#">Another action</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Something else here</a>
-                </div>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link disabled" href="#">Disabled</a>
-              </li> -->
-            </ul>
-            
-          </div>
-        </nav>
-        <div style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa">
-          <hr />
-        </div>
+    <div> 
+        
         <div class="container">
         <div class="row">
           
@@ -80,7 +37,7 @@
                       {% set contador=1 %}
                         {% if categoria.subcategorias is empty %}
                           <div>
-                            <a href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}</a>
+                            <a class="botonarphos" href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}</a>
                             </div>
                             {% else %}
                               <div class="card">
@@ -111,18 +68,18 @@
               </div>
             </div>
            
-          <div class="col-md-8" class="entrada">
+          <div class="col-md-12" class="entrada">
               {% for entrada in entradas %}
                   <div>
-                    <h3>{{entrada.titulo | raw}}</h3>
+                    <h2>{{entrada.titulo | raw}}</h2>
                   </div>
                   <div>
                     {{entrada.desarrollo | raw}}
                   </div>
                   <br>
-                  <div style="display: block;margin-left: auto;margin-right: auto;width: 50%;">
+                  <div style="text-align:center;">
                     <div style="margin-left:auto;margin-right:auto;">
-                      <a href="{{path('detalleEntrada', {'idPagina':entrada.id})}}"><img src="{{asset('bundles/frontend/images/blog/BotonVerMas.png')}}" alt=""></a>
+                      <a  href="{{path('detalleEntrada', {'idPagina':entrada.id})}}"><img src="{{asset('bundles/frontend/images/blog/BotonVerMas.png')}}" alt=""></a>
                     </div>
                   </div>
           <hr />
