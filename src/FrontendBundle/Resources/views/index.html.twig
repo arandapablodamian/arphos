@@ -1,4 +1,14 @@
-{% extends 'FrontendBundle::template.html.twig' %}
+{% extends 'FrontendBundle::arreglo.html.twig' %}
+
+{% block imagenindex %}
+	<div style="text-align:center;background-image: url('{{asset('bundles/frontend/images/template/background-wrapper.png') }}');background-size: 110%; background-repeat:no-repeat;border-top: solid;
+				border-color: #7c5428;">
+		<div style="text-align:center;padding-top:60px; padding-bottom:60px; background: linear-gradient(rgba(255,255,255,0.2), rgb(255, 210, 210));">
+      		<img style="width:70%;" src="{{asset('bundles/frontend/images/index/logo_index.png') }}">
+    	</div>
+    </div>
+{% endblock %}
+
 {% block content %}
 		<style type="text/css">
 						a:link    {
@@ -9,14 +19,12 @@
 			  }
 
 		</style>
-		   			<br><br><br><br>
-      				<div style="text-align:center;height:500px">
-      					<img style="max-width:700px;max-height:900px;" src="{{asset('bundles/frontend/images/index/logo_index.png') }}">
-      				</div>
-      				<div style="background-color:white;">
+		   			<br>
+      				
+      				<div style="">
 
 
-      					<div>
+      					<div class="container" >
       						<div class="row">
       							<div class"col-md-3"><img style="max-width: 500px; min-height:400px;" src="{{asset('bundles/frontend/images/index/logo-perro.png') }}">
       							</div>
