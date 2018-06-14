@@ -36,7 +36,7 @@ use Symfony\Component\HttpFoundation\JsonResponse;
 
 
 /**
-     * @Route("/frontend")
+     * @Route("/")
      */
 class DefaultController extends Controller
 {
@@ -53,37 +53,59 @@ class DefaultController extends Controller
       $mostrarIngreso=$variablesLogin['mostrarIngreso'];
       $usuarioInvalido=$variablesLogin['usuarioInvalido'];
 
+
+      //en caso de que no solicite un turno, no muestra la ventanita de login 
+      $pedirRegistroTurno=false;
+
       $turno = new Turno();
       $formularioTurno = $this->createForm(FormularioTurnoType::class, $turno);
       $formularioTurno->handleRequest($request);
 
       if ($formularioTurno->isSubmitted() && $formularioTurno->isValid()){
+        //en caso de que el usuario no este logeado se deberia mostrar la pantall de logeo
+        $session=$this->container->get('session');
+        $clienteRegistrado =$session->get('clienteId');
 
-        $datosTurno = $formularioTurno->getData();
+        if ($session && $clienteRegistrado) {
+            $datosTurno = $formularioTurno->getData();
+            //guardo el turno en la base de datos
+            $em = $this->getDoctrine()->getManager();
 
-        //guardo el turno en la base de datos
-        $em = $this->getDoctrine()->getManager();
+            //Creo un objeto de la clase Turno
+            $turnoAlta = new Turno();
 
-        //Creo un objeto de la clase Turno
-        $turnoAlta = new Turno();
+            //le asigno los campos que complete en el formulario
+            $turnoAlta->setNombre($datosTurno->getNombre());
+            $turnoAlta->setApellido($datosTurno->getApellido());
+            $turnoAlta->setDireccion($datosTurno->getDireccion());
+            $turnoAlta->setCorreo($datosTurno->getCorreo());
+            $turnoAlta->setTelefono($datosTurno->getTelefono());
+            $turnoAlta->setDiayhorapiso($datosTurno->getDiayhorapiso());
+            $turnoAlta->setHora($datosTurno->getHora());
 
-        //le asigno los campos que complete en el formulario
-        $turnoAlta->setNombre($datosTurno->getNombre());
-        $turnoAlta->setApellido($datosTurno->getApellido());
-        $turnoAlta->setDireccion($datosTurno->getDireccion());
-        $turnoAlta->setCorreo($datosTurno->getCorreo());
-        $turnoAlta->setTelefono($datosTurno->getTelefono());
-        $turnoAlta->setDiayhorapiso($datosTurno->getDiayhorapiso());
-        $turnoAlta->setHora($datosTurno->getHora());
+            //por defecto la hora techo se carga con una hora mas que la hora piso
+            $auxDate= date_format($datosTurno->getHora(),'H:i');
+            $turnoAlta->setHoratecho(\DateTime::createFromFormat('H:i',date('H:i',strtotime('+1 hour',strtotime($auxDate)))));
+            //persisto el turno
+            $em->persist($turnoAlta);
 
-        //por defecto la hora techo se carga con una hora mas que la hora piso
-        $auxDate= date_format($datosTurno->getHora(),'H:i');
-        $turnoAlta->setHoratecho(\DateTime::createFromFormat('H:i',date('H:i',strtotime('+1 hour',strtotime($auxDate)))));
-        //persisto el turno
-        $em->persist($turnoAlta);
+            //ejecuto la instrucción
+            $em->flush();
+        }else{
+            //en caso de que no este el usuario registrado, pedir que se loguee
+            $mostrarIngreso=true;
+            //seteo el mensajito de se solicita loguearse para sacar turno en la ventanita de login
+            $pedirRegistroTurno=true;
 
-        //ejecuto la instrucción
-        $em->flush();
+            //ahora redirigo al index
+            return $this->render('FrontendBundle::index.html.twig',array(
+        	'formularioTurno'=>$formularioTurno->createView(),
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,'pedirRegistroTurno'=>$pedirRegistroTurno
+        ));
+            
+        }
       }
 
         if (array_key_exists ('registroExitoso' ,$variablesLogin)) {
@@ -373,8 +395,9 @@ class DefaultController extends Controller
                            if ($resultadoIngreso) {
 
                                 //si encontro registro en la session
-                            if (!$this->container->get('session')->isStarted()) {   $session = new Session();
-                                    $session->start();
+                            if (!$this->container->get('session')->isStarted()) {   
+                                $session = new Session();
+                                $session->start();
 
                                }else {
                                 $session=$this->container->get('session');
@@ -382,7 +405,7 @@ class DefaultController extends Controller
                                }
                                $session->set('usuario',$resultadoIngreso->getUsuario() );
                                $session->set('contrasenia',$resultadoIngreso->getContrasenia() );
-                                $session->set('clienteId',$resultadoIngreso->getId() );
+                               $session->set('clienteId',$resultadoIngreso->getId() );
 
                            }else{
                             $usuarioInvalido=true;

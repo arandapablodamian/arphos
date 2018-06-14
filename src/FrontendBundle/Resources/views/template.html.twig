@@ -225,6 +225,11 @@
 				    			{% if usuarioInvalido %}
 									Usuario y/o contraseña inválidos, por favor vuelva a intentar.
 				    			{% endif %}
+									{% if pedirRegistroTurno is defined  %}
+										{% if pedirRegistroTurno %}
+											Para solicitar turno, por favor ingrese al sistema.
+										{% endif %}
+				    			{% endif %}
 				    		</div>
 			    			<div class="col-md-2"></div>
 			    		</div>
@@ -447,6 +452,7 @@
    <script src="{{ asset('assets/datepicker/bootstrap-datepicker.es.min.js') }}"></script>
 
 	<script>
+	
 		//comienza deshabilitado el boton
 		document.getElementById("frontendbundle_mensaje_enviar").disabled = true;
 		$("#frontendbundle_mensaje_usuario").keyup(function(){
@@ -487,5 +493,7 @@
 		{% if usuarioInvalido %}
 			$('#modalIngresar').modal('show');
 		{% endif %}
+
+		)
 	</script>
 {% endblock %}
