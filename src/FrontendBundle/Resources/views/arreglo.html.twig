@@ -233,7 +233,10 @@
 				    		<div class="col-md-8" style="text-align:center;color:red;">
 				    			{% if usuarioInvalido %}
 									Usuario y/o contraseña inválidos, por favor vuelva a intentar.
-				    			{% endif %}
+									{% endif %}
+									{% if pedirRegistroTurno is defined %}
+										Para solicitar turno, por favor ingrese al sistema. 
+									{% endif %}
 				    		</div>
 			    			<div class="col-md-2"></div>
 			    		</div>

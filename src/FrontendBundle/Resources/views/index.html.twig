@@ -155,17 +155,16 @@
     {{ parent() }}
 
     <script type="text/javascript">
-
-        $("#frontendbundle_formulariocontacto_diayhorapiso").datepicker({
-                    format: 'dd-mm-yyyy',
-                    autoclose:true,
-                    language: 'es'
-                });
-
-
-			document.getElementById("frontendbundle_formulariocontacto_enviar").disabled = true;
-
-        $( "#frontendbundle_formulariocontacto_diayhorapiso, #frontendbundle_formulariocontacto_hora_hour, #frontendbundle_formulariocontacto_hora_minute" ).change(function() {
+	//datepicker para la fecha del turno
+    $("#frontendbundle_formulariocontacto_diayhorapiso").datepicker({
+        format: 'dd-mm-yyyy',
+        autoclose:true,
+        language: 'es'
+	});
+	//desactivo el boton del formulario
+	document.getElementById("frontendbundle_formulariocontacto_enviar").disabled = true;
+	
+    $( "#frontendbundle_formulariocontacto_diayhorapiso, #frontendbundle_formulariocontacto_hora_hour, #frontendbundle_formulariocontacto_hora_minute" ).change(function() {
 
         		fecha= $( "#frontendbundle_formulariocontacto_diayhorapiso" ).val();
         		hora= $( "#frontendbundle_formulariocontacto_hora_hour" ).val();

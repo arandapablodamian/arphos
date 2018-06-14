@@ -76,6 +76,13 @@ class Turno
      */
     private $hora;
 
+
+    /**
+     * @ORM\ManyToOne(targetEntity="\BackendBundle\Entity\Cliente")
+     * @ORM\JoinColumn(name="cliente_id", referencedColumnName="id")
+     */
+    private $cliente;
+
     /**
      * Get id
      *
@@ -276,6 +283,31 @@ class Turno
     public function getHora()
     {
         return $this->hora;
+    }
+
+    
+     /**
+     * Set cliente
+     *
+     * @param  $cliente
+     *
+     * @return \BackendBundle\Entity\Cliente
+     */
+    public function setCliente(\BackendBundle\Entity\Cliente $cliente)
+    {
+        $this->cliente = $cliente;
+
+        return $this;
+    }
+
+    /**
+     * Get cliente
+     *
+     * @return \BackendBundle\Entity\Cliente
+     */
+    public function getCliente()
+    {
+        return $this->cliente;
     }
 
 }

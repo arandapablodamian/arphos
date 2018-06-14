@@ -131,3 +131,9 @@ fos_user:
     from_email:
         address: "%mailer_user%"
         sender_name: "%mailer_user%"
+knp_snappy:
+    pdf:
+        enabled:    true
+        binary:     %kernel.root_dir%/../web/pdf/windows64/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        options:    []
+    temporary_folder: "%kernel.root_dir%/../web/turnos_temp/"

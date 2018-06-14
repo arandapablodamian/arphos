@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Comprobante Turno</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+
+</head>
+<body>
+    <div class="row">
+        <div class="col-md-4" style="text-align:center">
+        </div>
+        <div class="col-md-1">
+            <h2>Arphos</h2>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12" style="text-align:center">
+            <h2>Ticket de Turno</h2>
+        </div>
+        <div class="col-md-3" style="text-align:left">
+            <h5>Fecha Turno: {{turno.diayhorapiso | date("d/m/Y")}} </h5>
+            <br>
+            <h5>Horario Turno: {{turno.diayhorapiso | date("H:i")}} </h5>
+            <br>
+            <h5>Fin de Turno Aprox: {{turno.horatecho | date("H:i")}} </h5>
+            <br>
+            (*)El horario del turno puede ser modificado, comuniquese con el personal de arphos antes de presentarse en el local para confirmar el turno
+        </div>
+        <div class="col-md-3" style="text-align:left">
+            <h5>Cliente : {{turno.nombre ~", "~turno.apellido}} </h5>
+            <br>
+            <h5>Dirección : {{turno.direccion }} </h5>
+            <br>
+            <h5>Email : {{turno.correo }} </h5>
+            <br>
+            <h5>Teléfono : {{turno.telefono }} </h5>
+            <br>
+        </div>
+    </div>
+</body>
+</html>

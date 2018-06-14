@@ -71,6 +71,11 @@ class DefaultController extends Controller
             //guardo el turno en la base de datos
             $em = $this->getDoctrine()->getManager();
 
+            //obtengo el cliente
+            $query = $em->createQuery("SELECT c FROM BackendBundle:Cliente c WHERE c.id =:idCliente");
+            $query->setParameter('idCliente', $clienteRegistrado);
+            $cliente=$query->getOneOrNullResult();
+
             //Creo un objeto de la clase Turno
             $turnoAlta = new Turno();
 
@@ -82,6 +87,7 @@ class DefaultController extends Controller
             $turnoAlta->setTelefono($datosTurno->getTelefono());
             $turnoAlta->setDiayhorapiso($datosTurno->getDiayhorapiso());
             $turnoAlta->setHora($datosTurno->getHora());
+            $turnoAlta->setCliente($cliente);
 
             //por defecto la hora techo se carga con una hora mas que la hora piso
             $auxDate= date_format($datosTurno->getHora(),'H:i');
@@ -91,6 +97,9 @@ class DefaultController extends Controller
 
             //ejecuto la instrucción
             $em->flush();
+            $this->imprimir_turno($turnoAlta->getId());
+            
+
         }else{
             //en caso de que no este el usuario registrado, pedir que se loguee
             $mostrarIngreso=true;
@@ -717,6 +726,28 @@ class DefaultController extends Controller
       $turnosOcupados = $query->getResult();
 
       return new JsonResponse($turnosOcupados);
+    }
+
+    public function imprimir_turno($id){
+         $em = $this->getDoctrine()->getManager();
+        //obtengo el turno
+            $query = $em->createQuery("SELECT t FROM BackendBundle:Turno t WHERE t.id =:idTurno");
+            $query->setParameter('idTurno', $id);
+            $turno=$query->getOneOrNullResult();
+            //uso snappy para imprimir el turno en pdf
+            $snappy = $this->get('knp_snappy.pdf');
+            $html= $this->render('FrontendBundle::turnopdf.html.twig',array('turno'=>$turno));
+           
+           $dir_proy= ($this->get('kernel')->getProjectDir());
+           return new Response(
+                $snappy->getOutputFromHtml($html),
+                200,
+                array(
+                    'Content-Type'          => 'application/pdf',
+                    'Content-Disposition'   => 'attachment; filename="turno.pdf"'
+                )
+                );
+        
     }
 
 
