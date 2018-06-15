@@ -9,16 +9,54 @@
 			  } 
 
 		</style>
-		<div style="height:600px;">
-			<div style="height:300px;width:600px;margin-left:auto;margin-right:auto; margin-top:20px;background-color:#faf4ee;">
-				<div style="text-align:center;">
-					<h2><strong>¡Bienvenido a Arphos!</strong></h2>
-					<hr>
-					<h5>Sección actualmente en construcción, contenido disponible en breve.</h5>
+		<div style="min-height:600px;">
+			<div class="row" style="min-height:600px;margin-left:auto;margin-right:auto; margin-top:20px;background-color:#faf4ee;">
+				<div class="col-md-1"></div>
+				<div class="col-md-10">
+		
+					<div style="text-align:center;">
+						<h2>
+							<strong>Turnos Solicitados!</strong>
+						</h2>
+						<!-- <hr>
+								<h5>Sección actualmente en construcción, contenido disponible en breve.</h5> -->
+						<h5>Bienvenido a la sección de turnos, aqui podrá ver los turnos que haya solicitado:</h5>
+						<br>
+					</div>
+					<br>
+					<div class="text-align:center;">
+						<table class="table-striped">
+							{% if not turnos is empty %}
+							<thead>
+								<tr>
+									<col width="300">
+									<col width="300">
+									<col width="300">
+									<col width="300">
+									<th>Fecha de turno</th>
+									<th>Hora de Inicio</th>
+									<th>Hora de Fin</th>
+									<th>Comprobante</th>
+		
+								</tr>
+							</thead>
+							<tbody>
+								{% for turno in turnos %}
+								<tr>
+									<td>{{turno.diayhorapiso|date("d/m/Y")}}</td>
+									<td>{{turno.diayhorapiso|date("h:i")}}</td>
+									<td>{{turno.horatecho|date("h:i")}}</td>
+									<td><a target="_blank" href="{{path('imprimirTurno', {'id':turno.id})}}">Descargar</a></td>
+								</tr>
+								{% endfor %}
+							</tbody>
+							{% endif %}
+		
+						</table>
+					</div>
+		
 				</div>
-				<div style="text-align:center;">
-					<button type="button" class="btn btn-success"  onclick="location.href = '{{path('index')}}';">Regresar</button>
-				</div>
+				<div class="col-md-1"></div>
 			</div>
 		</div>
 {% endblock %}

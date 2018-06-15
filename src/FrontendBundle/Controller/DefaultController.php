@@ -97,8 +97,8 @@ class DefaultController extends Controller
 
             //ejecuto la instrucción
             $em->flush();
-            $this->imprimir_turno($turnoAlta->getId());
-            
+            //imprimo el pdf
+            return $this->imprimir_turno($turnoAlta->getId());
 
         }else{
             //en caso de que no este el usuario registrado, pedir que se loguee
@@ -683,11 +683,19 @@ class DefaultController extends Controller
         $mostrarRegistro=$variablesLogin['mostrarRegistro'];
         $mostrarIngreso=$variablesLogin['mostrarIngreso'];
         $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+        //obtengo el id del cliente logeado
+        $session=$this->container->get('session');
+        $clienteRegistrado =$session->get('clienteId');
+        //obtengo los turnos del cliente
+        $em = $this->getDoctrine()->getManager();
+        $query = $em->createQuery("SELECT t FROM BackendBundle:Turno t WHERE t.cliente =:idCliente");
+        $query->setParameter('idCliente', $clienteRegistrado);
+        $turnos=$query->getResult();
 
         return $this->render('FrontendBundle::verTurnos.html.twig',array(
             'formularioRegistro'=>$formularioRegistro->createView(),
             'formularioIngreso'=> $formularioIngreso->createView(),
-            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,'turnos'=>$turnos
         ));
     }
 
@@ -728,6 +736,9 @@ class DefaultController extends Controller
       return new JsonResponse($turnosOcupados);
     }
 
+    /**
+     * @Route("/imprimirTurno/{id}", name="imprimirTurno")
+     */
     public function imprimir_turno($id){
          $em = $this->getDoctrine()->getManager();
         //obtengo el turno
@@ -737,14 +748,19 @@ class DefaultController extends Controller
             //uso snappy para imprimir el turno en pdf
             $snappy = $this->get('knp_snappy.pdf');
             $html= $this->render('FrontendBundle::turnopdf.html.twig',array('turno'=>$turno));
-           
            $dir_proy= ($this->get('kernel')->getProjectDir());
            return new Response(
-                $snappy->getOutputFromHtml($html),
+                $snappy->getOutputFromHtml($html, array('lowquality' => false,
+                        'encoding' => 'utf-8',
+                        'images' => true,
+                        'enable-javascript' => true,
+                        'javascript-delay' => 5000)),
                 200,
                 array(
                     'Content-Type'          => 'application/pdf',
-                    'Content-Disposition'   => 'attachment; filename="turno.pdf"'
+                    'Content-Disposition'   => 'attachment; filename="turno.pdf"',
+                    'Set-Cookie'            => 'fileDownload=true; path=/'
+                    
                 )
                 );
         
