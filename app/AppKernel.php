@@ -29,6 +29,7 @@ class AppKernel extends Kernel
             new EasyCorp\Bundle\EasyAdminBundle\EasyAdminBundle(),
             new Knp\Bundle\SnappyBundle\KnpSnappyBundle(),
             new Spraed\PDFGeneratorBundle\SpraedPDFGeneratorBundle(),
+            
             new AppBundle\AppBundle(),
             new FrontendBundle\FrontendBundle(),
             new BackendBundle\BackendBundle(),

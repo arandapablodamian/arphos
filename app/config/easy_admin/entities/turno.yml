@@ -10,19 +10,23 @@ easy_admin:
                 title: "Turnos"
                 fields:
                     - { property: 'id', label: 'Nro. de Turno', css_class: 'col-md-6'}
+                    - { property: 'cliente', label: 'Cliente', css_class: 'col-md-6'}
                     - { property: 'nombre' , label: 'Nombre', css_class: 'col-md-6'}
                     - { property: 'apellido' , label: 'Apellido', css_class: 'col-md-6'}
-                    - { property: 'diayhorapiso' , label: 'Dia', format: 'd/m/Y g:i A', css_class: 'col-md-6'}
+                    - { property: 'diayhorapiso' , label: 'Dia', format: 'd/m/Y g:i A', css_class: 'col-md-10'}
                     - { property: 'hora', label: 'Hora de Inicio', css_class: 'col-md-6'}
                     - { property: 'horatecho', label: 'Hora de Fin', css_class: 'col-md-6'}
                     - { property: 'direccion' , label: 'Dirección', css_class: 'col-md-6'}
                     - { property: 'correo' , label: 'Correo', css_class: 'col-md-6'}
                     - { property: 'telefono' , label: 'Teléfono', css_class: 'col-md-6'}
+
             form:  # <-- 'form' is applied to both 'new' and 'edit' views
                 title: 'Crear un Turno'
                 fields: 
                     - { type: 'group', css_class: 'col-md-12', label: 'Descripción del Turno' }
+                    - { property: 'cliente', label: 'Cliente', css_class: 'col-md-6'}
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
+                    - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
                     - { type: 'divider' }
                     - { property: 'diayhorapiso' , label: 'Día y Hora',type: 'datetime', css_class: 'col-md-6', type_options: { widget: 'text' }}
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
@@ -36,6 +40,7 @@ easy_admin:
                     - { property: 'telefono' , label: 'Teléfono',css_class: 'col-md-6', type: 'Symfony\Component\Form\Extension\Core\Type\TelType'}
             show:
                 fields:
+                    - { property: 'cliente', label: 'Cliente', css_class: 'col-md-6'}
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
                     - { property: 'diayhorapiso' , label: 'Dia', format: 'd/m/Y g:i A', css_class: 'col-md-6'}

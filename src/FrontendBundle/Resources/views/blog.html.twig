@@ -21,7 +21,7 @@
 {% block content %}
   
 
-  <div style="background-color:#faf4ee;   ">
+  <div style="background-color:#faf4ee;min-height:600px; ">
     <div> 
         
         <div class="container">
@@ -36,32 +36,17 @@
                     {% for categoria in categorias  %}
                       {% set contador=1 %}
                         {% if categoria.subcategorias is empty %}
-                          <div>
-                            <a class="botonarphos" href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}</a>
-                            </div>
-                            {% else %}
-                              <div class="card">
-                                <div class="card-header" id="headingOne">
-                                  <h5 class="mb-0">
-                                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{contador}}" aria-expanded="true" aria-controls="collapse{{contador}}">
-                                    {{categoria.titulo}}
-                                   </button>
-                                  </h5>
-                                </div>
-                                <div id="collapse{{contador}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                  <div class="card-body">
-                                     {% for subcategoria in categoria.subcategorias %}
-                                     <div>
-                                        <a href="{{path('blog',{'categoria': subcategoria.id})}}">{{subcategoria.titulo}}</a>
-                                     </div>
-                                     
-                                     {% endfor %}
-                                  </div>
-                                </div>
-                                {% set contador=contador +1%}
-                               
+                          <div class="list-group">
+<a class="list-group-item list-group-item-action active" style="background-color:#d5bbaa;border-color: #d5bbaa;color:#4c2606;" href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}</a>
+                          {% else %}
+                          <div class="list-group">
+<a class="list-group-item list-group-item-action active" style="color:#4c2606;background-color:#d5bbaa;border-color: #d5bbaa" " href=" {{path('blog',{'categoria': categoria.id})}} ">{{categoria.titulo}}</a>
+                            {% for subcategoria in categoria.subcategorias %}
+                              <a class="list-group-item list-group-item-action" href="{{path('blog',{'categoria': subcategoria.id})}}">{{subcategoria.titulo}}</a>
+                            {% endfor %}
                           {% endif %}
-                      {% endfor %}
+                          </div>
+                    {% endfor %}
                     </div>
                   </div>
                 </div>

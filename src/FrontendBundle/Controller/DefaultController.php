@@ -31,8 +31,7 @@ use Symfony\Component\Form\Extension\Core\Type\PasswordType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 //para la respuesta del json
 use Symfony\Component\HttpFoundation\JsonResponse;
-
-
+use WhiteOctober\TCPDFBundle\TCPDF;
 
 
 /**
@@ -748,6 +747,7 @@ class DefaultController extends Controller
             //uso snappy para imprimir el turno en pdf
             $snappy = $this->get('knp_snappy.pdf');
             $html= $this->render('FrontendBundle::turnopdf.html.twig',array('turno'=>$turno));
+
            $dir_proy= ($this->get('kernel')->getProjectDir());
            return new Response(
                 $snappy->getOutputFromHtml($html, array('lowquality' => false,
@@ -763,8 +763,9 @@ class DefaultController extends Controller
                     
                 )
                 );
-        
+    
     }
+
 
 
 }

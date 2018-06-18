@@ -25,6 +25,7 @@
         "incenteev/composer-parameter-handler": "^2.0",
         "knplabs/knp-snappy-bundle": "^1.4",
         "mwsimple/admin-crud": "^3.3",
+        "psliwa/pdf-bundle": "^1.0",
         "sensio/distribution-bundle": "^5.0.19",
         "sensio/framework-extra-bundle": "^5.1",
         "spraed/pdf-generator-bundle": "^1.4",
