@@ -13,6 +13,7 @@ use Symfony\Component\HttpFoundation\File\File;
  *
  * @ORM\Table(name="producto")
  * @ORM\Entity(repositoryClass="BackendBundle\Repository\ProductoRepository")
+ * @ORM\HasLifecycleCallbacks()
  * @Vich\Uploadable
  */
 class Producto
@@ -59,14 +60,14 @@ class Producto
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaCreacion", type="datetime")
+     * @ORM\Column(name="fechaCreacion", type="datetime", nullable=true)
      */
     private $fechaCreacion;
 
     /**
      * @var \DateTime
      *
-     * @ORM\Column(name="fechaModificacion", type="datetime")
+     * @ORM\Column(name="fechaModificacion", type="datetime", nullable=true)
      */
     private $fechaModificacion;
 
@@ -145,6 +146,26 @@ class Producto
         $this->categorias = new \Doctrine\Common\Collections\ArrayCollection();
         $this->talles = new \Doctrine\Common\Collections\ArrayCollection();
     }
+
+    /**
+     * @ORM\PrePersist
+     */
+    public function prePersist()
+    {
+        //seteo la fecha de creacion
+        $this->fechaCreacion = new \DateTime();
+    }
+
+
+    /**
+     * @ORM\PreUpdate
+     */
+    public function preUpdate()
+    {
+        //seteo la fecha de modificacion
+        $this->fechaModificacion = new \DateTime();
+    }
+
 
     /**
      * Get id

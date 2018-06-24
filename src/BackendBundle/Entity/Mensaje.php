@@ -45,7 +45,7 @@ class Mensaje
     /**
      * @var int
      *
-     * @ORM\Column(name="telefono", type="integer")
+     * @ORM\Column(name="telefono", type="string", length=255)
      */
     private $telefono;
 
@@ -157,7 +157,7 @@ class Mensaje
     /**
      * Set telefono
      *
-     * @param integer $telefono
+     * @param string $telefono
      *
      * @return Mensaje
      */
@@ -171,7 +171,7 @@ class Mensaje
     /**
      * Get telefono
      *
-     * @return int
+     * @return string
      */
     public function getTelefono()
     {

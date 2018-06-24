@@ -23,9 +23,6 @@ easy_admin:
                     - { type: 'group', css_class: 'col-sm-12', label: 'General' }
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
                     - { type: 'divider' }
-                    - { property: 'fechaCreacion' ,type: 'date', ,type_options: { widget: 'single_text' },label: 'Fecha de Creación',css_class: 'col-md-6'}
-                    - { property: 'fechaModificacion' ,type: 'date', ,type_options: { widget: 'single_text' },label: 'Fecha de Modificación',css_class: 'col-md-6'}
-                    - { type: 'divider' }
                     - { property: 'stock',label: 'Stock',css_class: 'col-md-6'  }
                     - { type: 'divider' }
                     - { property: 'precio' , label: 'Precio',css_class: 'col-md-6'}

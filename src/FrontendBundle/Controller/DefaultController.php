@@ -157,12 +157,12 @@ class DefaultController extends Controller
     public function contactoAction(Request $request)
     {
         //variables para el login
-        $variablesLogin=$this->formularios($request);
-        $formularioRegistro=$variablesLogin['formularioRegistro'];
-        $formularioIngreso=$variablesLogin['formularioIngreso'];
-        $mostrarRegistro=$variablesLogin['mostrarRegistro'];
-        $mostrarIngreso=$variablesLogin['mostrarIngreso'];
-        $usuarioInvalido=$variablesLogin['usuarioInvalido'];
+    $variablesLogin=$this->formularios($request);
+      $formularioRegistro=$variablesLogin['formularioRegistro'];
+      $formularioIngreso=$variablesLogin['formularioIngreso'];
+      $mostrarRegistro=$variablesLogin['mostrarRegistro'];
+      $mostrarIngreso=$variablesLogin['mostrarIngreso'];
+      $usuarioInvalido=$variablesLogin['usuarioInvalido'];
 
         /////////////////////
         $mensaje = new Mensaje();
@@ -171,20 +171,22 @@ class DefaultController extends Controller
         $formularioContacto->handleRequest($request);
 
             if ($formularioContacto->isSubmitted() && $formularioContacto->isValid()) {
-
                 // $form->getData() holds the submitted values
                 // but, the original `$task` variable has also been updated
                 $formularioContacto = $formularioContacto->getData();
 
                 $message = (new \Swift_Message('Contacto'))
-                ->setSubject('Contacto')
+                ->setSubject('Contacto Arphos')
                 ->setFrom($formularioContacto->getEmail())
                 ->setTo('arandapablodamian@gmail.com')
-                ->setBody("Nombre y Apellido: ".$formularioContacto->getNombre().', '.$formularioContacto->getApellido(). "\n\nTeléfono: ".$formularioContacto->getTelefono()."\n\n Mensaje: \n\t\t   ".$formularioContacto->getMensaje() );
+                ->setBody("Nombre y Apellido: ".$formularioContacto->getNombre().', '.$formularioContacto->getApellido(). "\n\nTeléfono: ".$formularioContacto->getTelefono()."\n\n Mensaje: \n\t\t   ".$formularioContacto->getMensaje()."\n\n Email: \n\t\t   ".$formularioContacto->getEmail() );
                 $this->get('mailer')->send($message);
 
-            dump('envio exitoso');
-            die;
+                 return $this->render('FrontendBundle::envioContacto.html.twig',array(
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido
+        ));
         }
 
 
@@ -200,7 +202,7 @@ class DefaultController extends Controller
      /**
      * @Route("/nosotros" , name="nosotros")
      */
-    public function nostrosAction(Request $request)
+    public function nosotrosAction(Request $request)
     {
          //variables para el login
         $variablesLogin=$this->formularios($request);

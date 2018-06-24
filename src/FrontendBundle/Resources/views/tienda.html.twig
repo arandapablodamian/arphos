@@ -1,97 +1,145 @@
 {% extends 'FrontendBundle::arreglo.html.twig' %}
 
-  {% block scripts %}
-  {% endblock %}
+{% block scripts %}{% endblock %}
 
 {% block content %}
-    <div style="">
-                        <div id="wrapper" style="" >
-                
-                                  <div>
-                                  <div class="container">
-                                    <div class="row">
-                                      <div class="col-md-3" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
-                                      <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
-                                        <h2><b>Categorias</b></h2>
-                                        <ul>
-                                           {% for Categoria in Categorias %}
-                                          <h3><a style="color:#4bb27d" href="tiendacategoria={{Categoria.id}}"><li><b>{{Categoria.titulo}}</b></li></a></h3>
-                                           {% endfor %}
-                                        </ul>
-                                        <h2><b>Color:</b></h2>
+    <div>
+        <div id="wrapper">
 
-                                        <ul>
-                                          
-                                          <a class="cuadro white" href="tiendacolor=blanco"></a>
-                                          <a class="cuadro black" href="tiendacolor=negro"></a>
-                                          <a class="cuadro pink" href="tiendacolor=rosa"></a>
-                                          <br><h6> </h6>
-                                          <a class="cuadro red" href="tiendacolor=rojo"></a>
-                                          <a class="cuadro blue" href="tiendacolor=azul"></a>
-                                          <a class="cuadro yellow" href="tiendacolor=amarillo"></a>
-                                          <br><h6> </h6>
-                                          <a class="cuadro green" href="tiendacolor=verde"></a>
-                                          <a class="cuadro orange" href="tiendacolor=naranja"></a>
-                                          <a class="cuadro violet" href="tiendacolor=violeta"></a>
-
-                                        </ul>
-                                        <div style="clear:both;"></div>
-                                        
-                                      </div>
-                                
-                                <div class="col-md-9" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
-
-                                {% block producto %}
-                                <h1 class="text-lg-right">
-                                {% if Categoria is defined %}
-                                   <b>Categoria > {{Categoria}}</b>
-                                {% elseif Color is defined %}
-                                    <b>Color > {{Color}}</b>
-                                {% else %}
-                                   <b>Categoria > Todos</b>
-                                {% endif %} 
-                                </h1>              
-                                <div class="text-center text-lg-left">
-      
-                                  <table id="example" class="display" width="100%" cellspacing="0">
-
-      <thead>
-            <tr>
-                <th>Fotografia</th>
-                <th>Nombre</th>
-                <!--<th>Color</th>-->
-                <th>Precio</th>
-            </tr>
-        </thead>
-        <tfoot>
-            <tr>
-                <th>Imagen</th>
-                <th>Nombre</th>
-                <!--<th>Color</th>-->
-                <th>Precio</<!--th>
-            </tr>
-        </tfoot>
-        <tbody>
-                                  {% for Producto in Productos %}
-                                              <tr>
-                <td><a href="tiendaproducto-{{Producto.id}}"><img width="200" height="200" src="/{{ root }}{{ imagenes }}/{{ Producto.Imagen}}" alt=""></a></td>
-                <td>{{Producto.nombre}}</td>
-                <!--<td>{{Producto.color}}</td>-->
-                <td>${{Producto.precio}}</td>
-            </tr>
-                                  {% endfor %}
-       
-        </tbody>
-    </table>
+        <div>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
+                            <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
+                            <h2>
+                                <b>Categorias</b>
+                            </h2>
+                                <div class="panel-group" id="accordion">
+                                    <div class="panel panel-default">
+                                        {% for Categoria in Categorias %} 
+                                            {% if Categoria is defined %}
+                                                {% if not Categoria.subCategorias is empty %}
+                                                    <div class="panel-heading">
+                                                        <h4 class="panel-title">
+                                                            <a style="color:#94642e;" data-toggle="collapse" data-parent="#accordion" href="#acordeon{{Categoria.titulo}}">
+                                                                <span class="glyphicon glyphicon-folder-close">
+                                                                </span>{{Categoria.titulo}}</a>
+                                                        </h4>
+                                                    </div>
+                                                    <div id="acordeon{{Categoria.titulo}}" class="panel-collapse collapse in">
+                                                        <div class="panel-body">
+                                                            <table class="table">
+                                                                {% for subCategoria in Categoria.subCategorias %}
+                                                                <tr>
+                                                                    <td>
+                                                                        <span class="glyphicon glyphicon-pencil text-primary"></span>
+                                                                        <a style="color:#4bb27d" href="tiendacategoria={{subCategoria.id}}">
+                                                                            <li>
+                                                                                <b>{{subCategoria.titulo}}</b>
+                                                                            </li>
+                                                                        </a>
+                                                                    </td>
+                                                                </tr>
+                                                                {% endfor %}
+                                                            </table>
+                                                        </div>
+                                                    </div>
+                                                    {% else %}
+                                                        <div class="panel-heading">
+                                                            <h4 class="panel-title">
+                                                                <a style="color:#94642e;" href="tiendacategoria={{Categoria.id}}">
+                                                                    <span class="glyphicon glyphicon-folder-close">
+                                                                    </span>{{Categoria.titulo}}</a>
+                                                            </h4>
+                                                        </div>
+                                                    {% endif %} 
+                                                {% endif %} 
+                                            {% endfor %}
+                            
+                                    </div>
                                 </div>
-                                {% endblock %}
-                        </div>
-                                      </div>
-                                      </div>
-                                    </div> 
+                            <h2>
+                                <b>Color:</b>
+                            </h2>
 
-                                  </div>
-                        
+                            <ul>
+
+                                <a class="cuadro white" href="tiendacolor=blanco"></a>
+                                <a class="cuadro black" href="tiendacolor=negro"></a>
+                                <a class="cuadro pink" href="tiendacolor=rosa"></a>
+                                <br>
+                                <h6></h6>
+                                <a class="cuadro red" href="tiendacolor=rojo"></a>
+                                <a class="cuadro blue" href="tiendacolor=azul"></a>
+                                <a class="cuadro yellow" href="tiendacolor=amarillo"></a>
+                                <br>
+                                <h6></h6>
+                                <a class="cuadro green" href="tiendacolor=verde"></a>
+                                <a class="cuadro orange" href="tiendacolor=naranja"></a>
+                                <a class="cuadro violet" href="tiendacolor=violeta"></a>
+
+                            </ul>
+                            <div style="clear:both;"></div>
+
                         </div>
+
+                        <div class="col-md-9" style="color:#d5bbaa; width:80%;margin-left:auto;margin-right:auto">
+
+                            {% block producto %}
+                                <h1 class="text-lg-right" style="font-size:20px;">
+                                    {% if Categoria is defined %}
+                                        <b>Categoria >
+                                            {{Categoria}}</b>
+                                    {% elseif Color is defined %}
+                                        <b>Color >
+                                            {{Color}}</b>
+                                    {% else %}
+                                        <b>Categoria > Todos</b>
+                                    {% endif %}
+                                </h1>
+                                <div class="text-center text-lg-left">
+
+                                    <table id="example" class="display" width="100%" cellspacing="0">
+
+                                        <thead>
+                                            <tr>
+                                                <th>Fotografia</th>
+                                                <th>Nombre</th>
+                                                <th>Color</th>
+                                                <th>Precio</th>
+                                            </tr>
+                                        </thead>
+                                        <tfoot>
+                                            <tr>
+                                                <th>Imagen</th>
+                                                <th>Nombre</th>
+                                                <th>Color</th>
+                                                <th>Precio</th>
+                                            </tr>
+                                        </tfoot>
+                                        <tbody>
+                                            {% for Producto in Productos %}
+                                                <tr>
+                                                    <td style="text-align:center;">
+                                                        <a href="tiendaproducto-{{Producto.id}}"><img width="200" height="200" src="{{ asset('imagenes/productos/'~Producto.Imagen) }}" alt=""></a>
+                                                    </td>
+                                                    <td>{{Producto.nombre}}</td>
+                                                    <td>{{Producto.color}}</td>
+                                                    <td>${{Producto.precio}}</td>
+                                                </tr>
+                                            {% endfor %}
+
+                                        </tbody>
+                                    </table>
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
                 </div>
+            </div>
+
+        </div>
+
+    </div>
+</div>
 {% endblock %}
