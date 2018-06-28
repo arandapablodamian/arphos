@@ -134,11 +134,11 @@ fos_user:
 knp_snappy:
     pdf:
         enabled:    true
-        binary:     %kernel.root_dir%/../web/pdf/windows64/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
+        binary:     %kernel.root_dir%/../web/pdf/ubuntu/bin/wkhtmltopdf #"\"C:\\Program Files\\wkhtmltopdf\\bin\\wkhtmltopdf.exe\"" for Windows users
         options:    []
     image:
         enabled:    true
-        binary:      %kernel.root_dir%/../web/pdf/windows64/bin/wkhtmltoimage
+        binary:      %kernel.root_dir%/../web/pdf/ubuntu/bin/wkhtmltoimage
         options:    []
 
     temporary_folder: "%kernel.root_dir%/../web/turnos_temp/"
