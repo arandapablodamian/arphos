@@ -43,6 +43,13 @@ class Compra
      */
     private $montoTotal;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="estado", type="string") }
+     */
+    private $estado;
+
    /**
      * Many Users have Many Groups.
      * @ORM\ManyToMany(targetEntity="\FrontendBundle\Entity\ProductoComprado")
@@ -92,7 +99,29 @@ class Compra
         return $this->montoTotal;
     }
 
-   
+   /**
+     * Set estado
+     *
+     * @param string $estado
+     *
+     * @return Mensaje
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+
+    /**
+     * Get estado
+     *
+     * @return string
+     */
+    public function getEstado()
+    {
+        return $this->estado;
+    }
 
 
     /**
