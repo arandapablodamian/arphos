@@ -319,13 +319,21 @@ class TiendaController extends Controller
                 return $this->redirect($preference['response']['init_point']);
           
          }
+        if ($session->has('clienteId')){
+          $Cliente = $this -> getDoctrine()
+                ->getRepository("BackendBundle:Cliente")
+                ->find($session->get('clienteId'));
+        } else{
+            $Cliente=null;
+        }
+
 
         return $this->render('FrontendBundle::carrito.html.twig', array(
             'formularioRegistro'=>$formularioRegistro->createView(),
             'formularioIngreso'=> $formularioIngreso->createView(),
             'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,
             "Categorias" => $Categorias,
-           /* "Estaciones" => $Estaciones,*/"Comprados" => $ProductosComprados, 'form' => $form->createView()));
+           /* "Estaciones" => $Estaciones,*/"Comprados" => $ProductosComprados, "ClienteId" => $Cliente, 'form' => $form->createView()));
     }
      /**
      * @Route("/borrarproducto-{id}", name="borrarproducto")

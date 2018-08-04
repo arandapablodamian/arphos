@@ -25,7 +25,11 @@
                   </div>
                 </div>
                 <br>
+                {% if ClienteId is not null %}
                   {{ form_start(form) }}
                   {{ form_widget(form) }}
                   {{ form_end(form) }}
+                {% else %}
+                  <div class="btn btn-warning">Debe ingresar para poder finalizar la compra. De otra forma no tendriamos sus datos para entregar su pedido. Disculpe las molestias.</div>
+                {% endif %}
 {% endblock %}

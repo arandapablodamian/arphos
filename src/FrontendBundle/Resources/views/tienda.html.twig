@@ -10,7 +10,7 @@
                 <div class="container">
                     <div class="row">
                         <div class="col-md-3" style="width:70%;margin-left:auto;margin-right:auto;color:#d5bbaa;">
-                            <a class="btn btn-primary botonarphos" href="carrito">Ir Al Carrito</a>
+                            <a class="btn btn-primary botonarphos" href="carrito"><span class="fas fa-shopping-cart"></span> Ir Al Carrito</a>
                             <h2>
                                 <b>Categorias</b>
                             </h2>
@@ -46,11 +46,11 @@
                                                     </div>
                                                     {% else %}
                                                         <div class="panel-heading">
-                                                            <h4 class="panel-title">
+                                                            <h5 class="panel-title">
                                                                 <a style="color:#94642e;" href="tiendacategoria={{Categoria.id}}">
                                                                     <span class="glyphicon glyphicon-folder-close">
                                                                     </span>{{Categoria.titulo}}</a>
-                                                            </h4>
+                                                            </h5>
                                                         </div>
                                                     {% endif %} 
                                                 {% endif %} 
@@ -104,16 +104,14 @@
                                         <thead>
                                             <tr>
                                                 <th>Fotografia</th>
-                                                <th>Nombre</th>
-                                                <th>Color</th>
+                                                <th>Detalles</th>
                                                 <th>Precio</th>
                                             </tr>
                                         </thead>
                                         <tfoot>
                                             <tr>
-                                                <th>Imagen</th>
-                                                <th>Nombre</th>
-                                                <th>Color</th>
+                                                <th>Fotografia</th>
+                                                <th>Detalles</th>
                                                 <th>Precio</th>
                                             </tr>
                                         </tfoot>
@@ -123,9 +121,9 @@
                                                     <td style="text-align:center;">
                                                         <a href="tiendaproducto-{{Producto.id}}"><img width="200" height="200" src="{{ asset('imagenes/productos/'~Producto.Imagen) }}" alt=""></a>
                                                     </td>
-                                                    <td>{{Producto.nombre}}</td>
-                                                    <td>{{Producto.color}}</td>
-                                                    <td>${{Producto.precio}}</td>
+                                                    <td style="padding-left:20px;"><h4>{{Producto.nombre}}</h4>
+                                                    Color: {{Producto.color}}</td>
+                                                     <td style="padding-left:20px;"><h4>${{Producto.precio}}</h4></td>
                                                 </tr>
                                             {% endfor %}
 

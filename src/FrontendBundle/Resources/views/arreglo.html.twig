@@ -10,6 +10,8 @@
 	    <link rel="stylesheet" href="{{ asset('assets/bootstrap/css/bootstrap.css') }}" />
 	    <link rel="stylesheet" href="{{ asset('bundles/frontend/css/jquery.dataTables.min.css') }}" />
 	    <link rel="stylesheet" href="{{ asset('assets/datepicker/bootstrap-datepicker.min.css') }}" />
+	    <link rel="stylesheet" href="{{ asset('bundles/frontend/fontawesome/css/all.css') }}">
+	    <script src="{{ asset('bundles/frontend/js/jquery-3.3.1.min.js') }}"></script> 
 	    <style>
 	    .contacto {
 	    	color:#9b7c5a;
@@ -125,8 +127,8 @@
 			}
 
 			td, th {
-			    border-left:solid black 1px;
-			    border-top:solid black 1px;
+			    border-left:none;
+			    border-top:solid black 1px
 			}
 
 			th {
@@ -140,6 +142,14 @@
 			.wapo {
 				border-top: solid;
 				border-color: #7c5428;
+			}
+
+			.paginate_button{
+				margin-right: 10px;
+				color:rgb(124, 85, 41);
+			}
+			.dataTables_length, .dataTables_filter{
+				color:rgb(124, 85, 41);
 			}
 
 		 </style>
@@ -460,6 +470,9 @@
    <script>
         $(document).ready(function() {
     	$('#example').DataTable({
+    		"columnDefs": [
+		    { "width": "100px", "targets": 0 }
+		  ],
     		language: {
        		  	processing:     "Procesando...",
        			search:         "Busqueda:",
@@ -473,8 +486,8 @@
 		        emptyTable:     "No hay productos que satisfagan la busqueda",
 		        paginate: {
 		            first:      "Primero",
-		            previous:   "Anterior",
-		            next:       "Siguiente",
+		            previous:   "<i class='fas fa-arrow-left'></i> Anterior",
+		            next:       "Siguiente <i class='fas fa-arrow-right'></i>",
 		            last:       "Ultimo"
 		        },
    			}
