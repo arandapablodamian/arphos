@@ -15,60 +15,74 @@
        font-weight: bold;
        text-align:center;
       }
+
+
+
+.list-group.panel > .list-group-item {
+  border-bottom-right-radius: 4px;
+  border-bottom-left-radius: 4px;
+  width: 250px;
+  background: white;
+  color: #666;
+}
+.list-group-submenu {
+  width: 250px;
+}
+
+.strong { font-weight: bold; }
     </style>
 {% endblock %}
 
 {% block content %}
-  
-
   <div style="background-color:#faf4ee;min-height:600px; ">
     <div> 
-        
-        <div class="container">
-        <div class="row">
-          
-          <div class="col-md-3 col-sm-12" style="text-align:left;">
-            <div class="row">
-              <div class="col-md-1">
-              </div>
-              <div class="col-md-10">
-                 <div id="accordion">
+      <div class="container">
+        <div class="row">  
+          <div class="col-3" style="text-align:center;display:inline-block;">
+                 <div class="accordion">
                     {% for categoria in categorias  %}
                       {% set contador=1 %}
                         {% if categoria.subcategorias is empty %}
+                          {% if categoria.paginas|length > 0 %}
+                            <div class="list-group">
+                              <a class="list-group-item list-group-item-action active" style="background-color:#d5bbaa;border-color: #d5bbaa;color:#4c2606;"
+                                href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}
+                              </a>
+                            </div>
+                          {% endif %}
+                        {% else %}
                           <div class="list-group">
-<a class="list-group-item list-group-item-action active" style="background-color:#d5bbaa;border-color: #d5bbaa;color:#4c2606;" href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}</a>
-                          {% else %}
-                          <div class="list-group">
-<a class="list-group-item list-group-item-action active" style="color:#4c2606;background-color:#d5bbaa;border-color: #d5bbaa" " href=" {{path('blog',{'categoria': categoria.id})}} ">{{categoria.titulo}}</a>
+                            <a class="list-group-item list-group-item-action active" 
+                            style="color:#4c2606;background-color:#d5bbaa;border-color: #d5bbaa" 
+                             href=" {{path('blog',{'categoria': categoria.id})}} ">{{categoria.titulo}}
+                            </a>
                             {% for subcategoria in categoria.subcategorias %}
                               <a class="list-group-item list-group-item-action" href="{{path('blog',{'categoria': subcategoria.id})}}">{{subcategoria.titulo}}</a>
                             {% endfor %}
-                          {% endif %}
                           </div>
+                        {% endif %}
+                          
                     {% endfor %}
-                    </div>
-                  </div>
+                  
                 </div>
               </div>
-            </div>
+            
            
-          <div class="col-md-12" class="entrada">
+          <div class="col-8" class="entrada" >
               {% for entrada in entradas %}
-                  <div>
-                    <h2>{{entrada.titulo | raw}}</h2>
-                  </div>
-                  <div>
-                    {{entrada.desarrollo | raw}}
-                  </div>
-                  <br>
-                  <div style="text-align:center;">
-                    <div style="margin-left:auto;margin-right:auto;">
-                      <a  href="{{path('detalleEntrada', {'idPagina':entrada.id})}}"><img src="{{asset('bundles/frontend/images/blog/BotonVerMas.png')}}" alt=""></a>
-                    </div>
-                  </div>
-          <hr />
-              {% endfor %}
+              <div  style="text-align:center;">
+                <img  class="img-fluid" class="width:80%;margin-right:auto;margin-left:auto"  src="{{asset('imagenes/paginas/'~entrada.imagen)}}" alt="">
+                <h2>{{entrada.titulo | raw}}</h2>
+                {{ entrada.introduccion|raw }}
+              <br>
+              <div style="text-align:center;">
+                <div style="margin-left:auto;margin-right:auto;">
+                  <a  href="{{path('detalleEntrada', {'idPagina':entrada.id})}}"><img src="{{asset('bundles/frontend/images/blog/BotonVerMas.png')}}" alt=""></a>
+                </div>
+              </div>
+              </div>
+              <hr />
+            {% endfor %}
           </div>
         </div>
         </div>

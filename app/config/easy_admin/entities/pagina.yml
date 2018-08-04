@@ -34,9 +34,10 @@ easy_admin:
                     - { property: 'publicado' , label: 'Publicado', type: 'toggle'}
                     - { property: 'categoria', label: 'categoria'}
                     - { property: 'titulo' , label: 'Título', type: 'text'}
-                    - { property: 'introduccion', label: 'Introducción',type: "ckeditor",css_class: 'col-md-12'}
+                    - { property: 'introduccion', label: 'Introducción',type: "text",css_class: 'col-md-12'}
                     - { property: 'desarrollo', type: "text"}
                     - { property: 'imagen', type: 'image', base_path: '%path.imagenesPaginas%' }
+                    # - { property: 'resources' ,label: 'Galeria', template: 'resource_field.html.twig',css_class: 'col-md-12' }
                     - { property: 'fechaCreacion', label: 'Creación', type: 'date' }
                     - { property: 'fechaModificacion', label: 'Modificación', type: 'date'}
             edit:
