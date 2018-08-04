@@ -16,7 +16,7 @@ parameters:
     path.imagenesProducto: /imagenes/productos
     path.galerias: /imagenes/productos
     path.imagenesPaginas: /imagenes/paginas
-
+    path.imagenesResources: /imagenes/resources
 knp_paginator:
     page_range: 10                     # default page range used in pagination control
     default_options:
@@ -117,8 +117,8 @@ vich_uploader:
             delete_on_update:   true
             delete_on_remove:   true
         resource_image:
-            uri_prefix:         %path.imagenesProducto%
-            upload_destination: %kernel.root_dir%/../web/imagenes/productos
+            uri_prefix:         %path.imagenesResources%
+            upload_destination: %kernel.root_dir%/../web/imagenes/resources
             namer:
                 service: vich_uploader.namer_uniqid
             inject_on_load:     false

@@ -14,72 +14,76 @@
        font-weight: bold;
        text-align:center;
       }
+.galleria{height:467px}
+.galleria-stage {
+    height: 450px;
+    position: absolute;
+    top: 10px;
+    bottom: 60px;
+    left: 10px;
+    right: 10px;
+    overflow: hidden;
+}
     </style>
+  
 {% endblock %}
 
 {% block content %}
   
 
   <div>
-    <div class=container>
-        <div class="row">
-          
-          <div class="col-md-3 col-sm-12" style="text-align:left;">
-            <div class="row">
-              <div class="col-md-1">
+    <div class="container">
+      <div class="row">
+        <div class="col-3" style="text-align:center;display:inline-block;">
+          <div class="accordion">
+            {% for categoria in categorias %} {% set contador=1 %} 
+              {% if categoria.subcategorias is empty %} {% if categoria.paginas|length > 0 %}
+              <div class="list-group">
+                <a class="list-group-item list-group-item-action active" style="background-color:#d5bbaa;border-color: #d5bbaa;color:#4c2606;"
+                  href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}
+                </a>
               </div>
-              <div class="col-md-10">
-                 <div id="accordion">
-                    {% for categoria in categorias  %}
-                      {% set contador=1 %}
-                        {% if categoria.subcategorias is empty %}
-                          <div>
-                            <a class="botonarphos" href="{{path('blog',{'categoria': categoria.id})}}">{{categoria.titulo}}</a>
-                            </div>
-                            {% else %}
-                              <div class="card">
-                                <div class="card-header" id="headingOne">
-                                  <h5 class="mb-0">
-                                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapse{{contador}}" aria-expanded="true" aria-controls="collapse{{contador}}">
-                                    {{categoria.titulo}}
-                                   </button>
-                                  </h5>
-                                </div>
-                                <div id="collapse{{contador}}" class="collapse" aria-labelledby="headingOne" data-parent="#accordion">
-                                  <div class="card-body">
-                                     {% for subcategoria in categoria.subcategorias %}
-                                     <div>
-                                        <a href="{{path('blog',{'categoria': subcategoria.id})}}">{{subcategoria.titulo}}</a>
-                                     </div>
-                                     
-                                     {% endfor %}
-                                  </div>
-                                </div>
-                                {% set contador=contador +1%}
-                               
-                          {% endif %}
-                      {% endfor %}
-                    </div>
-                  </div>
-                </div>
-              </div>
+              {% endif %}
+          {% else %}
+            <div class="list-group">
+              <a class="list-group-item list-group-item-action active" style="color:#4c2606;background-color:#d5bbaa;border-color: #d5bbaa"
+                href=" {{path('blog',{'categoria': categoria.id})}} ">{{categoria.titulo}}
+              </a>
+              {% for subcategoria in categoria.subcategorias %}
+              <a class="list-group-item list-group-item-action" href="{{path('blog',{'categoria': subcategoria.id})}}">{{subcategoria.titulo}}</a>
+              {% endfor %}
             </div>
+            {% endif %} {% endfor %}
+    
+          </div>
+        </div>
            
-          <div class="col-md-12" class="entrada">
+          <div class="col-8" class="entrada" style="text-align:center;">
                   <div>
                     <h2>{{entrada.titulo | raw}}</h2>
                   </div>
                   <div>
-                    <img style="max-width:500px;max-height:500px;"src="{{asset('bundles/imagenes/paginas'~entrada.imagen)}}" alt="">
+                    <img class="img-fluid" class="width:80%;margin-right:auto;margin-left:auto" src="{{asset('imagenes/paginas/'~entrada.imagen)}}" alt="">
                   <div>
                     <br>
                   <div>
                     {{entrada.introduccion | raw}}
                   </div>
+                  <hr>
                   <div>
-                    {{entrada.introduccion | raw}}
+                    {{entrada.desarrollo | raw}}
                   </div>
+                  
                   <br>
+                  {% if entrada.resources|length > 0 %}
+                    <div style="text-align:center;">
+                      <div class="galleria">
+                        {% for resource in  entrada.resources %}
+                          <img src="{{asset('imagenes/resources/'~resource.path)}}" data-title="resource.epigrafe" data-description="resource.epigrafe">
+                        {% endfor %}
+                      </div>
+                    </div>
+                   {% endif %}
           </div>
         </div>
       </div>
@@ -87,4 +91,21 @@
    </div>
   </div>
     
+{% endblock %}
+{% block javascripts %}
+  {{parent()}}
+    <link type="text/css" rel="stylesheet" href="{{ asset('assets/galleria/themes/classic/galleria.classic.css')}}">
+    <script src="{{ asset('assets/galleria/galleria-1.5.7.min.js') }}"></script>
+    <script src="{{ asset('assets/galleria/themes/classic/galleria.classic.min.js') }}"></script>
+    <script>
+      $('.galleria').galleria({
+          width: 700,
+          height: 467 //--I made heights match
+        });
+      Galleria.run('.galleria', {
+          height: parseInt($('.gallery').css('height')),
+          wait: true
+        });
+
+    </script>
 {% endblock %}
