@@ -84,7 +84,7 @@ class DefaultController extends Controller
             $turnoAlta->setDireccion($datosTurno->getDireccion());
             $turnoAlta->setCorreo($datosTurno->getCorreo());
             $turnoAlta->setTelefono($datosTurno->getTelefono());
-            $turnoAlta->setDiayhorapiso($datosTurno->getDiayhorapiso());
+            $turnoAlta->setDia($datosTurno->getDia());
             $turnoAlta->setHora($datosTurno->getHora());
             $turnoAlta->setCliente($cliente);
 
@@ -96,9 +96,23 @@ class DefaultController extends Controller
 
             //ejecuto la instrucción
             $em->flush();
-            //imprimo el pdf
-            return $this->imprimir_turno($turnoAlta->getId());
-
+            //para enviar el mail
+            $message = (new \Swift_Message('Turnos'))
+                ->setSubject('Turno Arphos')
+                ->setFrom("arandapablodamian@gmail.com")
+                ->setTo($turnoAlta->getCliente()->getEmail())
+                ->setBody(
+                    "Estimado cliente, el turno a sido fijado para el día ".
+                    $turnoAlta->getDia()->format('d/m/Y').
+                    " , en el horario de : ".$turnoAlta->getHora()->format('H:i') . " hasta las :" . $turnoAlta->getHoratecho()->format('H:i'));
+            $this->get('mailer')->send($message);
+            
+             return $this->render('FrontendBundle::index.html.twig',array(
+        	'formularioTurno'=>$formularioTurno->createView(),
+            'formularioRegistro'=>$formularioRegistro->createView(),
+            'formularioIngreso'=> $formularioIngreso->createView(),
+            'mostrarRegistro'=>$mostrarRegistro,'mostrarIngreso'=>$mostrarIngreso,'usuarioInvalido'=>$usuarioInvalido,'pedirRegistroTurno'=>$pedirRegistroTurno
+        ));
         }else{
             //en caso de que no este el usuario registrado, pedir que se loguee
             $mostrarIngreso=true;
@@ -728,7 +742,7 @@ class DefaultController extends Controller
 
 
       $em = $this->getDoctrine()->getManager();
-      $query = $em->createQuery("SELECT t.hora FROM BackendBundle:Turno t WHERE t.diayhorapiso =:fecha and :hora >= t.hora and :hora <= t.horatecho");
+      $query = $em->createQuery("SELECT t.hora FROM BackendBundle:Turno t WHERE t.dia =:fecha and :hora >= t.hora and :hora <= t.horatecho");
       $query->setParameter('fecha', $fecha);
       $query->setParameter('hora', $hora.":".$minuto);
 

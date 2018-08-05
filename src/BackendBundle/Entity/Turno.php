@@ -58,9 +58,9 @@ class Turno
     /**
      * @var \String
      *
-     * @ORM\Column(name="diayhorapiso", type="string")
+     * @ORM\Column(name="dia", type="date")
      */
-    private $diayhorapiso;
+    private $dia;
 
     /**
      * @var \Time
@@ -214,27 +214,27 @@ class Turno
     }
 
     /**
-     * Set diayhorapiso
+     * Set dia
      *
-     * @param \Date $diayhorapiso
+     * @param \Date $dia
      *
      * @return Turno
      */
-    public function setDiayhorapiso($diayhorapiso)
+    public function setDia($dia)
     {
-        $this->diayhorapiso = $diayhorapiso;
+        $this->dia = $dia;
 
         return $this;
     }
 
     /**
-     * Get diayhorapiso
+     * Get dia
      *
      * @return \Date
      */
-    public function getDiayhorapiso()
+    public function getDia()
     {
-        return $this->diayhorapiso;
+        return $this->dia;
     }
 
     /**

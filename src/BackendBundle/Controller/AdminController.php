@@ -41,4 +41,30 @@ class AdminController extends BaseAdminController
 
         parent::persistEntity($entity);
     }
+
+    protected function persistTurnoEntity(){
+         $message = (new \Swift_Message('Contacto'))
+                ->setSubject('Turno Arphos')
+                ->setFrom("Arphos@gmail.com")
+                ->setTo($entity->getCliente()->getEmail())
+                ->setBody(
+                    "Estimado cliente, el turno a sido fijado para el día ".
+                    $entity->getDia()->format('d/m/Y').
+                    " , en el horario de : ".$entity->getHora()->format('H:i') . " hasta las :" . $entity->getHoratecho()->format('H:i'));
+                $this->get('mailer')->send($message);
+    }
+
+    public function updateTurnoEntity($entity){
+         $message = (new \Swift_Message('Contacto'))
+                ->setSubject('Turno Arphos')
+                ->setFrom("Arphos@gmail.com")
+                ->setTo($entity->getCliente()->getEmail())
+                ->setBody(
+                    "Estimado cliente, el turno a sido modificado para el día ".
+                    $entity->getDia()->format('d/m/Y').
+                    " , en el horario de : ".$entity->getHora()->format('H:i') . " hasta las :" . $entity->getHoratecho()->format('H:i'));
+                $this->get('mailer')->send($message);
+    }
+
+   
 }

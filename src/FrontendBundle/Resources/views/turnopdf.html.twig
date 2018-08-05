@@ -21,9 +21,9 @@
             <h2>Ticket de Turno</h2>
         </div>
         <div class="col-md-3" style="text-align:left">
-            <h5>Fecha Turno: {{turno.diayhorapiso | date("d/m/Y")}} </h5>
+            <h5>Fecha Turno: {{turno.dia | date("d/m/Y")}} </h5>
             <br>
-            <h5>Horario Turno: {{turno.diayhorapiso | date("H:i")}} </h5>
+            <h5>Horario Turno: {{turno.hora | date("H:i")}} </h5>
             <br>
             <h5>Fin de Turno Aprox: {{turno.horatecho | date("H:i")}} </h5>
             <br>

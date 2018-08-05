@@ -13,7 +13,7 @@ easy_admin:
                     - { property: 'cliente', label: 'Cliente', css_class: 'col-md-6'}
                     - { property: 'nombre' , label: 'Nombre', css_class: 'col-md-6'}
                     - { property: 'apellido' , label: 'Apellido', css_class: 'col-md-6'}
-                    - { property: 'diayhorapiso' , label: 'Dia', format: 'd/m/Y g:i A', css_class: 'col-md-10'}
+                    - { property: 'dia' , label: 'Dia', format: 'd/m/Y', css_class: 'col-md-10'}
                     - { property: 'hora', label: 'Hora de Inicio', css_class: 'col-md-6'}
                     - { property: 'horatecho', label: 'Hora de Fin', css_class: 'col-md-6'}
                     - { property: 'direccion' , label: 'Dirección', css_class: 'col-md-6'}
@@ -28,7 +28,9 @@ easy_admin:
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
                     - { type: 'divider' }
-                    - { property: 'diayhorapiso' , label: 'Día y Hora',type: 'datetime', css_class: 'col-md-6', type_options: { widget: 'text' }}
+                    - { property: 'dia' , label: 'Día',type: 'date', css_class: 'col-md-12'}
+                    - { property: 'hora' , label: 'Hora de Inicio', css_class: 'col-md-12'}
+                    - { property: 'horatecho' , label: 'Hora Fin'    , css_class: 'col-md-12'}
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
                     - { type: 'divider' }
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
@@ -43,7 +45,7 @@ easy_admin:
                     - { property: 'cliente', label: 'Cliente', css_class: 'col-md-6'}
                     - { property: 'nombre' , label: 'Nombre',css_class: 'col-md-6'}
                     - { property: 'apellido' , label: 'Apellido',css_class: 'col-md-6'}
-                    - { property: 'diayhorapiso' , label: 'Dia', format: 'd/m/Y g:i A', css_class: 'col-md-6'}
+                    - { property: 'dia' , label: 'Dia', format: 'd/m/Y', css_class: 'col-md-6'}
                     - { property: 'hora' , label: 'Hora de Inicio',css_class: 'col-md-6'}
                     - { property: 'horatecho', label: 'Hora de Fin', css_class: 'col-md-6'}
                     - { property: 'direccion' , label: 'Dirección',css_class: 'col-md-6'}
